@@ -1,2 +1,12 @@
-/* @import "./reset.css"; */
+@import "./reset.css";
 @import "~antd/dist/antd.css";
+
+/* 覆盖antd的原生样式 */
+.ant-menu-item {
+  padding-left: 19px !important;
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+}
+.ant-menu-item-selected {
+  background-color: #001529 !important;
+}
