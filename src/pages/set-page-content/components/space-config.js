@@ -1,6 +1,6 @@
-
 import { Tabs, Input } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
+import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle } from "./../helper/index";
 
@@ -22,8 +22,8 @@ const SpaceConfig = ({ currentUid, pageUpdate, setPageUpdate }) => {
           {Object.entries(ORIGIN_TREE[currentUid].style).map(
             ([key, value], index) => {
               return (
-                <div className="space-config-form-item" key={index}>
-                  {key}:
+                <div className="form-item" key={index}>
+                  <span>{ATTR_MAP[key]}：</span>
                   <Input
                     size="small"
                     value={value}
@@ -37,7 +37,10 @@ const SpaceConfig = ({ currentUid, pageUpdate, setPageUpdate }) => {
           )}
         </TabPane>
         <TabPane tab="属性" key="2">
-          Content of Tab Pane 2
+          暂不支持
+        </TabPane>
+        <TabPane tab="高级" key="3">
+          暂不支持
         </TabPane>
       </Tabs>
     </div>

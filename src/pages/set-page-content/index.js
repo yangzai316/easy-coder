@@ -21,7 +21,7 @@ const SetPageContent = () => {
           pageUpdate={pageUpdate}
         ></SpaceWork>
       </Content>
-      <Sider theme="light" style={{ height: "100%" }}>
+      <Sider theme="light" width={240} style={{ height: "100%" }}>
         <SpaceConfig
           currentUid={currentUid}
           pageUpdate={pageUpdate}
