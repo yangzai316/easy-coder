@@ -1,0 +1,13 @@
+.space-config {
+  padding: 12px;
+  .title-current {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .space-config-form-item {
+    display: flex;
+    margin-bottom: 6px;
+  }
+}

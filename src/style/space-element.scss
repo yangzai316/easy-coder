@@ -1,0 +1,14 @@
+.space-element {
+  padding: 10px;
+  .component-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    background-color: #85f4ff;
+    padding: 6px 0;
+    cursor: move;
+  }
+}
+

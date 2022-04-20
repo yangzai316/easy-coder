@@ -1,10 +1,10 @@
 import Container from "../components/Container";
 import { Layout } from "antd";
 
-export default {
+const ORIGIN_TREE = {
   "id-root": {
     id: "id-root",
-    name: "container",
+    name: "Container",
     component: Container,
     style: {
       width: "100%",
@@ -13,3 +13,4 @@ export default {
     children: [],
   },
 };
+export default ORIGIN_TREE;
