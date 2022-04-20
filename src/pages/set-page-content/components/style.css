@@ -1,0 +1,17 @@
+.component-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; 
+  font-size: 12px;
+  background-color: #85F4FF;
+  padding:6px 0;
+  cursor: move;
+}
+.work-space{
+  width: 100%;
+  height: 100%;
+}
+.contained:hover{
+  border: 1px solid #448EF6;
+}
