@@ -2,7 +2,7 @@ import { Tabs, Input } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
 import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
-import { editConfigForStyle } from "./../helper/index";
+import { editConfigForStyle } from "./../../../helper";
 
 const { TabPane } = Tabs;
 
@@ -17,7 +17,7 @@ const SpaceConfig = ({ currentUid, pageUpdate, setPageUpdate }) => {
     <div className="space-config">
       <div className="title-current">当前：{currentUid}</div>
       <div>更新：{pageUpdate}次</div>
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="1" size="small">
         <TabPane tab="样式" key="1">
           {Object.entries(ORIGIN_TREE[currentUid].style).map(
             ([key, value], index) => {

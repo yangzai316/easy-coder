@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Row, Col, Divider } from "antd";
-import { v4 as uuidv4 } from 'uuid'; 
+import { v4 as uuidv4 } from "uuid";
 import EasyIcon from "../../../components/EasyIcon";
-import { componentList } from "../../../data/components";
-import './../../../style/space-element.scss'
+import { elementList } from "../../../data/components";
+import "./../../../style/space-element.scss";
 // 左侧组件展示栏
 const AreaComponent = () => {
   // 添加拖拽事件
@@ -23,7 +23,7 @@ const AreaComponent = () => {
     <div id="space-element" className="space-element">
       <Divider orientation="left">组件集合：</Divider>
       <Row gutter={[8, 8]}>
-        {componentList.map((item, index) => {
+        {elementList.map((item, index) => {
           return (
             <Col span={12} key={item.name}>
               <ComponentItem content={item}></ComponentItem>
@@ -38,8 +38,8 @@ const AreaComponent = () => {
 const ComponentItem = ({ content }) => {
   return (
     <div className="component-item" data-type={content.name} draggable="true">
-      <EasyIcon fontSize="48">icon-buju</EasyIcon>
-      <span>{content.label}</span>
+      <EasyIcon>{content.icon}</EasyIcon>
+      <span>{content.label} </span>
     </div>
   );
 };

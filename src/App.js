@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import SetPageContent from "./pages/set-page-content";
 import SetRoute from "./pages/set-route";
-import LeftSider from "./components/left-sider";
+import LeftSider from "./components/LeftSider";
 import { Layout } from "antd";
 import "./App.css";
 

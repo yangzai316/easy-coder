@@ -1,6 +1,5 @@
-import ORIGIN_TREE from "./../../../data/origin-tree";
-import { componentList } from "./../../../data/components";
-import * as ntd from "antd";
+import ORIGIN_TREE from "../data/origin-tree";
+import { COMPONENT_MAP, all } from "../data/components";
 /**
  * 获取新创建组件的信息：uid / componentName
  */
@@ -18,15 +17,19 @@ const getNewElementInfo = (str) => {
  */
 export const mixComponentToTree = (newEleInfo, toEleId) => {
   const { uid, componentName } = getNewElementInfo(newEleInfo);
-  const config = componentList.find((item) => item.name === componentName);
-  const newConfig = JSON.parse(JSON.stringify(config));
+  const config = COMPONENT_MAP[componentName];
+
   const newEle = {
     id: uid,
-    ...newConfig,
-    component: ntd[newConfig.name],
+    name: config.name,
+    style: Object.assign({}, config.style),
+    children: config.type === "contained" ? [] : null,
+    component: all[config.name],
   };
+  
   ORIGIN_TREE[toEleId].children.push(newEle);
   ORIGIN_TREE[uid] = newEle;
+  console.log(ORIGIN_TREE);
 };
 
 /**

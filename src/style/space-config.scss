@@ -11,8 +11,13 @@
     align-items: center;
     flex-wrap: nowrap;
     margin-bottom: 6px;
+    font-size: 12px;
     & > span {
       flex-basis: 90px;
+      text-align: right;
+    }
+    .ant-input {
+      font-size: 12px;
     }
   }
 }

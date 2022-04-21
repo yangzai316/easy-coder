@@ -1,14 +1,18 @@
 .space-element {
   padding: 10px;
   .component-item {
+    width:86px;
+    height: 86px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     font-size: 12px;
-    background-color: #85f4ff;
     padding: 6px 0;
     cursor: move;
+    border: 1px solid #ccc;
+    &:hover {
+      box-shadow: 0px 4px 16px 1px rgba(0, 0, 0, 0.12);
+    }
   }
 }
-

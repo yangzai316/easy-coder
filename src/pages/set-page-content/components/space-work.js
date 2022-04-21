@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"; 
 import './../../../style/space-work.scss'
 import ORIGIN_TREE from "../../../data/origin-tree";
-import { mixComponentToTree } from "./../helper";
+import { mixComponentToTree } from "./../../../helper";
 
 // 中间操作栏
-const AreaMaker = ({ setCurrentUid }) => {
+const SpaceWork = ({ setCurrentUid }) => {
   const [update, setUpdate] = useState(1);
 
   // 添加拖拽事件
@@ -33,13 +33,14 @@ const AreaMaker = ({ setCurrentUid }) => {
 
   return (
     <div id="work-space" className="work-space">
+      <div>更新：{update}</div>
       {createElement(ORIGIN_TREE["id-root"], setCurrentUid)}
     </div>
   );
 };
 // 根据 json 创建 react 元素，循环递归
 const createElement = (data, setCurrentUid) => {
-  let children = [];
+  let children = null;
   if (data.children && data.children.length) {
     children = data.children.map((item) => {
       return createElement(item, setCurrentUid);
@@ -56,8 +57,8 @@ const createElement = (data, setCurrentUid) => {
         setCurrentUid(e.target.dataset.id);
       },
     },
-    [...children]
+    children
   );
 };
 
-export default AreaMaker;
+export default SpaceWork;

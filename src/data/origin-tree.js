@@ -1,5 +1,4 @@
 import Container from "../components/Container";
-import { Layout } from "antd";
 
 const ORIGIN_TREE = {
   "id-root": {
