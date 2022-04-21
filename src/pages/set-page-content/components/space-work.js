@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react"; 
-import './../../../style/space-work.scss'
+import React, { useEffect, useState } from "react";
+import "./../../../style/space-work.scss";
 import ORIGIN_TREE from "../../../data/origin-tree";
-import { mixComponentToTree } from "./../../../helper";
+import {
+  mixComponentToTree,
+  getNewElementInfo,
+  getUid,
+} from "./../../../helper";
 
 // 中间操作栏
 const SpaceWork = ({ setCurrentUid }) => {
-  const [update, setUpdate] = useState(1);
-
   // 添加拖拽事件
   useEffect(() => {
     const dragOver = (e) => {
@@ -14,26 +16,24 @@ const SpaceWork = ({ setCurrentUid }) => {
     };
     const drop = (e) => {
       e.preventDefault();
-      mixComponentToTree(
-        e.dataTransfer.getData("text/plain"),
-        e.target.dataset.id
+      const { uid, type } = getNewElementInfo(
+        e.dataTransfer.getData("text/plain")
       );
-      // 更新视图
-      setUpdate(update + 1);
+      mixComponentToTree(uid, type, e.target.dataset.uid);
+      setCurrentUid(uid);
     };
 
-    const spaceWork = document.getElementById("work-space");
+    const spaceWork = document.getElementById("WORK_SPACE");
     spaceWork.addEventListener("dragover", dragOver, false);
     spaceWork.addEventListener("drop", drop, false);
     return () => {
       spaceWork.removeEventListener("dragOver", dragOver, false);
       spaceWork.removeEventListener("drop", drop, false);
     };
-  }, [update]);
+  }, []);
 
   return (
-    <div id="work-space" className="work-space">
-      <div>更新：{update}</div>
+    <div id="WORK_SPACE" className="work-space">
       {createElement(ORIGIN_TREE["id-root"], setCurrentUid)}
     </div>
   );
@@ -49,12 +49,16 @@ const createElement = (data, setCurrentUid) => {
   return React.createElement(
     data.component,
     {
-      key: data.id,
+      key: data.uid,
+      ...data.prop,
       style: data.style,
-      "data-id": data.id,
+      "data-uid": data.uid,
       onClick: (e) => {
         e.stopPropagation();
-        setCurrentUid(e.target.dataset.id);
+        const uid = getUid(e.target);
+        if (uid) {
+          setCurrentUid(uid);
+        }
       },
     },
     children

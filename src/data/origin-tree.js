@@ -2,7 +2,7 @@ import Container from "../components/Container";
 
 const ORIGIN_TREE = {
   "id-root": {
-    id: "id-root",
+    uid: "id-root",
     name: "Container",
     component: Container,
     style: {

@@ -1,5 +1,6 @@
 @import "./reset.css";
-@import "~antd/dist/antd.css";
+/* @import "~antd/dist/antd.css"; */
+@import "~antd/dist/antd.compact.css";
 
 /* 覆盖antd的原生样式 */
 .ant-menu-item {

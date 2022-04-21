@@ -23,6 +23,7 @@ export const elementList = [
     name: "FormItem",
     label: "表单项",
     icon: "icon-icon-test2",
+    disabled: true,
   },
   {
     name: "Input",
@@ -57,6 +58,7 @@ export const COMPONENT_MAP = {
       height: "400px",
       backgroundColor: "#fff",
       margin: "10px",
+      padding: "10px",
     },
   },
   FormItem: {
@@ -65,9 +67,10 @@ export const COMPONENT_MAP = {
     type: "contained",
     style: {
       width: "auto",
-      height: "40px",
       backgroundColor: "#ccc",
-      margin: "10px",
+    },
+    prop: {
+      label: "标题",
     },
   },
   Input: {

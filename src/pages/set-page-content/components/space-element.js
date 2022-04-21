@@ -9,8 +9,8 @@ const AreaComponent = () => {
   // 添加拖拽事件
   useEffect(() => {
     const dragStart = (e) => {
-      const id = uuidv4();
-      e.dataTransfer.setData("text/plain", `${id}-&-${e.target.dataset.type}`);
+      const uid = uuidv4();
+      e.dataTransfer.setData("text/plain", `${uid}-&-${e.target.dataset.type}`);
     };
     const spaceElement = document.getElementById("space-element");
     spaceElement.addEventListener("dragstart", dragStart, false);
@@ -37,7 +37,11 @@ const AreaComponent = () => {
 // 组件展示 item
 const ComponentItem = ({ content }) => {
   return (
-    <div className="component-item" data-type={content.name} draggable="true">
+    <div
+      className={`component-item ${content.disabled ? "is-disabled" : ""}`}
+      data-type={content.name}
+      draggable={String(!content.disabled)}
+    >
       <EasyIcon>{content.icon}</EasyIcon>
       <span>{content.label} </span>
     </div>
