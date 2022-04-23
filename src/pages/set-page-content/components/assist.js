@@ -1,12 +1,8 @@
-import { Layout, Switch } from "antd";
+import { Button, Switch } from "antd";
+import { toggleFocusAllElement } from "./../../../helper";
+import ORIGIN_TREE from "./../../../data/origin-tree";
 
 const Assist = ({ updateCount }) => {
-  const change = (val) => {
-    const spaceWork = document.getElementById("WORK_SPACE");
-    spaceWork.querySelectorAll("[data-uid]").forEach((item) => {
-      item.style.border = val ? "1px dashed #5584ff" : "none";
-    });
-  };
   return (
     <div>
       <span>更新：{updateCount} 次；</span>
@@ -14,8 +10,15 @@ const Assist = ({ updateCount }) => {
         size="small"
         checkedChildren="辅助线"
         unCheckedChildren="辅助线"
-        onChange={change}
+        onChange={toggleFocusAllElement}
       />
+      <Button
+        onClick={() => {
+          console.log(JSON.stringify(ORIGIN_TREE["id-root"]));
+        }}
+      >
+        查看JSON
+      </Button>
     </div>
   );
 };

@@ -1,9 +1,9 @@
-  const Container = ({ children, style, ...props }) => {
+const Container = ({ children, style, ...props }) => {
   return (
     <div className="container" style={style} {...props}>
       {children}
     </div>
   );
 };
- 
+
 export default Container;

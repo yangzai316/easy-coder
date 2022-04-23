@@ -21,16 +21,22 @@ const AreaComponent = () => {
 
   return (
     <div id="space-element" className="space-element">
-      <Divider orientation="left">组件集合：</Divider>
-      <Row gutter={[8, 8]}>
-        {elementList.map((item, index) => {
-          return (
-            <Col span={12} key={item.name}>
-              <ComponentItem content={item}></ComponentItem>
-            </Col>
-          );
-        })}
-      </Row>
+      {elementList.map((item, index) => {
+        return (
+          <div key={index}>
+            <Divider orientation="left">{item.label}</Divider>
+            <Row gutter={[8, 8]}>
+              {item.list.map((o) => {
+                return (
+                  <Col span={12} key={o.name}>
+                    <ComponentItem content={o}></ComponentItem>
+                  </Col>
+                );
+              })}
+            </Row>
+          </div>
+        );
+      })}
     </div>
   );
 };

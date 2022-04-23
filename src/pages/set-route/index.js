@@ -1,9 +1,11 @@
-function SetRoute() {
-    return (
-      <div className="App">
-        <h1>SetRoute</h1>
-      </div>
-    );
-  }
-  
-  export default SetRoute;
+import FormGroup from "./../../components/FormGroup";
+
+const SetRoute = () => {
+  return (
+    <div>
+      <FormGroup> </FormGroup>
+    </div>
+  );
+};
+
+export default SetRoute;

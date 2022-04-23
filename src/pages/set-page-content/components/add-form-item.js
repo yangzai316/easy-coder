@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
-import { mixComponentToTree } from "./../../../helper";
+import { mixComponentToTree, focusElement } from "./../../../helper";
 
 const AddFormItem = ({ parentUid, setCurrentUid }) => {
   const add = () => {

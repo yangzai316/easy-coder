@@ -5,10 +5,12 @@ import {
   mixComponentToTree,
   getNewElementInfo,
   getUid,
+  focusElement,
 } from "./../../../helper";
+import { isObject } from "../../../utils";
 
 // 中间操作栏
-const SpaceWork = ({ setCurrentUid }) => {
+const SpaceWork = ({ currentUid, setCurrentUid }) => {
   // 添加拖拽事件
   useEffect(() => {
     const dragOver = (e) => {
@@ -34,30 +36,34 @@ const SpaceWork = ({ setCurrentUid }) => {
 
   return (
     <div id="WORK_SPACE" className="work-space">
-      {createElement(ORIGIN_TREE["id-root"], setCurrentUid)}
+      {createElement(ORIGIN_TREE["id-root"], currentUid, setCurrentUid)}
     </div>
   );
 };
 // 根据 json 创建 react 元素，循环递归
-const createElement = (data, setCurrentUid) => {
+const createElement = (data, currentUid, setCurrentUid) => {
   let children = null;
   if (data.children && data.children.length) {
     children = data.children.map((item) => {
-      return createElement(item, setCurrentUid);
+      return createElement(item, currentUid, setCurrentUid);
     });
+  } else if (isObject(data.children)) {
+    children = createElement(data.children, currentUid, setCurrentUid);
   }
   return React.createElement(
     data.component,
     {
       key: data.uid,
-      ...data.prop,
+      ...data.props,
       style: data.style,
+      className: `${currentUid === data.uid ? "is-focus" : ""}`,
       "data-uid": data.uid,
       onClick: (e) => {
         e.stopPropagation();
         const uid = getUid(e.target);
         if (uid) {
           setCurrentUid(uid);
+          focusElement(uid);
         }
       },
     },
