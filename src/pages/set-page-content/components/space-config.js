@@ -7,6 +7,7 @@ import { isString } from "../../../utils";
 
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
+import SelectAddOption from "./select-add-option";
 
 const { TabPane } = Tabs;
 
@@ -76,6 +77,12 @@ const SpaceConfig = ({ currentUid, setCurrentUid, updateConfig }) => {
           {ORIGIN_TREE[currentUid]?.name === "FormItem" ? (
             <AddFormItemContent
               parentUid={currentUid}
+              setCurrentUid={setCurrentUid}
+            />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Select" ? (
+            <SelectAddOption
+              currentUid={currentUid}
               setCurrentUid={setCurrentUid}
             />
           ) : null}

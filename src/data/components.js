@@ -115,6 +115,10 @@ export const COMPONENT_MAP = {
     style: {
       width: "100%",
     },
+    options: [
+      { label: "test1", value: 1 },
+      { label: "test2", value: 1 },
+    ],
     children: [],
   },
   Button: {
