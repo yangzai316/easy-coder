@@ -23,7 +23,6 @@ export const mixComponentToTree = (uid, type, parentUid, childrenType) => {
     name: config.name,
     style: Object.assign({}, config.style),
     props: Object.assign({}, config.props),
-    options: config.options ? [...config.options] : null,
     children: config.type === "contained" ? [] : null,
     component: all[config.name],
   };

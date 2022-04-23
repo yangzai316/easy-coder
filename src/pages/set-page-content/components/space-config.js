@@ -83,7 +83,7 @@ const SpaceConfig = ({ currentUid, setCurrentUid, updateConfig }) => {
           {ORIGIN_TREE[currentUid]?.name === "Select" ? (
             <SelectAddOption
               currentUid={currentUid}
-              setCurrentUid={setCurrentUid}
+              updateConfig={updateConfig}
             />
           ) : null}
         </TabPane>

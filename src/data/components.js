@@ -111,14 +111,13 @@ export const COMPONENT_MAP = {
   Select: {
     name: "Select",
     label: "选择框",
-    props: {},
+    props: {
+      options: [],
+    },
     style: {
       width: "100%",
     },
-    options: [
-      { label: "test1", value: 1 },
-      { label: "test2", value: 1 },
-    ],
+
     children: [],
   },
   Button: {
