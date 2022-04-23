@@ -26,30 +26,29 @@ export const elementList = [
       {
         name: "FormItem",
         label: "表单项",
-        icon: "icon-icon-test2",
+        icon: "icon-icon-test3",
         disabled: true,
       },
       {
         name: "Input",
         label: "输入框",
-        icon: "icon-icon-test2",
+        icon: "icon-bianji-xiugai-pinglun-03",
+      },
+      {
+        name: "Select",
+        label: "选择器",
+        icon: "icon-icon-test5",
       },
       {
         name: "Button",
         label: "按钮",
-        icon: "icon-icon-test2",
+        icon: "icon-icon-test4",
       },
     ],
   },
   {
     label: "整合组件",
-    list: [
-      {
-        name: "FormGroup",
-        label: "表单",
-        icon: "icon-icon-test2",
-      },
-    ],
+    list: [],
   },
 ];
 
@@ -75,7 +74,7 @@ export const COMPONENT_MAP = {
     label: "表单",
     type: "contained",
     style: {
-      width: "auto",
+      width: "500px",
       height: "400px",
       backgroundColor: "#fff",
       margin: "10px",
@@ -88,7 +87,6 @@ export const COMPONENT_MAP = {
     type: "contained",
     style: {
       width: "auto",
-      backgroundColor: "#ccc",
     },
     props: {
       name: "",
@@ -107,9 +105,17 @@ export const COMPONENT_MAP = {
     label: "输入框",
     props: {},
     style: {
-      width: "auto",
-      border: "1px solid #000",
+      width: "100%",
     },
+  },
+  Select: {
+    name: "Select",
+    label: "选择框",
+    props: {},
+    style: {
+      width: "100%",
+    },
+    children: [],
   },
   Button: {
     name: "Button",

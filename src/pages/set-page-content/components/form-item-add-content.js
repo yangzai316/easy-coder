@@ -1,12 +1,16 @@
 import { Button, Row, Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
-import { mixComponentToTree } from "./../../../helper";
+import { mixComponentToTree } from "../../../helper";
 
 const formItemContentList = [
   {
     type: "Input",
     label: "输入框",
+  },
+  {
+    type: "Select",
+    label: "选择器",
   },
   {
     type: "Button",

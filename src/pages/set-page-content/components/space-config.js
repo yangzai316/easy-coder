@@ -5,8 +5,8 @@ import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
 import { isString } from "../../../utils";
 
-import AddFormItem from "./add-form-item";
-import AddFormItemContent from "./add-form-item-content";
+import AddFormItem from "./form-add-item";
+import AddFormItemContent from "./form-item-add-content";
 
 const { TabPane } = Tabs;
 
