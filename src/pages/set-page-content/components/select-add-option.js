@@ -31,7 +31,7 @@ const SelectAddOption = ({ currentUid, updateView }) => {
               >
                 <Form.Item
                   {...restField}
-                  name={[name, "key"]}
+                  name={[name, "label"]}
                   rules={[{ required: true, message: "This is required" }]}
                 >
                   <Input placeholder="Key" />

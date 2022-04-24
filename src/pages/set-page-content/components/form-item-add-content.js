@@ -9,7 +9,7 @@ const formItemContentList = [
   },
   {
     type: "Select",
-    label: "选择器",
+    label: "下拉选择器",
   },
   {
     type: "Switch",
@@ -24,10 +24,6 @@ const formItemContentList = [
     label: "时间范围选择器",
   },
   {
-    type: "DatePicker",
-    label: "日期选择框",
-  },
-  {
     type: "Button",
     label: "按钮",
   },
@@ -38,6 +34,18 @@ const formItemContentList = [
   {
     type: "DatePickerRangePicker",
     label: "日期范围选择框",
+  },
+  {
+    type: "InputNumber",
+    label: "数字输入框",
+  },
+  {
+    type: "Rate",
+    label: "评分",
+  },
+  {
+    type: "CheckboxGroup",
+    label: "多选框组",
   },
 ];
 

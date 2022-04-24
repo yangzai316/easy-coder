@@ -1,6 +1,7 @@
 import Container from "../extend-components/Container";
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
+import InputNumber from "../extend-components/InputNumber";
 import * as antd from "antd";
 
 export const all = {
@@ -11,6 +12,8 @@ export const all = {
   TimePickerRangePicker: antd.TimePicker.RangePicker,
   DatePicker,
   DatePickerRangePicker: antd.DatePicker.RangePicker,
+  InputNumber,
+  CheckboxGroup: antd.Checkbox.Group,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -30,7 +33,7 @@ export const elementList = [
       {
         name: "Button",
         label: "按钮",
-        icon: "icon-icon-test4",
+        icon: "icon-anniuguanli-02",
       },
       {
         name: "Form",
@@ -50,33 +53,48 @@ export const elementList = [
       },
       {
         name: "Select",
-        label: "选择器",
-        icon: "icon-icon-test5",
+        label: "下拉选择器",
+        icon: "icon-xialaxuanzeqi",
       },
       {
         name: "Switch",
         label: "开关",
-        icon: "icon-icon-test5",
+        icon: "icon-kaiguan",
       },
       {
         name: "TimePicker",
         label: "时间选择框",
-        icon: "icon-icon-test5",
+        icon: "icon-icon-test8",
       },
       {
         name: "TimePickerRangePicker",
         label: "时间范围选择器",
-        icon: "icon-icon-test5",
+        icon: "icon-shijianfanweixuanze",
       },
       {
         name: "DatePicker",
         label: "日期选择框",
-        icon: "icon-icon-test5",
+        icon: "icon-icon-test9",
       },
       {
         name: "DatePickerRangePicker",
         label: "日期范围选择框",
-        icon: "icon-icon-test5",
+        icon: "icon-riqifanweixuanze",
+      },
+      {
+        name: "InputNumber",
+        label: "数字输入框",
+        icon: "icon-shuzishurukuang",
+      },
+      {
+        name: "Rate",
+        label: "评分",
+        icon: "icon-icon-test10",
+      },
+      {
+        name: "CheckboxGroup",
+        label: "多选框组",
+        icon: "icon-tubiao10",
       },
     ],
   },
@@ -144,7 +162,7 @@ export const COMPONENT_MAP = {
   },
   Select: {
     name: "Select",
-    label: "选择框",
+    label: "下拉选择器",
     props: {
       options: [],
     },
@@ -193,6 +211,26 @@ export const COMPONENT_MAP = {
     label: "日期范围选择器",
     props: {
       picker: "date",
+    },
+    style: {},
+  },
+  InputNumber: {
+    name: "InputNumber",
+    label: "数字输入框",
+    props: {},
+    style: {},
+  },
+  Rate: {
+    name: "Rate",
+    label: "评分",
+    props: {},
+    style: {},
+  },
+  CheckboxGroup: {
+    name: "CheckboxGroup",
+    label: "多选框组",
+    props: {
+      options: [],
     },
     style: {},
   },
