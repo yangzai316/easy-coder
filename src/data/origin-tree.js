@@ -1,4 +1,4 @@
-import Container from "../components/Container";
+import Container from "../extend-components/Container";
 
 const ORIGIN_TREE = {
   "id-root": {

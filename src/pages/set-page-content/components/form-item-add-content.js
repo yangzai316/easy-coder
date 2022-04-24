@@ -1,5 +1,4 @@
 import { Button, Row, Col } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
 import { mixComponentToTree } from "../../../helper";
 
@@ -31,6 +30,14 @@ const formItemContentList = [
   {
     type: "Button",
     label: "按钮",
+  },
+  {
+    type: "DatePicker",
+    label: "日期选择框",
+  },
+  {
+    type: "DatePickerRangePicker",
+    label: "日期范围选择框",
   },
 ];
 

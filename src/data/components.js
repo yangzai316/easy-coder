@@ -1,5 +1,6 @@
-import Container from "../components/Container";
-import Button from "../components/Button";
+import Container from "../extend-components/Container";
+import Button from "../extend-components/Button";
+import DatePicker from "../extend-components/DatePicker";
 import * as antd from "antd";
 
 export const all = {
@@ -8,6 +9,8 @@ export const all = {
   FormItem: antd.Form.Item,
   Button,
   TimePickerRangePicker: antd.TimePicker.RangePicker,
+  DatePicker,
+  DatePickerRangePicker: antd.DatePicker.RangePicker,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -68,6 +71,11 @@ export const elementList = [
       {
         name: "DatePicker",
         label: "日期选择框",
+        icon: "icon-icon-test5",
+      },
+      {
+        name: "DatePickerRangePicker",
+        label: "日期范围选择框",
         icon: "icon-icon-test5",
       },
     ],
@@ -175,6 +183,14 @@ export const COMPONENT_MAP = {
   DatePicker: {
     name: "DatePicker",
     label: "日期选择框",
+    props: {
+      picker: "date",
+    },
+    style: {},
+  },
+  DatePickerRangePicker: {
+    name: "DatePickerRangePicker",
+    label: "日期范围选择器",
     props: {
       picker: "date",
     },

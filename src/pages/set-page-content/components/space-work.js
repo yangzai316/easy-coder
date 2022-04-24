@@ -30,7 +30,6 @@ const SpaceWork = ({ currentUid, updateView }) => {
       e.preventDefault();
       e.stopPropagation();
       const uid = getUid(e.target);
-      console.log(uid);
       if (uid) {
         updateView(uid);
         focusElement(uid);

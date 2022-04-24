@@ -1,9 +1,11 @@
-import { DatePicker } from "antd";
+import DatePicker from "./../../extend-components/DatePicker";
 
 const SetRoute = () => {
   return (
     <div>
-      <DatePicker data-test="test"> </DatePicker>
+      <DatePicker data-uid="test" picker="month">
+        {" "}
+      </DatePicker>
     </div>
   );
 };
