@@ -11,7 +11,7 @@ import SelectAddOption from "./select-add-option";
 
 const { TabPane } = Tabs;
 
-const SpaceConfig = ({ currentUid, setCurrentUid, updateConfig }) => {
+const SpaceConfig = ({ currentUid, updateView }) => {
   const change = (value, key, type) => {
     // 修改样式
     type === "style"
@@ -19,7 +19,7 @@ const SpaceConfig = ({ currentUid, setCurrentUid, updateConfig }) => {
       : editConfigForProps(currentUid, key, value);
 
     // 更新视图
-    updateConfig();
+    updateView();
   };
   return (
     <div className="space-config">
@@ -72,19 +72,16 @@ const SpaceConfig = ({ currentUid, setCurrentUid, updateConfig }) => {
         </TabPane>
         <TabPane tab="高级设置" key="3">
           {ORIGIN_TREE[currentUid]?.name === "Form" ? (
-            <AddFormItem parentUid={currentUid} setCurrentUid={setCurrentUid} />
+            <AddFormItem parentUid={currentUid} updateView={updateView} />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "FormItem" ? (
             <AddFormItemContent
               parentUid={currentUid}
-              setCurrentUid={setCurrentUid}
+              updateView={updateView}
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Select" ? (
-            <SelectAddOption
-              currentUid={currentUid}
-              updateConfig={updateConfig}
-            />
+            <SelectAddOption currentUid={currentUid} updateView={updateView} />
           ) : null}
         </TabPane>
       </Tabs>

@@ -1,13 +1,18 @@
 import React from "react";
-import { Form, Input, Button, Space } from "antd";
+import { Form, Input, Button, Space, notification } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
 import ORIGIN_TREE from "../../../data/origin-tree";
 
-const SelectAddOption = ({ currentUid, updateConfig }) => {
+const SelectAddOption = ({ currentUid, updateView }) => {
   const onFinish = (val) => {
     editConfigForProps(currentUid, "options", val.options || []);
-    updateConfig();
+    notification.success({
+      message: "添加成功",
+      style: { width: "160px" },
+      duration: 2,
+    });
+    updateView();
   };
 
   return (

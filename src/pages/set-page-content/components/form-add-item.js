@@ -1,13 +1,13 @@
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
-import { mixComponentToTree, focusElement } from "../../../helper";
+import { mixComponentToTree } from "../../../helper";
 
-const AddFormItem = ({ parentUid, setCurrentUid }) => {
+const AddFormItem = ({ parentUid, updateView }) => {
   const add = () => {
     const uid = uuidv4();
     mixComponentToTree(uid, "FormItem", parentUid);
-    setCurrentUid(uid);
+    updateView(uid);
   };
   return (
     <div>

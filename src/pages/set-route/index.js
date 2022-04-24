@@ -1,9 +1,9 @@
-import FormGroup from "./../../components/FormGroup";
+import { DatePicker } from "antd";
 
 const SetRoute = () => {
   return (
     <div>
-      <FormGroup> </FormGroup>
+      <DatePicker data-test="test"> </DatePicker>
     </div>
   );
 };

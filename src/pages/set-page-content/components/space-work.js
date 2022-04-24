@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./../../../style/space-work.scss";
 import ORIGIN_TREE from "../../../data/origin-tree";
 import {
@@ -10,7 +10,7 @@ import {
 import { isObject } from "../../../utils";
 
 // 中间操作栏
-const SpaceWork = ({ currentUid, setCurrentUid }) => {
+const SpaceWork = ({ currentUid, updateView }) => {
   // 添加拖拽事件
   useEffect(() => {
     const dragOverEvent = (e) => {
@@ -21,16 +21,18 @@ const SpaceWork = ({ currentUid, setCurrentUid }) => {
       const { uid, type } = getNewElementInfo(
         e.dataTransfer.getData("text/plain")
       );
+
       mixComponentToTree(uid, type, e.target.dataset.uid);
-      setCurrentUid(uid);
+      updateView(uid);
     };
 
     const clickEvent = (e) => {
       e.preventDefault();
       e.stopPropagation();
       const uid = getUid(e.target);
+      console.log(uid);
       if (uid) {
-        setCurrentUid(uid);
+        updateView(uid);
         focusElement(uid);
       }
     };
@@ -44,11 +46,11 @@ const SpaceWork = ({ currentUid, setCurrentUid }) => {
       spaceWork.removeEventListener("drop", dropEvent, false);
       spaceWork.removeEventListener("click", clickEvent, false);
     };
-  }, []);
+  }, [updateView]);
 
   return (
     <div id="WORK_SPACE" className="work-space">
-      {createElement(ORIGIN_TREE["id-root"], currentUid, setCurrentUid)}
+      {createElement(ORIGIN_TREE["id-root"], currentUid)}
     </div>
   );
 };
@@ -68,7 +70,7 @@ const createElement = (data, currentUid) => {
       key: data.uid,
       ...data.props,
       style: data.style,
-      className: `${currentUid === data.uid ? "is-focus" : ""}`,
+      // className: `${currentUid === data.uid ? "is-focus" : ""}`,
       "data-uid": data.uid,
     },
     children

@@ -2,8 +2,14 @@ import Container from "../components/Container";
 import Button from "../components/Button";
 import * as antd from "antd";
 
-export const all = { ...antd, Container, FormItem: antd.Form.Item, Button };
-
+export const all = {
+  ...antd,
+  Container,
+  FormItem: antd.Form.Item,
+  Button,
+  TimePickerRangePicker: antd.TimePicker.RangePicker,
+};
+// 左侧组件展示区-展示数据
 export const elementList = [
   {
     label: "基础组件",
@@ -17,6 +23,11 @@ export const elementList = [
         name: "Layout",
         label: "布局",
         icon: "icon-icon-test",
+      },
+      {
+        name: "Button",
+        label: "按钮",
+        icon: "icon-icon-test4",
       },
       {
         name: "Form",
@@ -40,9 +51,24 @@ export const elementList = [
         icon: "icon-icon-test5",
       },
       {
-        name: "Button",
-        label: "按钮",
-        icon: "icon-icon-test4",
+        name: "Switch",
+        label: "开关",
+        icon: "icon-icon-test5",
+      },
+      {
+        name: "TimePicker",
+        label: "时间选择框",
+        icon: "icon-icon-test5",
+      },
+      {
+        name: "TimePickerRangePicker",
+        label: "时间范围选择器",
+        icon: "icon-icon-test5",
+      },
+      {
+        name: "DatePicker",
+        label: "日期选择框",
+        icon: "icon-icon-test5",
       },
     ],
   },
@@ -51,7 +77,7 @@ export const elementList = [
     list: [],
   },
 ];
-
+// 组件数据映射数据源
 export const COMPONENT_MAP = {
   Container: {
     name: "Container",
@@ -125,6 +151,32 @@ export const COMPONENT_MAP = {
     label: "按钮",
     props: {
       content: "按钮",
+    },
+    style: {},
+  },
+  Switch: {
+    name: "Switch",
+    label: "开关",
+    props: {},
+    style: {},
+  },
+  TimePicker: {
+    name: "TimePicker",
+    label: "时间选择框",
+    props: {},
+    style: {},
+  },
+  TimePickerRangePicker: {
+    name: "TimePickerRangePicker",
+    label: "时间范围选择器",
+    props: {},
+    style: {},
+  },
+  DatePicker: {
+    name: "DatePicker",
+    label: "日期选择框",
+    props: {
+      picker: "date",
     },
     style: {},
   },
