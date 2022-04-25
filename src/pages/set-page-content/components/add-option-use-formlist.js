@@ -4,7 +4,7 @@ import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
 import ORIGIN_TREE from "../../../data/origin-tree";
 
-const SelectAddOption = ({ currentUid, updateView }) => {
+const AddOptionUseFormList = ({ currentUid, updateView }) => {
   const onFinish = (val) => {
     editConfigForProps(currentUid, "options", val.options || []);
     notification.success({
@@ -64,4 +64,4 @@ const SelectAddOption = ({ currentUid, updateView }) => {
   );
 };
 
-export default SelectAddOption;
+export default AddOptionUseFormList;

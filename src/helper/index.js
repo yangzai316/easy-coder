@@ -33,7 +33,6 @@ export const mixComponentToTree = (uid, type, parentUid, childrenType) => {
   }
 
   ORIGIN_TREE[uid] = newEle;
-  console.log(ORIGIN_TREE);
 };
 
 /**
@@ -73,15 +72,14 @@ export const getUid = (target) => {
 
 /**
  *
- * 点击/新建时，高亮
+ * 点击时，高亮
  */
-export const focusElement = (uid) => {
-  const spaceWork = document.getElementById("WORK_SPACE");
-  const list = Array.from(spaceWork.getElementsByClassName("is-focus"));
+export const focusElement = (container, uid) => {
+  const list = Array.from(container.getElementsByClassName("is-focus"));
   list.forEach((item) => {
     item.classList.remove("is-focus");
   });
-  spaceWork.querySelector(`[data-uid="${uid}"]`).classList.add("is-focus");
+  container.querySelector(`[data-uid="${uid}"]`).classList.add("is-focus");
 };
 
 /**

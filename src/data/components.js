@@ -3,6 +3,8 @@ import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
 import TimePicker from "../extend-components/TimePicker";
+import Slider from "../extend-components/Slider";
+import Rate from "./../extend-components/Rate";
 import * as antd from "antd";
 
 export const all = {
@@ -17,6 +19,8 @@ export const all = {
   InputNumber,
   CheckboxGroup: antd.Checkbox.Group,
   RadioGroup: antd.Radio.Group,
+  Slider,
+  Rate,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -114,6 +118,11 @@ export const elementList = [
         label: "滑动输入条",
         icon: "",
       },
+      {
+        name: "Cascader",
+        label: "级联选择",
+        icon: "",
+      },
     ],
   },
 ];
@@ -123,6 +132,12 @@ export const COMPONENT_MAP = {
     name: "Container",
     label: "容器",
     type: "contained",
+    style: {
+      width: "200px",
+      height: "200px",
+      margin: "4px",
+      padding: "4px",
+    },
   },
   Layout: {
     name: "Layout",
@@ -260,6 +275,14 @@ export const COMPONENT_MAP = {
     name: "Slider",
     label: "单选框组",
     props: {},
+    style: {},
+  },
+  Cascader: {
+    name: "Cascader",
+    label: "级联选择",
+    props: {
+      options: [],
+    },
     style: {},
   },
 };

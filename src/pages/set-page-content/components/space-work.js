@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./../../../style/space-work.scss";
 import ORIGIN_TREE from "../../../data/origin-tree";
 import {
@@ -11,6 +11,7 @@ import { isObject } from "../../../utils";
 
 // 中间操作栏
 const SpaceWork = ({ currentUid, updateView }) => {
+  const WORK_SPACE = useRef(null);
   // 添加拖拽事件
   useEffect(() => {
     const dragOverEvent = (e) => {
@@ -27,29 +28,29 @@ const SpaceWork = ({ currentUid, updateView }) => {
     };
 
     const clickEvent = (e) => {
-      console.log(e.target);
-      // e.preventDefault();
-      // e.stopPropagation();
       const uid = getUid(e.target);
       if (uid) {
         updateView(uid);
-        focusElement(uid);
+        focusElement(WORK_SPACE.current, uid);
       }
     };
-    const spaceWork = document.getElementById("WORK_SPACE");
-    spaceWork.addEventListener("dragover", dragOverEvent, false);
-    spaceWork.addEventListener("drop", dropEvent, false);
-    spaceWork.addEventListener("click", clickEvent, false);
+    WORK_SPACE.current.addEventListener("dragover", dragOverEvent, false);
+    WORK_SPACE.current.addEventListener("drop", dropEvent, false);
+    WORK_SPACE.current.addEventListener("click", clickEvent, false);
 
     return () => {
-      spaceWork.removeEventListener("dragOver", dragOverEvent, false);
-      spaceWork.removeEventListener("drop", dropEvent, false);
-      spaceWork.removeEventListener("click", clickEvent, false);
+      WORK_SPACE.current.removeEventListener("dragOver", dragOverEvent, false);
+      WORK_SPACE.current.removeEventListener("drop", dropEvent, false);
+      WORK_SPACE.current.removeEventListener("click", clickEvent, false);
     };
   }, [updateView]);
+  // 为新建元素添加高亮效果
+  useLayoutEffect(() => {
+    focusElement(WORK_SPACE.current, currentUid);
+  }, [currentUid]);
 
   return (
-    <div id="WORK_SPACE" className="work-space">
+    <div ref={WORK_SPACE} id="WORK_SPACE" className="work-space">
       {createElement(ORIGIN_TREE["id-root"], currentUid)}
     </div>
   );
@@ -70,7 +71,7 @@ const createElement = (data, currentUid) => {
       key: data.uid,
       ...data.props,
       style: data.style,
-      className: `${currentUid === data.uid ? "is-focus" : ""}`,
+      // className: `${currentUid === data.uid ? "is-focus" : ""}`,
       "data-uid": data.uid,
     },
     children

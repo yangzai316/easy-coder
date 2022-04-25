@@ -8,6 +8,7 @@ const ORIGIN_TREE = {
     style: {
       width: "100%",
       height: "100%",
+      backgroundColor: "#fff",
     },
     children: [],
   },

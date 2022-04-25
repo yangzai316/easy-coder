@@ -7,7 +7,8 @@ import { isString } from "../../../utils";
 
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
-import SelectAddOption from "./select-add-option";
+import AddOptionUseFormList from "./add-option-use-formlist";
+import AddOptionUseInput from "./add-option-use-input";
 
 const { TabPane } = Tabs;
 
@@ -81,13 +82,28 @@ const SpaceConfig = ({ currentUid, updateView }) => {
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Select" ? (
-            <SelectAddOption currentUid={currentUid} updateView={updateView} />
+            <AddOptionUseFormList
+              currentUid={currentUid}
+              updateView={updateView}
+            />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "CheckboxGroup" ? (
-            <SelectAddOption currentUid={currentUid} updateView={updateView} />
+            <AddOptionUseFormList
+              currentUid={currentUid}
+              updateView={updateView}
+            />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "RadioGroup" ? (
-            <SelectAddOption currentUid={currentUid} updateView={updateView} />
+            <AddOptionUseFormList
+              currentUid={currentUid}
+              updateView={updateView}
+            />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Cascader" ? (
+            <AddOptionUseInput
+              currentUid={currentUid}
+              updateView={updateView}
+            />
           ) : null}
         </TabPane>
       </Tabs>
