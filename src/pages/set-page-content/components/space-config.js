@@ -86,6 +86,9 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {ORIGIN_TREE[currentUid]?.name === "CheckboxGroup" ? (
             <SelectAddOption currentUid={currentUid} updateView={updateView} />
           ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "RadioGroup" ? (
+            <SelectAddOption currentUid={currentUid} updateView={updateView} />
+          ) : null}
         </TabPane>
       </Tabs>
     </div>

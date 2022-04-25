@@ -27,6 +27,7 @@ const SpaceWork = ({ currentUid, updateView }) => {
     };
 
     const clickEvent = (e) => {
+      console.log(e.target);
       // e.preventDefault();
       // e.stopPropagation();
       const uid = getUid(e.target);

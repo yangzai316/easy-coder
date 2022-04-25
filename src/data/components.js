@@ -16,6 +16,7 @@ export const all = {
   DatePickerRangePicker: antd.DatePicker.RangePicker,
   InputNumber,
   CheckboxGroup: antd.Checkbox.Group,
+  RadioGroup: antd.Radio.Group,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -102,6 +103,16 @@ export const elementList = [
         name: "CheckboxGroup",
         label: "多选框组",
         icon: "icon-tubiao10",
+      },
+      {
+        name: "RadioGroup",
+        label: "单选框组",
+        icon: "",
+      },
+      {
+        name: "Slider",
+        label: "滑动输入条",
+        icon: "",
       },
     ],
   },
@@ -235,6 +246,20 @@ export const COMPONENT_MAP = {
     props: {
       options: [{ label: "演示项", value: "test" }],
     },
+    style: {},
+  },
+  RadioGroup: {
+    name: "RadioGroup",
+    label: "单选框组",
+    props: {
+      options: [{ label: "演示项", value: "test" }],
+    },
+    style: {},
+  },
+  Slider: {
+    name: "Slider",
+    label: "单选框组",
+    props: {},
     style: {},
   },
 };
