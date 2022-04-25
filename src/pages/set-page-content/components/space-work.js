@@ -12,6 +12,7 @@ import { isObject } from "../../../utils";
 // 中间操作栏
 const SpaceWork = ({ currentUid, updateView }) => {
   const WORK_SPACE = useRef(null);
+  const _NODE = WORK_SPACE.current;
   // 添加拖拽事件
   useEffect(() => {
     const dragOverEvent = (e) => {
@@ -31,23 +32,23 @@ const SpaceWork = ({ currentUid, updateView }) => {
       const uid = getUid(e.target);
       if (uid) {
         updateView(uid);
-        focusElement(WORK_SPACE.current, uid);
+        focusElement(_NODE, uid);
       }
     };
-    WORK_SPACE.current.addEventListener("dragover", dragOverEvent, false);
-    WORK_SPACE.current.addEventListener("drop", dropEvent, false);
-    WORK_SPACE.current.addEventListener("click", clickEvent, false);
+    _NODE.addEventListener("dragover", dragOverEvent, false);
+    _NODE.addEventListener("drop", dropEvent, false);
+    _NODE.addEventListener("click", clickEvent, false);
 
     return () => {
-      WORK_SPACE.current.removeEventListener("dragOver", dragOverEvent, false);
-      WORK_SPACE.current.removeEventListener("drop", dropEvent, false);
-      WORK_SPACE.current.removeEventListener("click", clickEvent, false);
+      _NODE.removeEventListener("dragOver", dragOverEvent, false);
+      _NODE.removeEventListener("drop", dropEvent, false);
+      _NODE.removeEventListener("click", clickEvent, false);
     };
-  }, [updateView]);
+  }, [updateView, _NODE]);
   // 为新建元素添加高亮效果
   useLayoutEffect(() => {
-    focusElement(WORK_SPACE.current, currentUid);
-  }, [currentUid]);
+    focusElement(_NODE, currentUid);
+  }, [currentUid, _NODE]);
 
   return (
     <div ref={WORK_SPACE} id="WORK_SPACE" className="work-space">

@@ -4,7 +4,7 @@ const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_3342774_skjh37d7gu.js",
 });
 
-export default ({ children, fontSize, color }) => {
+const EasyIcon = ({ children, fontSize, color }) => {
   return (
     <>
       {children ? (
@@ -21,3 +21,4 @@ export default ({ children, fontSize, color }) => {
     </>
   );
 };
+export default EasyIcon;

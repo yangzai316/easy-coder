@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Row, Col, Divider, Collapse } from "antd";
+import { Row, Col, Collapse } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import EasyIcon from "../../../components/EasyIcon";
 import { elementList } from "../../../data/components";

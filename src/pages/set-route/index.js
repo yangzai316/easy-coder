@@ -1,15 +1,14 @@
-import { Checkbox, Select } from "antd";
+import React from "react";
+
+import Editor from "@monaco-editor/react";
 
 const SetRoute = () => {
-  const options = [
-    { label: "Apple", value: "1" },
-    { label: "Pear", value: "2" },
-    { label: "Orange", value: "3" },
-  ];
   return (
-    <>
-      <Checkbox.Group options={options} />
-    </>
+    <Editor
+      height="90vh"
+      defaultLanguage="json"
+      defaultValue="// some comment"
+    />
   );
 };
 
