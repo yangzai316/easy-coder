@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Row, Col, Divider } from "antd";
+import { Row, Col, Divider, Collapse } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import EasyIcon from "../../../components/EasyIcon";
 import { elementList } from "../../../data/components";
@@ -21,22 +21,23 @@ const AreaComponent = () => {
 
   return (
     <div id="space-element" className="space-element">
-      {elementList.map((item, index) => {
-        return (
-          <div key={index}>
-            <Divider orientation="left">{item.label}</Divider>
-            <Row gutter={[8, 8]}>
-              {item.list.map((o) => {
-                return (
-                  <Col span={12} key={o.name}>
-                    <ComponentItem content={o}></ComponentItem>
-                  </Col>
-                );
-              })}
-            </Row>
-          </div>
-        );
-      })}
+      <Collapse defaultActiveKey={["0"]} accordion>
+        {elementList.map((item, index) => {
+          return (
+            <Collapse.Panel header={item.label} key={index}>
+              <Row gutter={[8, 8]}>
+                {item.list.map((o) => {
+                  return (
+                    <Col span={12} key={o.name}>
+                      <ComponentItem content={o}></ComponentItem>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Collapse.Panel>
+          );
+        })}
+      </Collapse>
     </div>
   );
 };

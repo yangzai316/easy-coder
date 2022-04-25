@@ -2,6 +2,7 @@ import Container from "../extend-components/Container";
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
+import TimePicker from "../extend-components/TimePicker";
 import * as antd from "antd";
 
 export const all = {
@@ -11,6 +12,7 @@ export const all = {
   Button,
   TimePickerRangePicker: antd.TimePicker.RangePicker,
   DatePicker,
+  TimePicker,
   DatePickerRangePicker: antd.DatePicker.RangePicker,
   InputNumber,
   CheckboxGroup: antd.Checkbox.Group,
@@ -35,6 +37,11 @@ export const elementList = [
         label: "按钮",
         icon: "icon-anniuguanli-02",
       },
+    ],
+  },
+  {
+    label: "表单组件",
+    list: [
       {
         name: "Form",
         label: "表单",
@@ -52,6 +59,11 @@ export const elementList = [
         icon: "icon-bianji-xiugai-pinglun-03",
       },
       {
+        name: "InputNumber",
+        label: "数字输入框",
+        icon: "icon-shuzishurukuang",
+      },
+      {
         name: "Select",
         label: "下拉选择器",
         icon: "icon-xialaxuanzeqi",
@@ -63,28 +75,23 @@ export const elementList = [
       },
       {
         name: "TimePicker",
-        label: "时间选择框",
+        label: "时间选择",
         icon: "icon-icon-test8",
       },
       {
         name: "TimePickerRangePicker",
-        label: "时间范围选择器",
+        label: "时间范围选择",
         icon: "icon-shijianfanweixuanze",
       },
       {
         name: "DatePicker",
-        label: "日期选择框",
+        label: "日期选择",
         icon: "icon-icon-test9",
       },
       {
         name: "DatePickerRangePicker",
-        label: "日期范围选择框",
+        label: "日期范围选择",
         icon: "icon-riqifanweixuanze",
-      },
-      {
-        name: "InputNumber",
-        label: "数字输入框",
-        icon: "icon-shuzishurukuang",
       },
       {
         name: "Rate",
@@ -97,10 +104,6 @@ export const elementList = [
         icon: "icon-tubiao10",
       },
     ],
-  },
-  {
-    label: "整合组件",
-    list: [],
   },
 ];
 // 组件数据映射数据源
@@ -230,7 +233,7 @@ export const COMPONENT_MAP = {
     name: "CheckboxGroup",
     label: "多选框组",
     props: {
-      options: [],
+      options: [{ label: "演示项", value: "test" }],
     },
     style: {},
   },
