@@ -61,7 +61,7 @@ export const elementList = [
       {
         name: "Input",
         label: "输入框",
-        icon: "icon-bianji-xiugai-pinglun-03",
+        icon: "icon-shurukuang",
       },
       {
         name: "InputNumber",
@@ -104,24 +104,24 @@ export const elementList = [
         icon: "icon-icon-test10",
       },
       {
+        name: "Cascader",
+        label: "级联选择",
+        icon: "icon-jilianxuanze",
+      },
+      {
         name: "CheckboxGroup",
         label: "多选框组",
-        icon: "icon-tubiao10",
+        icon: "icon-duoxuankuang1",
       },
       {
         name: "RadioGroup",
         label: "单选框组",
-        icon: "",
+        icon: "icon-danxuanzu",
       },
       {
         name: "Slider",
         label: "滑动输入条",
-        icon: "",
-      },
-      {
-        name: "Cascader",
-        label: "级联选择",
-        icon: "",
+        icon: "icon-huadongshurutiao",
       },
     ],
   },
