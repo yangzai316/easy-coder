@@ -1,14 +1,16 @@
-import { Tabs, Input } from "antd";
+import { Tabs, Input, Row, Col } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
 import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
-import { isString } from "../../../utils";
+import { isObject, isArray } from "../../../utils";
 
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
 import AddOptionUseFormList from "./add-option-use-formlist";
 import AddOptionUseInput from "./add-option-use-input";
+import AddChild from "./add-child";
+import AddOptionForCarousel from "./add-optioin-for-carousel";
 
 const { TabPane } = Tabs;
 
@@ -33,16 +35,18 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
-                <div className="form-item" key={index}>
-                  <span>{ATTR_MAP[key] || key}：</span>
-                  <Input
-                    size="small"
-                    value={value}
-                    onChange={(e) => {
-                      change(e.target.value, key, "style");
-                    }}
-                  />
-                </div>
+                <Row key={index}>
+                  <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
+                  <Col>
+                    <Input
+                      size="small"
+                      value={value}
+                      onChange={(e) => {
+                        change(e.target.value, key, "style");
+                      }}
+                    />
+                  </Col>
+                </Row>
               );
             }
           )}
@@ -51,22 +55,29 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.props || []).map(
             ([key, value], index) => {
               return (
-                <div className="form-item" key={index}>
-                  <span>{ATTR_MAP[key] || key}：</span>
-                  {isString(value) ? (
-                    <Input
-                      size="small"
-                      value={value}
-                      onChange={(e) => {
-                        change(e.target.value, key, "props");
+                <Row key={index}>
+                  <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
+                  {isObject(value) || isArray(value) ? (
+                    <Col
+                      style={{
+                        border: "1px solid #ccc",
+                        backgroundColor: "#ccc",
                       }}
-                    />
+                    >
+                      不支持修改
+                    </Col>
                   ) : (
-                    <span style={{ border: "1px solid #ccc" }}>
-                      {JSON.stringify(value)}
-                    </span>
+                    <Col>
+                      <Input
+                        size="small"
+                        value={value}
+                        onChange={(e) => {
+                          change(e.target.value, key, "props");
+                        }}
+                      />
+                    </Col>
                   )}
-                </div>
+                </Row>
               );
             }
           )}
@@ -83,25 +94,31 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Select" ? (
             <AddOptionUseFormList
-              currentUid={currentUid}
+              parentUid={currentUid}
               updateView={updateView}
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "CheckboxGroup" ? (
             <AddOptionUseFormList
-              currentUid={currentUid}
+              parentUid={currentUid}
               updateView={updateView}
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "RadioGroup" ? (
             <AddOptionUseFormList
-              currentUid={currentUid}
+              parentUid={currentUid}
               updateView={updateView}
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Cascader" ? (
-            <AddOptionUseInput
-              currentUid={currentUid}
+            <AddOptionUseInput parentUid={currentUid} updateView={updateView} />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Badge" ? (
+            <AddChild parentUid={currentUid} updateView={updateView} />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Carousel" ? (
+            <AddOptionForCarousel
+              parentUid={currentUid}
               updateView={updateView}
             />
           ) : null}

@@ -5,6 +5,8 @@ import InputNumber from "../extend-components/InputNumber";
 import TimePicker from "../extend-components/TimePicker";
 import Slider from "../extend-components/Slider";
 import Rate from "./../extend-components/Rate";
+import Calendar from "./../extend-components/Calendar";
+import Carousel from "./../extend-components/Carousel";
 import * as antd from "antd";
 
 export const all = {
@@ -21,6 +23,8 @@ export const all = {
   RadioGroup: antd.Radio.Group,
   Slider,
   Rate,
+  Calendar,
+  Carousel,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -125,13 +129,38 @@ export const elementList = [
       },
     ],
   },
+  {
+    label: "数据展示",
+    list: [
+      {
+        name: "Avatar",
+        label: "头像",
+        icon: "",
+      },
+      {
+        name: "Badge",
+        label: "徽标数",
+        icon: "",
+      },
+      {
+        name: "Calendar",
+        label: "日历",
+        icon: "",
+      },
+      {
+        name: "Carousel",
+        label: "轮播",
+        icon: "",
+      },
+    ],
+  },
 ];
 // 组件数据映射数据源
 export const COMPONENT_MAP = {
   Container: {
     name: "Container",
     label: "容器",
-    type: "contained",
+    children: [],
     style: {
       width: "200px",
       height: "200px",
@@ -142,18 +171,17 @@ export const COMPONENT_MAP = {
   Layout: {
     name: "Layout",
     label: "布局",
-    type: "contained",
     style: {
       width: "auto",
       height: "200px",
       backgroundColor: "#fff",
       margin: "10px",
     },
+    children: [],
   },
   Form: {
     name: "Form",
     label: "表单",
-    type: "contained",
     style: {
       width: "500px",
       height: "400px",
@@ -161,11 +189,11 @@ export const COMPONENT_MAP = {
       margin: "10px",
       padding: "10px",
     },
+    children: [],
   },
   FormItem: {
     name: "FormItem",
     label: "表单项",
-    type: "contained",
     style: {
       width: "auto",
     },
@@ -180,6 +208,7 @@ export const COMPONENT_MAP = {
         },
       ],
     },
+    children: {},
   },
   Input: {
     name: "Input",
@@ -282,6 +311,49 @@ export const COMPONENT_MAP = {
     label: "级联选择",
     props: {
       options: [],
+    },
+    style: {},
+  },
+  Avatar: {
+    name: "Avatar",
+    label: "头像",
+    props: {
+      src: "https://joeschmoe.io/api/v1/random",
+      shape: "circle",
+      size: "default",
+    },
+    style: {},
+  },
+  Badge: {
+    name: "Badge",
+    label: "徽标数",
+    children: [],
+    props: {
+      count: 66,
+      dot: false,
+      showZero: false,
+    },
+    style: {},
+  },
+  Calendar: {
+    name: "Calendar",
+    label: "日历",
+    props: {
+      fullscreen: false,
+    },
+    style: {},
+  },
+  Carousel: {
+    name: "Carousel",
+    label: "轮播",
+    props: {
+      height: "300px",
+      options: [
+        {
+          url: "https://images4.c-ctrip.com/target//100t0i0000009mrsd86B4_C_292_192.jpg",
+          backgroundColor: "#000",
+        },
+      ],
     },
     style: {},
   },

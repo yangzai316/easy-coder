@@ -4,3 +4,6 @@ export const isObject = (target) => {
 export const isString = (target) => {
   return Object.prototype.toString.call(target) === "[object String]";
 };
+export const isArray = (target) => {
+  return Object.prototype.toString.call(target) === "[object Array]";
+};

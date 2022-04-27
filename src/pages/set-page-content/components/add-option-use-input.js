@@ -3,7 +3,7 @@ import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
 
-const AddOptionUseInput = ({ currentUid, updateView }) => {
+const AddOptionUseInput = ({ parentUid, updateView }) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   // dialog 回调
@@ -15,7 +15,7 @@ const AddOptionUseInput = ({ currentUid, updateView }) => {
       if (!Array.isArray(data)) {
         throw new Error();
       }
-      editConfigForProps(currentUid, "options", data);
+      editConfigForProps(parentUid, "options", data);
       notification.success({
         message: "添加成功",
         style: { width: "160px" },

@@ -1,7 +1,3 @@
-import React from "react";
-
-const SetRoute = () => {
-  return <>1</>;
-};
+const SetRoute = () => 123;
 
 export default SetRoute;

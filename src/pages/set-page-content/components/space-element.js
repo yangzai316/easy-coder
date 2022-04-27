@@ -21,7 +21,7 @@ const AreaComponent = () => {
 
   return (
     <div id="space-element" className="space-element">
-      <Collapse defaultActiveKey={["0"]} accordion>
+      <Collapse defaultActiveKey={["2"]} accordion>
         {elementList.map((item, index) => {
           return (
             <Collapse.Panel header={item.label} key={index}>

@@ -4,7 +4,7 @@ import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
 import ORIGIN_TREE from "../../../data/origin-tree";
 
-const AddOptionUseFormList = ({ parentUid, updateView }) => {
+const AddOptionForCarousel = ({ parentUid, updateView }) => {
   const onFinish = (val) => {
     editConfigForProps(parentUid, "options", val.options || []);
     notification.success({
@@ -31,14 +31,14 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
               >
                 <Form.Item
                   {...restField}
-                  name={[name, "label"]}
+                  name={[name, "url"]}
                   rules={[{ required: true, message: "This is required" }]}
                 >
                   <Input placeholder="Key" />
                 </Form.Item>
                 <Form.Item
                   {...restField}
-                  name={[name, "value"]}
+                  name={[name, "backgroundColor"]}
                   rules={[{ required: true, message: "This is required" }]}
                 >
                   <Input placeholder="Value" />
@@ -64,4 +64,4 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
   );
 };
 
-export default AddOptionUseFormList;
+export default AddOptionForCarousel;

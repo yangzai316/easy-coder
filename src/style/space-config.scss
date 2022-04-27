@@ -12,6 +12,9 @@
     flex-wrap: nowrap;
     margin-bottom: 6px;
     font-size: 12px;
+    .form-item-name {
+      flex-basis: 80px;
+    }
     & > span {
       flex-basis: 90px;
       text-align: right;

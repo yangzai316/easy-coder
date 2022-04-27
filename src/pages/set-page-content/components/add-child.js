@@ -2,14 +2,15 @@ import { Button, Row, Col } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { mixComponentToTree } from "../../../helper";
 
-import { elementList } from "./../../../data/components";
 // 数据源处理
-const list = elementList[1].list;
-const formItemContentList = list.filter(
-  (item) => item.name !== "Form" && item.name !== "FormItem"
-);
+const formItemContentList = [
+  {
+    name: "Avatar",
+    label: "头像",
+  },
+];
 
-const AddFormItemContent = ({ parentUid, updateView }) => {
+const AddChild = ({ parentUid, updateView }) => {
   const add = (type) => {
     const uid = uuidv4();
     mixComponentToTree(uid, type, parentUid);
@@ -17,7 +18,7 @@ const AddFormItemContent = ({ parentUid, updateView }) => {
   };
   return (
     <div>
-      <p>添加表单组件：</p>
+      <p>添加子组件：</p>
       <Row gutter={[10, 4]}>
         {formItemContentList.map((item) => {
           return (
@@ -38,4 +39,4 @@ const AddFormItemContent = ({ parentUid, updateView }) => {
   );
 };
 
-export default AddFormItemContent;
+export default AddChild;
