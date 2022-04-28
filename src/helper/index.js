@@ -21,7 +21,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
   // 创建新元素的对象
   let children = null;
   if (isArray(config.children)) {
-    children = [];
+    children = [...config.children];
   }
   const newEle = {
     uid: uid,
@@ -82,11 +82,15 @@ export const getUid = (target) => {
  * 点击时，高亮
  */
 export const focusElement = (container, uid) => {
-  const list = Array.from(container.getElementsByClassName("is-focus"));
-  list.forEach((item) => {
-    item.classList.remove("is-focus");
-  });
-  container.querySelector(`[data-uid="${uid}"]`).classList.add("is-focus");
+  try {
+    const list = Array.from(container.getElementsByClassName("is-focus"));
+    list.forEach((item) => {
+      item.classList.remove("is-focus");
+    });
+    container.querySelector(`[data-uid="${uid}"]`).classList.add("is-focus");
+  } catch (error) {
+    console.error("EasyCoder Error:" + uid + error);
+  }
 };
 
 /**

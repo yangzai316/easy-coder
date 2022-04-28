@@ -7,6 +7,8 @@ import Slider from "../extend-components/Slider";
 import Rate from "./../extend-components/Rate";
 import Calendar from "./../extend-components/Calendar";
 import Carousel from "./../extend-components/Carousel";
+import Collapse from "./../extend-components/Collapse";
+import CollapsePanel from "./../extend-components/CollapsePanel";
 import * as antd from "antd";
 
 export const all = {
@@ -25,6 +27,8 @@ export const all = {
   Rate,
   Calendar,
   Carousel,
+  Collapse,
+  CollapsePanel,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -150,6 +154,17 @@ export const elementList = [
       {
         name: "Carousel",
         label: "轮播",
+        icon: "",
+      },
+      {
+        name: "Collapse",
+        label: "折叠面板",
+        icon: "",
+      },
+      {
+        name: "CollapsePanel",
+        label: "折叠面板子元素",
+        disabled: true,
         icon: "",
       },
     ],
@@ -356,5 +371,16 @@ export const COMPONENT_MAP = {
       ],
     },
     style: {},
+  },
+  Collapse: {
+    name: "Collapse",
+    label: "折叠面板",
+    children: [],
+  },
+  CollapsePanel: {
+    name: "CollapsePanel",
+    label: "折叠面板子元素",
+    props: {},
+    children: [],
   },
 };

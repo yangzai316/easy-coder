@@ -11,6 +11,7 @@ import AddOptionUseFormList from "./add-option-use-formlist";
 import AddOptionUseInput from "./add-option-use-input";
 import AddChild from "./add-child";
 import AddOptionForCarousel from "./add-optioin-for-carousel";
+import AddPanelForCollapse from "./add-panel-for-collapse";
 
 const { TabPane } = Tabs;
 
@@ -118,6 +119,12 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Carousel" ? (
             <AddOptionForCarousel
+              parentUid={currentUid}
+              updateView={updateView}
+            />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Collapse" ? (
+            <AddPanelForCollapse
               parentUid={currentUid}
               updateView={updateView}
             />

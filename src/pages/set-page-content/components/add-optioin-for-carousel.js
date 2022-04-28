@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Space, notification } from "antd";
+import { Form, Input, Button, Space, notification, Divider } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
 import ORIGIN_TREE from "../../../data/origin-tree";
@@ -25,30 +25,27 @@ const AddOptionForCarousel = ({ parentUid, updateView }) => {
           <>
             {fields.map(({ key, name, ...restField }) => (
               <Space
+                direction="vertical"
                 key={key}
-                style={{ display: "flex", marginBottom: 8 }}
-                align="baseline"
+                style={{ width: "100%", marginBottom: 8 }}
               >
                 <Form.Item
                   {...restField}
                   name={[name, "url"]}
                   rules={[{ required: true, message: "This is required" }]}
                 >
-                  <Input placeholder="Key" />
+                  <Input placeholder="图片地址" />
                 </Form.Item>
-                <Form.Item
-                  {...restField}
-                  name={[name, "backgroundColor"]}
-                  rules={[{ required: true, message: "This is required" }]}
-                >
-                  <Input placeholder="Value" />
+                <Form.Item {...restField} name={[name, "backgroundColor"]}>
+                  <Input placeholder="背景色，默认#000" />
                 </Form.Item>
                 <MinusCircleOutlined onClick={() => remove(name)} />
+                <br />
               </Space>
             ))}
             <Form.Item>
               <Button onClick={() => add()} block icon={<PlusOutlined />}>
-                Add Option
+                添加轮播单元
               </Button>
             </Form.Item>
           </>

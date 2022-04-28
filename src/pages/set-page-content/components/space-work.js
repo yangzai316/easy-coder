@@ -72,7 +72,6 @@ const createElement = (data, currentUid) => {
       key: data.uid,
       ...data.props,
       style: data.style,
-      // className: `${currentUid === data.uid ? "is-focus" : ""}`,
       "data-uid": data.uid,
     },
     children
