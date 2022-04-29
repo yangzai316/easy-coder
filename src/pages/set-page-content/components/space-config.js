@@ -1,9 +1,9 @@
-import { Tabs, Input, Row, Col } from "antd";
+import { Tabs, Input, Row, Col, InputNumber } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
 import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
-import { isObject, isArray } from "../../../utils";
+import { isObject, isArray, isString } from "../../../utils";
 
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
@@ -17,7 +17,7 @@ const { TabPane } = Tabs;
 
 const SpaceConfig = ({ currentUid, updateView }) => {
   const change = (value, key, type) => {
-    // 修改样式
+    // 修改样式 or 属性
     type === "style"
       ? editConfigForStyle(currentUid, key, value)
       : editConfigForProps(currentUid, key, value);
@@ -36,15 +36,14 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
-                <Row key={index}>
+                <Row key={index} wrap={false}>
                   <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
                   <Col>
-                    <Input
-                      size="small"
+                    <EasyInput
                       value={value}
-                      onChange={(e) => {
-                        change(e.target.value, key, "style");
-                      }}
+                      type={key}
+                      change={change}
+                      attrType="style"
                     />
                   </Col>
                 </Row>
@@ -56,7 +55,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.props || []).map(
             ([key, value], index) => {
               return (
-                <Row key={index}>
+                <Row key={index} wrap={false}>
                   <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
                   {isObject(value) || isArray(value) ? (
                     <Col
@@ -69,12 +68,11 @@ const SpaceConfig = ({ currentUid, updateView }) => {
                     </Col>
                   ) : (
                     <Col>
-                      <Input
-                        size="small"
+                      <EasyInput
                         value={value}
-                        onChange={(e) => {
-                          change(e.target.value, key, "props");
-                        }}
+                        type={key}
+                        change={change}
+                        attrType="props"
                       />
                     </Col>
                   )}
@@ -132,6 +130,36 @@ const SpaceConfig = ({ currentUid, updateView }) => {
         </TabPane>
       </Tabs>
     </div>
+  );
+};
+
+/**
+ *
+ * 修改样式或属性的Input集成组件
+ */
+const EasyInput = ({ value, type, change, attrType }) => {
+  // style : 修改样式
+  // props : 修改属性
+  return (
+    <>
+      {isString(value) ? (
+        <Input
+          size="small"
+          value={value}
+          onChange={(e) => {
+            change(e.target.value, type, attrType);
+          }}
+        />
+      ) : (
+        <InputNumber
+          size="small"
+          value={value}
+          onChange={(val) => {
+            change(val, type, attrType);
+          }}
+        />
+      )}
+    </>
   );
 };
 

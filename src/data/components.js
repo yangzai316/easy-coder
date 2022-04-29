@@ -8,7 +8,6 @@ import Rate from "./../extend-components/Rate";
 import Calendar from "./../extend-components/Calendar";
 import Carousel from "./../extend-components/Carousel";
 import Collapse from "./../extend-components/Collapse";
-import CollapsePanel from "./../extend-components/CollapsePanel";
 import * as antd from "antd";
 
 export const all = {
@@ -28,7 +27,7 @@ export const all = {
   Calendar,
   Carousel,
   Collapse,
-  CollapsePanel,
+  CollapsePanel: antd.Collapse.Panel,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -165,6 +164,16 @@ export const elementList = [
         name: "CollapsePanel",
         label: "折叠面板子元素",
         disabled: true,
+        icon: "",
+      },
+      {
+        name: "Empty",
+        label: "空状态",
+        icon: "",
+      },
+      {
+        name: "Image",
+        label: "图片",
         icon: "",
       },
     ],
@@ -380,7 +389,26 @@ export const COMPONENT_MAP = {
   CollapsePanel: {
     name: "CollapsePanel",
     label: "折叠面板子元素",
-    props: {},
+    props: {
+      header: "测试Tile",
+    },
+    children: [],
+  },
+  Empty: {
+    name: "Empty",
+    label: "空状态",
+    props: {
+      description: "暂无数据",
+    },
+    children: [],
+  },
+  Image: {
+    name: "Image",
+    props: {
+      width: 200,
+      height: 300,
+      src: "https://joeschmoe.io/api/v1/random",
+    },
     children: [],
   },
 };
