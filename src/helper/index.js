@@ -38,8 +38,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     ORIGIN_TREE[parentUid].children = newEle;
   }
 
-  ORIGIN_TREE[uid] = newEle;
-  console.log("tree>>>", ORIGIN_TREE);
+  ORIGIN_TREE[uid] = newEle; 
 };
 
 /**

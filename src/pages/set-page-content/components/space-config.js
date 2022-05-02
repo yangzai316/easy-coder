@@ -58,11 +58,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
                 <Row key={index} wrap={false}>
                   <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
                   {isObject(value) || isArray(value) ? (
-                    <Col
-                      style={{
-                        border: "1px solid #ccc",
-                        backgroundColor: "#ccc",
-                      }}
+                    <Col 
                     >
                       不支持修改
                     </Col>

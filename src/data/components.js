@@ -138,42 +138,47 @@ export const elementList = [
       {
         name: "Avatar",
         label: "头像",
-        icon: "",
+        icon: "icon-touxiang3",
       },
       {
         name: "Badge",
         label: "徽标数",
-        icon: "",
+        icon: "icon-huibiaoshu",
       },
       {
         name: "Calendar",
         label: "日历",
-        icon: "",
+        icon: "icon-rili-xianxing-xi",
       },
       {
         name: "Carousel",
         label: "轮播",
-        icon: "",
+        icon: "icon-lunboxiaoguo",
       },
       {
         name: "Collapse",
         label: "折叠面板",
-        icon: "",
+        icon: "icon-zhediemianban",
       },
       {
         name: "CollapsePanel",
-        label: "折叠面板子元素",
+        label: "折叠子面板",
         disabled: true,
-        icon: "",
+        icon: "icon-qiapian",
       },
       {
         name: "Empty",
         label: "空状态",
-        icon: "",
+        icon: "icon-wushuju1",
       },
       {
         name: "Image",
         label: "图片",
+        icon: "icon-tupian",
+      },
+      {
+        name: "Table",
+        label: "列表",
         icon: "",
       },
     ],
@@ -408,6 +413,43 @@ export const COMPONENT_MAP = {
       width: 200,
       height: 300,
       src: "https://joeschmoe.io/api/v1/random",
+    },
+    children: [],
+  },
+  Table: {
+    name: "Table",
+    props: {
+      dataSource: [
+        {
+          key: "1",
+          name: "胡彦斌",
+          age: 32,
+          address: "西湖区湖底公园1号",
+        },
+        {
+          key: "2",
+          name: "胡彦祖",
+          age: 42,
+          address: "西湖区湖底公园1号",
+        },
+      ],
+      columns: [
+        {
+          title: "姓名",
+          dataIndex: "name",
+          key: "name",
+        },
+        {
+          title: "年龄",
+          dataIndex: "age",
+          key: "age",
+        },
+        {
+          title: "住址",
+          dataIndex: "address",
+          key: "address",
+        },
+      ],
     },
     children: [],
   },
