@@ -10,6 +10,7 @@ import Carousel from "./../extend-components/Carousel";
 import Collapse from "./../extend-components/Collapse";
 import TimelineItem from "./../extend-components/TimelineItem";
 import * as antd from "antd";
+import { Line } from "@ant-design/plots";
 
 export const all = {
   ...antd,
@@ -30,7 +31,9 @@ export const all = {
   Collapse,
   CollapsePanel: antd.Collapse.Panel,
   TimelineItem,
+  ChartLine: Line,
 };
+
 // 左侧组件展示区-展示数据
 export const elementList = [
   {
@@ -197,6 +200,16 @@ export const elementList = [
       {
         name: "Tree",
         label: "树形控件",
+        icon: "",
+      },
+    ],
+  },
+  {
+    label: "数据可视化",
+    list: [
+      {
+        name: "ChartLine",
+        label: "基础折线图",
         icon: "",
       },
     ],
@@ -455,5 +468,65 @@ export const COMPONENT_MAP = {
   Tree: {
     name: "Tree",
     props: { checkable: true, treeData: [] },
+  },
+  ChartLine: {
+    name: "ChartLine",
+    props: {
+      width: 800,
+      height: 400,
+      autoFit:false,
+      xField: "Date",
+      yField: "scales",
+      data: [
+        {
+          Date: "2010-01",
+          scales: 1998,
+        },
+        {
+          Date: "2010-02",
+          scales: 1850,
+        },
+        {
+          Date: "2010-03",
+          scales: 1720,
+        },
+        {
+          Date: "2010-04",
+          scales: 1818,
+        },
+        {
+          Date: "2010-05",
+          scales: 1920,
+        },
+        {
+          Date: "2010-06",
+          scales: 1802,
+        },
+        {
+          Date: "2010-07",
+          scales: 1945,
+        },
+        {
+          Date: "2010-08",
+          scales: 1856,
+        },
+        {
+          Date: "2010-09",
+          scales: 2107,
+        },
+        {
+          Date: "2010-10",
+          scales: 2140,
+        },
+        {
+          Date: "2010-11",
+          scales: 2311,
+        },
+        {
+          Date: "2010-12",
+          scales: 1972,
+        },
+      ],
+    },
   },
 };

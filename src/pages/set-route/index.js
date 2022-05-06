@@ -1,5 +1,6 @@
-import React from 'react';
-import { Line } from '@ant-design/charts';
+import React from 'react'; 
+
+import { Line } from "@ant-design/plots";
 
 const SetRoute = () => {
   const data = [
