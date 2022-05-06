@@ -3,7 +3,7 @@ import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
 
-const AddOptionUseInput = ({ parentUid, updateView }) => {
+const AddDataForTable = ({ parentUid, updateView }) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   // dialog 回调
@@ -11,11 +11,12 @@ const AddOptionUseInput = ({ parentUid, updateView }) => {
     setIsModalVisible(visible);
     if (!val) return;
     try {
-      const data = JSON.parse(val);
-      if (!Array.isArray(data)) {
+      const { columns, dataSource } = JSON.parse(val);
+      if (!Array.isArray(columns) || !Array.isArray(dataSource)) {
         throw new Error();
       }
-      editConfigForProps(parentUid, "options", data);
+      editConfigForProps(parentUid, "columns", columns);
+      editConfigForProps(parentUid, "dataSource", dataSource);
       notification.success({
         message: "添加成功",
         style: { width: "160px" },
@@ -38,39 +39,50 @@ const AddOptionUseInput = ({ parentUid, updateView }) => {
           setIsModalVisible(true);
         }}
       >
-        手动输入数据
+        输入列表组件数据
       </Button>
       <DialogMonaco
         isModalVisible={isModalVisible}
         cb={cb}
+        message="请在下方编辑器输入列表数据源dataSource和列表配置信息columns，注意 json 数据格式，右击有辅助功能。"
         defaultValue={`
-[
-	{
-		"value": "anhui",
-		"label": "安徽",
-		"children": [
-			{
-				"value": "luan",
-				"label": "六安",
-				"children": [
-					{
-						"value": "xinan",
-						"label": "新安"
-					},
-					{
-						"value": "dushan",
-						"label": "独山"
-					}
-				]
-			}
-		]
-	}
-]
-    
+{
+  "dataSource": [
+    {
+      "key": "1",
+      "name": "张三",
+      "age": 32,
+      "address": "西湖区湖底公园1号"
+    },
+    {
+      "key": "2",
+      "name": "李四",
+      "age": 42,
+      "address": "西湖区湖底公园2号"
+    }
+  ],
+  "columns": [
+    {
+      "title": "姓名",
+      "dataIndex": "name",
+      "key": "name"
+    },
+    {
+      "title": "年龄",
+      "dataIndex": "age",
+      "key": "age"
+    },
+    {
+      "title": "住址",
+      "dataIndex": "address",
+      "key": "address"
+    }
+  ]
+}   
     `}
       ></DialogMonaco>
     </>
   );
 };
 
-export default AddOptionUseInput;
+export default AddDataForTable;

@@ -12,6 +12,7 @@ import AddOptionUseMonaco from "./add-option-use-monaco";
 import AddChild from "./add-child";
 import AddOptionForCarousel from "./add-optioin-for-carousel";
 import AddPanelForCollapse from "./add-panel-for-collapse";
+import AddDataForTable from './add-data-for-table'
 
 const { TabPane } = Tabs;
 
@@ -119,6 +120,12 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Collapse" ? (
             <AddPanelForCollapse
+              parentUid={currentUid}
+              updateView={updateView}
+            />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Table" ? (
+            <AddDataForTable
               parentUid={currentUid}
               updateView={updateView}
             />

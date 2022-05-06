@@ -40,7 +40,11 @@ const AddOptionUseInput = ({ parentUid, updateView }) => {
       >
         手动输入数据
       </Button>
-      <DialogMonaco isModalVisible={isModalVisible} cb={cb} defaultValue={`
+      <DialogMonaco
+        isModalVisible={isModalVisible}
+        cb={cb}
+        message="请在下方编辑器输入 label、value、children 字段组合的树形数据，注意 json 数据格式，右击有辅助功能。"
+        defaultValue={`
 [
 	{
 		"value": "anhui",
@@ -64,7 +68,8 @@ const AddOptionUseInput = ({ parentUid, updateView }) => {
 	}
 ]
     
-    `}></DialogMonaco>
+    `}
+      ></DialogMonaco>
     </>
   );
 };
