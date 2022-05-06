@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Modal, Alert, Button } from "antd";
 import Editor from "@monaco-editor/react";
 
-const DialogMonaco = ({ isModalVisible, cb }) => {
+const DialogMonaco = ({ isModalVisible, cb, defaultValue }) => {
   const editorRef = useRef(null);
   const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
@@ -10,31 +10,7 @@ const DialogMonaco = ({ isModalVisible, cb }) => {
 
   const [value, setValue] = useState("");
   const inHelpData = () => {
-    setValue(`
-[
-	{
-		"value": "anhui",
-		"label": "安徽",
-		"children": [
-			{
-				"value": "luan",
-				"label": "六安",
-				"children": [
-					{
-						"value": "xinan",
-						"label": "新安"
-					},
-					{
-						"value": "dushan",
-						"label": "独山"
-					}
-				]
-			}
-		]
-	}
-]
-    
-    `);
+    setValue(defaultValue);
   };
   return (
     <>

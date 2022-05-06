@@ -14,7 +14,7 @@ const Assist = ({ updateCount }) => {
       />
       <Button
         onClick={() => {
-          console.log(JSON.stringify(ORIGIN_TREE["id-root"]));
+          console.log(ORIGIN_TREE["id-root"]);
         }}
       >
         查看JSON

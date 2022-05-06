@@ -8,7 +8,7 @@ import { isObject, isArray, isString } from "../../../utils";
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
 import AddOptionUseFormList from "./add-option-use-formlist";
-import AddOptionUseInput from "./add-option-use-input";
+import AddOptionUseMonaco from "./add-option-use-monaco";
 import AddChild from "./add-child";
 import AddOptionForCarousel from "./add-optioin-for-carousel";
 import AddPanelForCollapse from "./add-panel-for-collapse";
@@ -56,12 +56,9 @@ const SpaceConfig = ({ currentUid, updateView }) => {
             ([key, value], index) => {
               return (
                 <Row key={index} wrap={false}>
-                  <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
+                  <Col flex="70px">{ATTR_MAP[key] || key}：</Col>
                   {isObject(value) || isArray(value) ? (
-                    <Col 
-                    >
-                      不支持修改
-                    </Col>
+                    <Col>不支持修改</Col>
                   ) : (
                     <Col>
                       <EasyInput
@@ -106,7 +103,10 @@ const SpaceConfig = ({ currentUid, updateView }) => {
             />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Cascader" ? (
-            <AddOptionUseInput parentUid={currentUid} updateView={updateView} />
+            <AddOptionUseMonaco
+              parentUid={currentUid}
+              updateView={updateView}
+            />
           ) : null}
           {ORIGIN_TREE[currentUid]?.name === "Badge" ? (
             <AddChild parentUid={currentUid} updateView={updateView} />

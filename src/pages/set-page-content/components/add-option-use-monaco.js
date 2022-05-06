@@ -40,7 +40,31 @@ const AddOptionUseInput = ({ parentUid, updateView }) => {
       >
         手动输入数据
       </Button>
-      <DialogMonaco isModalVisible={isModalVisible} cb={cb}></DialogMonaco>
+      <DialogMonaco isModalVisible={isModalVisible} cb={cb} defaultValue={`
+[
+	{
+		"value": "anhui",
+		"label": "安徽",
+		"children": [
+			{
+				"value": "luan",
+				"label": "六安",
+				"children": [
+					{
+						"value": "xinan",
+						"label": "新安"
+					},
+					{
+						"value": "dushan",
+						"label": "独山"
+					}
+				]
+			}
+		]
+	}
+]
+    
+    `}></DialogMonaco>
     </>
   );
 };
