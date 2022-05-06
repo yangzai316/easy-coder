@@ -1,26 +1,29 @@
-import React from 'react'; 
-import { Collapse } from 'antd';
+import React from 'react';
+import { Line } from '@ant-design/charts';
 
-const { Panel } = Collapse;
+const SetRoute = () => {
+  const data = [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
 
-function callback(key) {
-  console.log(key);
-}
-
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-const SetRoute =  () => (
-  <Collapse defaultActiveKey={['1']}  >
-    <Panel header="This is panel header 1" key="1" onClick={()=>{
-      callback(123)
-    }}>
-      <p>{text}</p>
-    </Panel> 
-  </Collapse>
-);
+  const config = {
+    data,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
+  };
+  return <Line {...config} />;
+}; 
 
 export default SetRoute;
