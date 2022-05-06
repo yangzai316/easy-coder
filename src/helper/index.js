@@ -19,7 +19,7 @@ export const getNewElementInfo = (str) => {
 export const mixComponentToTree = (uid, type, parentUid) => {
   const config = COMPONENT_MAP[type];
   // 创建新元素的对象
-  let children = null;
+  let children = config.children;
   if (isArray(config.children)) {
     children = [...config.children];
   }

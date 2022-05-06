@@ -2,15 +2,7 @@ import { Button, Row, Col } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { mixComponentToTree } from "../../../helper";
 
-// 数据源处理
-const formItemContentList = [
-  {
-    name: "Avatar",
-    label: "头像",
-  },
-];
-
-const AddChild = ({ parentUid, updateView }) => {
+const AddChild = ({ parentUid, updateView, targetMap }) => {
   const add = (type) => {
     const uid = uuidv4();
     mixComponentToTree(uid, type, parentUid);
@@ -20,16 +12,16 @@ const AddChild = ({ parentUid, updateView }) => {
     <div>
       <p>添加子组件：</p>
       <Row gutter={[10, 4]}>
-        {formItemContentList.map((item) => {
+        {Object.keys(targetMap).map((key) => {
           return (
-            <Col className="gutter-row" span={12} key={item.name}>
+            <Col className="gutter-row" span={12} key={key}>
               <Button
                 size="small"
                 onClick={() => {
-                  add(item.name);
+                  add(key);
                 }}
               >
-                {item.label}
+                {targetMap[key]}
               </Button>
             </Col>
           );

@@ -8,6 +8,7 @@ import Rate from "./../extend-components/Rate";
 import Calendar from "./../extend-components/Calendar";
 import Carousel from "./../extend-components/Carousel";
 import Collapse from "./../extend-components/Collapse";
+import TimelineItem from "./../extend-components/TimelineItem";
 import * as antd from "antd";
 
 export const all = {
@@ -28,6 +29,7 @@ export const all = {
   Carousel,
   Collapse,
   CollapsePanel: antd.Collapse.Panel,
+  TimelineItem,
 };
 // 左侧组件展示区-展示数据
 export const elementList = [
@@ -180,6 +182,17 @@ export const elementList = [
         name: "Table",
         label: "列表",
         icon: "",
+      },
+      {
+        name: "Timeline",
+        label: "时间轴",
+        icon: "",
+      },
+      {
+        name: "TimelineItem",
+        label: "时间轴子项",
+        icon: "",
+        disabled: true,
       },
     ],
   },
@@ -424,5 +437,14 @@ export const COMPONENT_MAP = {
       bordered: true,
     },
     children: [],
+  },
+  Timeline: {
+    name: "Timeline",
+    props: {},
+    children: [],
+  },
+  TimelineItem: {
+    name: "TimelineItem",
+    props: { content: "测试默认数据 2022-12-12" },
   },
 };

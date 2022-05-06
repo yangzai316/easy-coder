@@ -30,7 +30,7 @@ const SpaceWork = ({ currentUid, updateView }) => {
 
     const clickEvent = (e) => {
       const uid = getUid(e.target);
-      if (uid) {
+      if (uid && currentUid !== uid) {
         updateView(uid);
         focusElement(WORK_SPACE.current, uid);
       }
@@ -44,7 +44,7 @@ const SpaceWork = ({ currentUid, updateView }) => {
       WORK_SPACE_REF.removeEventListener("drop", dropEvent, false);
       WORK_SPACE_REF.removeEventListener("click", clickEvent, false);
     };
-  }, [updateView, WORK_SPACE]);
+  }, [currentUid, updateView, WORK_SPACE]);
   // 为新建元素添加高亮效果
   useLayoutEffect(() => {
     focusElement(WORK_SPACE.current, currentUid);
@@ -58,8 +58,8 @@ const SpaceWork = ({ currentUid, updateView }) => {
 };
 // 根据 json 创建 react 元素，循环递归
 const createElement = (data, currentUid) => {
-  let children = null;
-  if (data.children && data.children.length) {
+  let children = data.children;
+  if (Array.isArray(data.children) && data.children.length) {
     children = data.children.map((item) => {
       return createElement(item, currentUid);
     });
