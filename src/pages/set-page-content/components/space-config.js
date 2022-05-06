@@ -13,6 +13,7 @@ import AddChild from "./add-child";
 import AddOptionForCarousel from "./add-optioin-for-carousel";
 import AddPanelForCollapse from "./add-panel-for-collapse";
 import AddDataForTable from "./add-data-for-table";
+import AddDataForTree from "./add-data-for-tree";
 
 const { TabPane } = Tabs;
 
@@ -137,6 +138,9 @@ const SpaceConfig = ({ currentUid, updateView }) => {
               updateView={updateView}
               targetMap={{ TimelineItem: "时间轴子项" }}
             />
+          ) : null}
+          {ORIGIN_TREE[currentUid]?.name === "Tree" ? (
+            <AddDataForTree parentUid={currentUid} updateView={updateView} />
           ) : null}
         </TabPane>
       </Tabs>

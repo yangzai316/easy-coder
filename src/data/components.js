@@ -194,6 +194,11 @@ export const elementList = [
         icon: "",
         disabled: true,
       },
+      {
+        name: "Tree",
+        label: "树形控件",
+        icon: "",
+      },
     ],
   },
 ];
@@ -446,5 +451,9 @@ export const COMPONENT_MAP = {
   TimelineItem: {
     name: "TimelineItem",
     props: { content: "测试默认数据 2022-12-12" },
+  },
+  Tree: {
+    name: "Tree",
+    props: { checkable: true, treeData: [] },
   },
 };
