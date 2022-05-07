@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
+import ORIGIN_TREE from "./../../../data/origin-tree";
 
-const AddDataForTable = ({ parentUid, updateView }) => {
+const AddDataForChartLine = ({ currentUid, updateView }) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   // dialog 回调
@@ -15,7 +16,7 @@ const AddDataForTable = ({ parentUid, updateView }) => {
       if (!Array.isArray(data)) {
         throw new Error();
       }
-      editConfigForProps(parentUid, "data", data);
+      editConfigForProps(currentUid, "data", data);
       notification.success({
         message: "添加成功",
         style: { width: "160px" },
@@ -29,6 +30,10 @@ const AddDataForTable = ({ parentUid, updateView }) => {
       });
     }
   };
+  // 获取初始值
+  const initialValue = useMemo(() => {
+    return ORIGIN_TREE[currentUid]?.props.data;
+  }, []);
   return (
     <>
       <Button
@@ -43,30 +48,11 @@ const AddDataForTable = ({ parentUid, updateView }) => {
       <DialogMonaco
         isModalVisible={isModalVisible}
         cb={cb}
-        message="请在下方编辑器输入折线图数据，注意 json 数据格式，右击有辅助功能。"
-        defaultValue={`
-[
-    {
-        x: "2010-01",
-        y: 18,
-    },
-    {
-        x: "2010-02",
-        y: 30,
-    },
-    {
-        x: "2010-03",
-        y: 20,
-    },
-    {
-        x: "2010-04",
-        y: 48,
-    },
-]   
-    `}
+        message="请在下方编辑器输入折线图数据，注意 json 数据格式，右击有格式化代码等辅助功能。"
+        defaultValue={JSON.stringify(initialValue)}
       ></DialogMonaco>
     </>
   );
 };
 
-export default AddDataForTable;
+export default AddDataForChartLine;

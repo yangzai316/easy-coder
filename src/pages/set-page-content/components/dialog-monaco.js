@@ -2,16 +2,14 @@ import React, { useRef, useState } from "react";
 import { Modal, Alert, Button } from "antd";
 import Editor from "@monaco-editor/react";
 
-const DialogMonaco = ({ isModalVisible, cb, defaultValue,message }) => {
+const DialogMonaco = ({ isModalVisible, cb, defaultValue, message }) => {
   const editorRef = useRef(null);
   const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
   };
 
-  const [value, setValue] = useState("");
-  const inHelpData = () => {
-    setValue(defaultValue);
-  };
+  const [value, setValue] = useState(defaultValue);
+
   return (
     <>
       <Modal
@@ -26,15 +24,7 @@ const DialogMonaco = ({ isModalVisible, cb, defaultValue,message }) => {
           cb(false, "");
         }}
       >
-        <Alert
-          message={message}
-          type="error"
-          action={
-            <Button size="small" type="ghost" onClick={inHelpData}>
-              一键代入范例数据
-            </Button>
-          }
-        />
+        <Alert message={message} type="error" />
         <br></br>
         <Editor
           width="100%"
