@@ -1,9 +1,9 @@
-import { Tabs, Input, Row, Col, InputNumber } from "antd";
+import { Tabs, Input, Row, Col, InputNumber, Switch } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
 import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
-import { isObject, isArray, isString } from "../../../utils";
+import { isString, isBoolean, isNumber } from "../../../utils";
 
 import AddFormItem from "./form-add-item";
 import AddFormItemContent from "./form-item-add-content";
@@ -59,18 +59,14 @@ const SpaceConfig = ({ currentUid, updateView }) => {
               return (
                 <Row key={index} wrap={false}>
                   <Col flex="70px">{ATTR_MAP[key] || key}：</Col>
-                  {isObject(value) || isArray(value) ? (
-                    <Col>不支持修改</Col>
-                  ) : (
-                    <Col>
-                      <EasyInput
-                        value={value}
-                        type={key}
-                        change={change}
-                        attrType="props"
-                      />
-                    </Col>
-                  )}
+                  <Col>
+                    <EasyInput
+                      value={value}
+                      type={key}
+                      change={change}
+                      attrType="props"
+                    />
+                  </Col>
                 </Row>
               );
             }
@@ -165,7 +161,7 @@ const EasyInput = ({ value, type, change, attrType }) => {
             change(e.target.value, type, attrType);
           }}
         />
-      ) : (
+      ) : isNumber(value) ? (
         <InputNumber
           size="small"
           value={value}
@@ -173,6 +169,16 @@ const EasyInput = ({ value, type, change, attrType }) => {
             change(val, type, attrType);
           }}
         />
+      ) : isBoolean(value) ? (
+        <Switch
+          size="small"
+          defaultChecked={value}
+          onChange={(val) => {
+            change(val, type, attrType);
+          }}
+        />
+      ) : (
+        "不支持修改"
       )}
     </>
   );

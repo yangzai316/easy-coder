@@ -1,6 +1,6 @@
 import ORIGIN_TREE from "../data/origin-tree";
 import { COMPONENT_MAP, all } from "../data/components";
-import { isObject, isArray } from "../utils";
+import { isArray } from "../utils";
 /**
  * 获取新创建组件的信息：uid / type
  */
@@ -38,7 +38,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     ORIGIN_TREE[parentUid].children = newEle;
   }
 
-  ORIGIN_TREE[uid] = newEle; 
+  ORIGIN_TREE[uid] = newEle;
 };
 
 /**

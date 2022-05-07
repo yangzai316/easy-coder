@@ -64,7 +64,9 @@ const createElement = (data, currentUid) => {
       return createElement(item, currentUid);
     });
   } else if (isObject(data.children)) {
-    children = createElement(data.children, currentUid);
+    children = data.children.uid
+      ? createElement(data.children, currentUid)
+      : null;
   }
   return React.createElement(
     data.component,

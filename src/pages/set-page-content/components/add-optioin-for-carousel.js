@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Space, notification, Divider } from "antd";
+import { Form, Input, Button, Space, notification } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
 import ORIGIN_TREE from "../../../data/origin-tree";

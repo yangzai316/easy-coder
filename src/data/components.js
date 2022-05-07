@@ -10,7 +10,8 @@ import Carousel from "./../extend-components/Carousel";
 import Collapse from "./../extend-components/Collapse";
 import TimelineItem from "./../extend-components/TimelineItem";
 import * as antd from "antd";
-import { Line } from "@ant-design/plots";
+// 数据可视化-组件
+import { ChartLine } from "./../extend-components/antd-charts";
 
 export const all = {
   ...antd,
@@ -31,7 +32,7 @@ export const all = {
   Collapse,
   CollapsePanel: antd.Collapse.Panel,
   TimelineItem,
-  ChartLine: Line,
+  ChartLine
 };
 
 // 左侧组件展示区-展示数据
@@ -474,7 +475,7 @@ export const COMPONENT_MAP = {
     props: {
       width: 800,
       height: 400,
-      autoFit:false,
+      autoFit: false,
       xField: "Date",
       yField: "scales",
       data: [
