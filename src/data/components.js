@@ -11,7 +11,7 @@ import Collapse from "./../extend-components/Collapse";
 import TimelineItem from "./../extend-components/TimelineItem";
 import * as antd from "antd";
 // 数据可视化-组件
-import { ChartLine } from "./../extend-components/antd-charts";
+import { ChartLine, ChartColumn } from "./../extend-components/antd-charts";
 
 export const all = {
   ...antd,
@@ -34,6 +34,7 @@ export const all = {
   TimelineItem,
   ChartLine,
   MultiChartLine: ChartLine,
+  ChartColumn,
 };
 
 // 左侧组件展示区-展示数据
@@ -211,10 +212,11 @@ export const elementList = [
     list: [
       {
         name: "ChartLine",
-        label: "基础折线图",
+        label: "折线图",
         icon: "icon-tubiao_zhexiantu",
       },
-      { name: "MultiChartLine", label: "多折线图", icon: "icon-zhexiantu" },
+      { name: "MultiChartLine", label: "分组折线图", icon: "icon-zhexiantu" },
+      { name: "ChartColumn", label: "柱状图", icon: "" },
     ],
   },
 ];
@@ -549,6 +551,45 @@ export const COMPONENT_MAP = {
           x: "1853",
           y: 14,
           z: "上海",
+        },
+      ],
+    },
+  },
+  ChartColumn: {
+    name: "ChartColumn",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      xField: "x",
+      yField: "y",
+      label: {
+        position: "middle",
+        style: {
+          fill: "#fff",
+          opacity: 0.6,
+        },
+      },
+      meta: {
+        x: {
+          alias: "类别",
+        },
+        y: {
+          alias: "销售额",
+        },
+      },
+      data: [
+        {
+          x: "家具家电",
+          y: 38,
+        },
+        {
+          x: "粮油副食",
+          y: 52,
+        },
+        {
+          x: "生鲜水果",
+          y: 61,
         },
       ],
     },

@@ -8,7 +8,7 @@ import AddPanelForCollapse from "./add-panel-for-collapse";
 import AddDataForTable from "./add-data-for-table";
 import AddDataForTree from "./add-data-for-tree";
 import AddDataForChartLine from "./add-data-for-chart-line";
-
+import AddDataForChartColumn from "./add-data-for-chart-column";
 
 const AdvancedSetup = ({ name, currentUid, updateView }) => {
   const _MAP = {
@@ -50,8 +50,15 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
       />
     ),
     Tree: <AddDataForTree parentUid={currentUid} updateView={updateView} />,
-    ChartLine: <AddDataForChartLine currentUid={currentUid} updateView={updateView} />,
-    MultiChartLine: <AddDataForChartLine currentUid={currentUid} updateView={updateView} />,
+    ChartLine: (
+      <AddDataForChartLine currentUid={currentUid} updateView={updateView} />
+    ),
+    MultiChartLine: (
+      <AddDataForChartLine currentUid={currentUid} updateView={updateView} />
+    ),
+    ChartColumn: (
+      <AddDataForChartColumn currentUid={currentUid} updateView={updateView} />
+    ),
   };
 
   return _MAP[name];
