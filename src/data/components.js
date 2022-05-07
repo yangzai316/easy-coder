@@ -185,24 +185,24 @@ export const elementList = [
       },
       {
         name: "Table",
-        label: "列表",
-        icon: "",
+        label: "表格",
+        icon: "icon-24gl-table",
       },
       {
         name: "Timeline",
         label: "时间轴",
-        icon: "",
-      },
-      {
-        name: "TimelineItem",
-        label: "时间轴子项",
-        icon: "",
-        disabled: true,
+        icon: "icon-shijianzhou",
       },
       {
         name: "Tree",
         label: "树形控件",
-        icon: "",
+        icon: "icon-shuxingkongjian",
+      },
+      {
+        name: "TimelineItem",
+        label: "时间轴子项",
+        icon: "icon-icon-test5",
+        disabled: true,
       },
     ],
   },
@@ -212,9 +212,9 @@ export const elementList = [
       {
         name: "ChartLine",
         label: "基础折线图",
-        icon: "",
+        icon: "icon-tubiao_zhexiantu",
       },
-      { name: "MultiChartLine", label: "多折线图", icon: "" },
+      { name: "MultiChartLine", label: "多折线图", icon: "icon-zhexiantu" },
     ],
   },
 ];

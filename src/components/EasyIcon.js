@@ -1,7 +1,7 @@
 import { createFromIconfontCN } from "@ant-design/icons";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3342774_udffelyb9u.js",
+  scriptUrl: "//at.alicdn.com/t/font_3342774_eiyagjxnep.js",
 });
 
 const EasyIcon = ({ children, fontSize, color }) => {
@@ -16,7 +16,7 @@ const EasyIcon = ({ children, fontSize, color }) => {
           }}
         />
       ) : (
-        "Icon丢失"
+        <span style={{ color: "red" }}>Icon丢失</span>
       )}
     </>
   );

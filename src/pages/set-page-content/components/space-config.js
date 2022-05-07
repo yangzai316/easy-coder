@@ -4,16 +4,7 @@ import ATTR_MAP from "./../../../data/attr-map";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
 import { isString, isBoolean, isNumber } from "../../../utils";
-
-import AddFormItem from "./form-add-item";
-import AddFormItemContent from "./form-item-add-content";
-import AddOptionUseFormList from "./add-option-use-formlist";
-import AddOptionUseMonaco from "./add-option-use-monaco";
-import AddChild from "./add-child";
-import AddOptionForCarousel from "./add-optioin-for-carousel";
-import AddPanelForCollapse from "./add-panel-for-collapse";
-import AddDataForTable from "./add-data-for-table";
-import AddDataForTree from "./add-data-for-tree";
+import AdvancedSetup from "./advanced-setup";
 
 const { TabPane } = Tabs;
 
@@ -73,71 +64,11 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           )}
         </TabPane>
         <TabPane tab="高级设置" key="3">
-          {ORIGIN_TREE[currentUid]?.name === "Form" ? (
-            <AddFormItem parentUid={currentUid} updateView={updateView} />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "FormItem" ? (
-            <AddFormItemContent
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Select" ? (
-            <AddOptionUseFormList
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "CheckboxGroup" ? (
-            <AddOptionUseFormList
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "RadioGroup" ? (
-            <AddOptionUseFormList
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Cascader" ? (
-            <AddOptionUseMonaco
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Badge" ? (
-            <AddChild
-              parentUid={currentUid}
-              updateView={updateView}
-              targetMap={{ Avatar: "头像" }}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Carousel" ? (
-            <AddOptionForCarousel
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Collapse" ? (
-            <AddPanelForCollapse
-              parentUid={currentUid}
-              updateView={updateView}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Table" ? (
-            <AddDataForTable parentUid={currentUid} updateView={updateView} />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Timeline" ? (
-            <AddChild
-              parentUid={currentUid}
-              updateView={updateView}
-              targetMap={{ TimelineItem: "时间轴子项" }}
-            />
-          ) : null}
-          {ORIGIN_TREE[currentUid]?.name === "Tree" ? (
-            <AddDataForTree parentUid={currentUid} updateView={updateView} />
-          ) : null}
+          <AdvancedSetup
+            name={ORIGIN_TREE[currentUid]?.name}
+            currentUid={currentUid}
+            updateView={updateView}
+          />
         </TabPane>
       </Tabs>
     </div>
