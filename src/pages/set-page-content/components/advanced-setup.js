@@ -59,6 +59,13 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
     ChartColumn: (
       <AddDataForChartColumn currentUid={currentUid} updateView={updateView} />
     ),
+    MultiChartColumn: (
+      <AddDataForChartColumn
+        currentUid={currentUid}
+        updateView={updateView}
+        showEditMeta={false}
+      />
+    ),
   };
 
   return _MAP[name];

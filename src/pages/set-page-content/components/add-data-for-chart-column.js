@@ -7,7 +7,11 @@ import ORIGIN_TREE from "./../../../data/origin-tree";
 
 let KEY = "";
 
-const AddDataForChartColumn = ({ currentUid, updateView }) => {
+const AddDataForChartColumn = ({
+  currentUid,
+  updateView,
+  showEditMeta = true,
+}) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [initialValue, setInitialValue] = useState("");
@@ -56,9 +60,11 @@ const AddDataForChartColumn = ({ currentUid, updateView }) => {
       </Button>
       <br />
       <br />
-      <Button block type="primary" onClick={editMeta}>
-        修改柱状图 meta 数据
-      </Button>
+      {showEditMeta && (
+        <Button block type="primary" onClick={editMeta}>
+          修改柱状图 meta 数据
+        </Button>
+      )}
       <DialogMonaco
         isModalVisible={isModalVisible}
         cb={cb}
