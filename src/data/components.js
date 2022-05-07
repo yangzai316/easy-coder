@@ -32,7 +32,8 @@ export const all = {
   Collapse,
   CollapsePanel: antd.Collapse.Panel,
   TimelineItem,
-  ChartLine
+  ChartLine,
+  MultiChartLine: ChartLine,
 };
 
 // 左侧组件展示区-展示数据
@@ -213,6 +214,7 @@ export const elementList = [
         label: "基础折线图",
         icon: "",
       },
+      { name: "MultiChartLine", label: "多折线图", icon: "" },
     ],
   },
 ];
@@ -476,56 +478,77 @@ export const COMPONENT_MAP = {
       width: 800,
       height: 400,
       autoFit: false,
-      xField: "Date",
-      yField: "scales",
+      xField: "x",
+      yField: "y",
       data: [
         {
-          Date: "2010-01",
-          scales: 1998,
+          x: "2010-01",
+          y: 18,
         },
         {
-          Date: "2010-02",
-          scales: 1850,
+          x: "2010-02",
+          y: 30,
         },
         {
-          Date: "2010-03",
-          scales: 1720,
+          x: "2010-03",
+          y: 20,
         },
         {
-          Date: "2010-04",
-          scales: 1818,
+          x: "2010-04",
+          y: 48,
+        },
+      ],
+    },
+  },
+  MultiChartLine: {
+    name: "MultiChartLine",
+    props: {
+      width: 800,
+      height: 400,
+      autoFit: false,
+      xField: "x",
+      yField: "y",
+      seriesField: "z",
+      data: [
+        {
+          x: "1850",
+          y: 10,
+          z: "安徽",
         },
         {
-          Date: "2010-05",
-          scales: 1920,
+          x: "1850",
+          y: 12,
+          z: "上海",
         },
         {
-          Date: "2010-06",
-          scales: 1802,
+          x: "1851",
+          y: 20,
+          z: "安徽",
         },
         {
-          Date: "2010-07",
-          scales: 1945,
+          x: "1851",
+          y: 19,
+          z: "上海",
         },
         {
-          Date: "2010-08",
-          scales: 1856,
+          x: "1852",
+          y: 39,
+          z: "安徽",
         },
         {
-          Date: "2010-09",
-          scales: 2107,
+          x: "1852",
+          y: 21,
+          z: "上海",
         },
         {
-          Date: "2010-10",
-          scales: 2140,
+          x: "1853",
+          y: 24,
+          z: "安徽",
         },
         {
-          Date: "2010-11",
-          scales: 2311,
-        },
-        {
-          Date: "2010-12",
-          scales: 1972,
+          x: "1853",
+          y: 14,
+          z: "上海",
         },
       ],
     },
