@@ -66,6 +66,13 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
         showEditMeta={false}
       />
     ),
+    ChartPie: (
+      <AddDataForChartColumn
+        currentUid={currentUid}
+        updateView={updateView}
+        showEditMeta={false}
+      />
+    ),
   };
 
   return _MAP[name];

@@ -1,4 +1,4 @@
-import { Line, Column } from "@ant-design/plots";
+import { Line, Column, Pie } from "@ant-design/plots";
 /**
  *
  * 折线图的二次封装
@@ -18,6 +18,17 @@ export const ChartColumn = ({ "data-uid": dataUid, ...props }) => {
   return (
     <div data-uid={dataUid} key={+new Date()}>
       <Column {...props}></Column>
+    </div>
+  );
+};
+/**
+ *
+ * 饼图的二次封装
+ */
+export const ChartPie = ({ "data-uid": dataUid, ...props }) => {
+  return (
+    <div data-uid={dataUid} key={+new Date()}>
+      <Pie {...props}></Pie>
     </div>
   );
 };

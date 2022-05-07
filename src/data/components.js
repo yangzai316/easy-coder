@@ -11,7 +11,11 @@ import Collapse from "./../extend-components/Collapse";
 import TimelineItem from "./../extend-components/TimelineItem";
 import * as antd from "antd";
 // 数据可视化-组件
-import { ChartLine, ChartColumn } from "./../extend-components/antd-charts";
+import {
+  ChartLine,
+  ChartColumn,
+  ChartPie,
+} from "./../extend-components/antd-charts";
 
 export const all = {
   ...antd,
@@ -36,6 +40,7 @@ export const all = {
   MultiChartLine: ChartLine,
   ChartColumn,
   MultiChartColumn: ChartColumn,
+  ChartPie,
 };
 
 // 左侧组件展示区-展示数据
@@ -219,6 +224,7 @@ export const elementList = [
       { name: "MultiChartLine", label: "分组折线图", icon: "icon-zhexiantu" },
       { name: "ChartColumn", label: "柱状图", icon: "" },
       { name: "MultiChartColumn", label: "分组柱状图", icon: "" },
+      { name: "ChartPie", label: "饼图", icon: "" },
     ],
   },
 ];
@@ -700,6 +706,58 @@ export const COMPONENT_MAP = {
           name: "Berlin",
           月份: "Aug.",
           月均降雨量: 42.4,
+        },
+      ],
+    },
+  },
+  ChartPie: {
+    name: "ChartPie",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      appendPadding: 10,
+      angleField: "value",
+      colorField: "type",
+      radius: 0.9,
+      label: {
+        type: "inner",
+        offset: "-30%",
+        content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+        style: {
+          fontSize: 14,
+          textAlign: "center",
+        },
+      },
+      interactions: [
+        {
+          type: "element-active",
+        },
+      ],
+      data: [
+        {
+          type: "分类一",
+          value: 27,
+        },
+        {
+          type: "分类二",
+          value: 25,
+        },
+        {
+          type: "分类三",
+          value: 18,
+        },
+        {
+          type: "分类四",
+          value: 15,
+        },
+        {
+          type: "分类五",
+          value: 10,
+        },
+        {
+          type: "其他",
+          value: 5,
         },
       ],
     },
