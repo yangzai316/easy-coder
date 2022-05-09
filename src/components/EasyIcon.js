@@ -1,7 +1,7 @@
 import { createFromIconfontCN } from "@ant-design/icons";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3342774_eiyagjxnep.js",
+  scriptUrl: "//at.alicdn.com/t/font_3342774_8dc1gphaqsy.js",
 });
 
 const EasyIcon = ({ children, fontSize, color }) => {

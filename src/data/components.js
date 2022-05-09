@@ -18,7 +18,7 @@ import {
   ChartGauge,
   ChartLiquid,
   ChartRadar,
-  ChartStock
+  ChartStock,
 } from "./../extend-components/antd-charts";
 
 export const all = {
@@ -228,17 +228,29 @@ export const elementList = [
       {
         name: "ChartLine",
         label: "折线图",
-        icon: "icon-tubiao_zhexiantu",
+        icon: "icon-zhexiantu1",
       },
-      { name: "MultiChartLine", label: "分组折线图", icon: "icon-zhexiantu" },
-      { name: "ChartColumn", label: "柱状图", icon: "" },
-      { name: "MultiChartColumn", label: "分组柱状图", icon: "" },
-      { name: "ChartPie", label: "饼图", icon: "" },
-      { name: "ChartRing", label: "环图", icon: "" },
-      { name: "ChartGauge", label: "仪表盘", icon: "" },
-      { name: "ChartLiquid", label: "水波图", icon: "" },
-      { name: "ChartRadar", label: "基础雷达图", icon: "" },
-      { name: "ChartStock", label: "基础蜡烛图", icon: "" },
+      {
+        name: "MultiChartLine",
+        label: "分组折线图",
+        icon: "icon-fenzuzhexiantu-32",
+      },
+      { name: "ChartColumn", label: "柱状图", icon: "icon-fenzuzhuzhuangtu" },
+      {
+        name: "MultiChartColumn",
+        label: "分组柱状图",
+        icon: "icon-zhuzhuangtu1",
+      },
+      { name: "ChartPie", label: "饼图", icon: "icon-bingtu1" },
+      { name: "ChartRing", label: "环图", icon: "icon-fsux_tubiao_bingtu" },
+      {
+        name: "ChartGauge",
+        label: "仪表盘",
+        icon: "icon-fsux_tubiao_yibiaopan",
+      },
+      { name: "ChartLiquid", label: "水波图", icon: "icon-shuibotu" },
+      { name: "ChartRadar", label: "基础雷达图", icon: "icon-leidatu1" },
+      { name: "ChartStock", label: "基础蜡烛图", icon: "icon-gupiao" },
     ],
   },
 ];
