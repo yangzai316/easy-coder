@@ -9,11 +9,11 @@ import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
 import TimePicker from "../extend-components/TimePicker";
 import Slider from "../extend-components/Slider";
-import Rate from "./../extend-components/Rate";
-import Calendar from "./../extend-components/Calendar";
-import Carousel from "./../extend-components/Carousel";
-import Collapse from "./../extend-components/Collapse";
-import TimelineItem from "./../extend-components/TimelineItem";
+import Rate from "../extend-components/Rate";
+import Calendar from "../extend-components/Calendar";
+import Carousel from "../extend-components/Carousel";
+import Collapse from "../extend-components/Collapse";
+import TimelineItem from "../extend-components/TimelineItem";
 // 数据可视化-组件
 import {
   ChartLine,
@@ -23,9 +23,9 @@ import {
   ChartLiquid,
   ChartRadar,
   ChartStock,
-} from "./../extend-components/antd-charts";
+} from "../extend-components/antd-charts";
 // 组件集合
-export const ALL = {
+export const ELEMENT_ALL = {
   ...antd,
   Container,
   Text,
@@ -272,7 +272,7 @@ export const ELEMENT_LIST = [
 ];
 
 // 组件数据映射数据源
-export const COMPONENT_MAP = {
+export const ELEMENT_MAP = {
   Container: {
     name: "Container",
     label: "容器",

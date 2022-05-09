@@ -1,8 +1,7 @@
 import { Button, Row, Col } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { mixComponentToTree } from "../../../helper";
-
-import { ELEMENT_LIST } from "./../../../data/components";
+import { ELEMENT_LIST } from "./../../../data/ELEMENT";
 // 数据源处理：只处理[1]，即处理表单子组件，除去Form、FormItem
 const list = ELEMENT_LIST[1].list;
 const formItemContentList = list.filter(

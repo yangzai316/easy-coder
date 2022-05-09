@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Row, Col, Collapse } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import EasyIcon from "../../../components/EasyIcon";
-import { ELEMENT_LIST } from "../../../data/components";
+import { ELEMENT_LIST } from "./../../../data/ELEMENT";
 import "./../../../style/space-element.scss";
 // 左侧组件展示栏
 const AreaComponent = () => {
