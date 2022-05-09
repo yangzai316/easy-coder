@@ -92,7 +92,7 @@ const EasyInput = ({ value, type, change, attrType }) => {
             change(e.target.value, type, attrType);
           }}
         />
-      ) : isNumber(value) ? (
+      ) : isNumber(value) || value === null ? (
         <InputNumber
           size="small"
           value={value}
@@ -109,7 +109,7 @@ const EasyInput = ({ value, type, change, attrType }) => {
           }}
         />
       ) : (
-        "不支持修改"
+        "前往【高级设置】进行操作"
       )}
     </>
   );

@@ -7,11 +7,7 @@ import ORIGIN_TREE from "./../../../data/origin-tree";
 
 let KEY = "";
 
-const AddDataForChartColumn = ({
-  currentUid,
-  updateView,
-  showEditMeta = true,
-}) => {
+const AddDataForChartColumn = ({ currentUid, updateView, otherArgs = [] }) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [initialValue, setInitialValue] = useState("");
@@ -21,10 +17,10 @@ const AddDataForChartColumn = ({
     setInitialValue(JSON.stringify(ORIGIN_TREE[currentUid]?.props.data));
     setIsModalVisible(true);
   };
-  // 修改meta
-  const editMeta = () => {
-    KEY = "meta";
-    setInitialValue(JSON.stringify(ORIGIN_TREE[currentUid]?.props.meta));
+  // 修改oher
+  const editOther = (arg) => {
+    KEY = arg;
+    setInitialValue(JSON.stringify(ORIGIN_TREE[currentUid]?.props[arg]));
     setIsModalVisible(true);
   };
   // dialog 回调
@@ -33,10 +29,13 @@ const AddDataForChartColumn = ({
     if (!val) return;
     try {
       const data = JSON.parse(val);
-      if (KEY === "data" && !Array.isArray(data)) {
-        throw new Error();
-      } else if (KEY === "meta" && !isObject(data)) {
-        throw new Error();
+      // 输入数据做简单校验
+      if (KEY === "data" || KEY === "yField") {
+        if (!Array.isArray(data)) {
+          throw new Error("This is not Array");
+        }
+      } else if (!isObject(data)) {
+        throw new Error("This is not Object");
       }
       // 对修改树形tree
       editConfigForProps(currentUid, KEY, data);
@@ -47,6 +46,7 @@ const AddDataForChartColumn = ({
       });
       updateView();
     } catch (error) {
+      console.error("添加失败：格式输入不正确: ", error);
       notification.error({
         message: "添加失败：格式输入不正确",
         duration: 2,
@@ -56,15 +56,25 @@ const AddDataForChartColumn = ({
   return (
     <>
       <Button block type="primary" onClick={editData}>
-        输入柱状图数据
+        修改数据源(data)内容
       </Button>
-      <br />
-      <br />
-      {showEditMeta && (
-        <Button block type="primary" onClick={editMeta}>
-          修改柱状图 meta 数据
-        </Button>
-      )}
+
+      {otherArgs.map((item) => {
+        return (
+          <Button
+            style={{ marginTop: "10px" }}
+            key={item}
+            block
+            type="primary"
+            onClick={() => {
+              editOther(item);
+            }}
+          >
+            修改其他({item})配置数据
+          </Button>
+        );
+      })}
+
       <DialogMonaco
         isModalVisible={isModalVisible}
         cb={cb}

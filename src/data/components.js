@@ -15,6 +15,10 @@ import {
   ChartLine,
   ChartColumn,
   ChartPie,
+  ChartGauge,
+  ChartLiquid,
+  ChartRadar,
+  ChartStock
 } from "./../extend-components/antd-charts";
 
 export const all = {
@@ -41,6 +45,11 @@ export const all = {
   ChartColumn,
   MultiChartColumn: ChartColumn,
   ChartPie,
+  ChartRing: ChartPie,
+  ChartGauge,
+  ChartLiquid,
+  ChartRadar,
+  ChartStock,
 };
 
 // 左侧组件展示区-展示数据
@@ -225,6 +234,11 @@ export const elementList = [
       { name: "ChartColumn", label: "柱状图", icon: "" },
       { name: "MultiChartColumn", label: "分组柱状图", icon: "" },
       { name: "ChartPie", label: "饼图", icon: "" },
+      { name: "ChartRing", label: "环图", icon: "" },
+      { name: "ChartGauge", label: "仪表盘", icon: "" },
+      { name: "ChartLiquid", label: "水波图", icon: "" },
+      { name: "ChartRadar", label: "基础雷达图", icon: "" },
+      { name: "ChartStock", label: "基础蜡烛图", icon: "" },
     ],
   },
 ];
@@ -719,7 +733,8 @@ export const COMPONENT_MAP = {
       appendPadding: 10,
       angleField: "value",
       colorField: "type",
-      radius: 0.9,
+      radius: 1,
+      innerRadius: 0,
       label: {
         type: "inner",
         offset: "-30%",
@@ -758,6 +773,274 @@ export const COMPONENT_MAP = {
         {
           type: "其他",
           value: 5,
+        },
+      ],
+    },
+  },
+  ChartRing: {
+    name: "ChartRing",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      appendPadding: 10,
+      angleField: "value",
+      colorField: "type",
+      radius: 1,
+      innerRadius: 0.4,
+      label: {
+        type: "inner",
+        offset: "-30%",
+        content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+        style: {
+          fontSize: 14,
+          textAlign: "center",
+        },
+      },
+      interactions: [
+        {
+          type: "element-active",
+        },
+      ],
+      data: [
+        {
+          type: "分类一",
+          value: 27,
+        },
+        {
+          type: "分类二",
+          value: 25,
+        },
+        {
+          type: "分类三",
+          value: 18,
+        },
+        {
+          type: "分类四",
+          value: 15,
+        },
+        {
+          type: "分类五",
+          value: 10,
+        },
+        {
+          type: "其他",
+          value: 5,
+        },
+      ],
+    },
+  },
+  ChartGauge: {
+    name: "ChartGauge",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      percent: 0.75,
+      range: {
+        color: "#30BF78",
+      },
+      indicator: {
+        pointer: {
+          style: {
+            stroke: "#D0D0D0",
+          },
+        },
+        pin: {
+          style: {
+            stroke: "#D0D0D0",
+          },
+        },
+      },
+      axis: {
+        label: {
+          formatter(v) {
+            return Number(v) * 100;
+          },
+        },
+        subTickLine: {
+          count: 3,
+        },
+      },
+      statistic: {
+        content: {
+          formatter: ({ percent }) => `Rate: ${(percent * 100).toFixed(0)}%`,
+          style: {
+            color: "rgba(0,0,0,0.65)",
+            fontSize: 48,
+          },
+        },
+      },
+    },
+  },
+  ChartLiquid: {
+    name: "ChartLiquid",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      percent: 0.25,
+      outline: {
+        border: 4,
+        distance: 8,
+      },
+      wave: {
+        length: 128,
+      },
+    },
+  },
+  ChartRadar: {
+    name: "ChartRadar",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      xField: "name",
+      yField: "star",
+      appendPadding: [0, 10, 0, 10],
+      meta: {
+        star: {
+          alias: "star 数量",
+          min: 0,
+          nice: true,
+          formatter: (v) => Number(v).toFixed(2),
+        },
+      },
+      yAxis: {
+        label: false,
+      },
+      // 开启辅助点
+      point: {
+        size: 2,
+      },
+      data: [
+        {
+          name: "G2",
+          star: 10371,
+        },
+        {
+          name: "G6",
+          star: 7380,
+        },
+        {
+          name: "F2",
+          star: 7414,
+        },
+        {
+          name: "L7",
+          star: 2140,
+        },
+      ],
+    },
+  },
+  ChartStock: {
+    name: "ChartStock",
+    props: {
+      width: 400,
+      height: 400,
+      autoFit: false,
+      xField: "trade_date",
+      yField: ["open", "close", "high", "low"],
+      data: [
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-13",
+          close: 2887.4265,
+          open: 2804.2322,
+          high: 2910.8812,
+          low: 2799.9841,
+          vol: 366450436,
+          amount: 393019665.2,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-12",
+          close: 2923.4856,
+          open: 2936.0163,
+          high: 2944.4651,
+          low: 2906.2838,
+          vol: 307778457,
+          amount: 328209202.4,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-11",
+          close: 2968.5174,
+          open: 3001.7616,
+          high: 3010.0286,
+          low: 2968.5174,
+          vol: 352470970,
+          amount: 378766619,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-10",
+          close: 2996.7618,
+          open: 2918.9347,
+          high: 3000.2963,
+          low: 2904.7989,
+          vol: 393296648,
+          amount: 425017184.8,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-09",
+          close: 2943.2907,
+          open: 2987.1805,
+          high: 2989.2051,
+          low: 2940.7138,
+          vol: 414560736,
+          amount: 438143854.6,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-06",
+          close: 3034.5113,
+          open: 3039.9395,
+          high: 3052.4439,
+          low: 3029.4632,
+          vol: 362061533,
+          amount: 377388542.7,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-05",
+          close: 3071.6771,
+          open: 3036.1545,
+          high: 3074.2571,
+          low: 3022.9262,
+          vol: 445425806,
+          amount: 482770471.4,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-04",
+          close: 3011.6657,
+          open: 2981.806,
+          high: 3012.0035,
+          low: 2974.3583,
+          vol: 353338278,
+          amount: 389893917.5,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-03",
+          close: 2992.8968,
+          open: 3006.8888,
+          high: 3026.842,
+          low: 2976.623,
+          vol: 410108047,
+          amount: 447053681.5,
+        },
+        {
+          ts_code: "000001.SH",
+          trade_date: "2020-03-02",
+          close: 2970.9312,
+          open: 2899.31,
+          high: 2982.5068,
+          low: 2899.31,
+          vol: 367333369,
+          amount: 397244201.2,
         },
       ],
     },
