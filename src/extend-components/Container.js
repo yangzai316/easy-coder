@@ -1,6 +1,6 @@
 const Container = ({ children, style, ...props }) => {
   return (
-    <div className="container" style={style} {...props}>
+    <div style={style} {...props}>
       {children}
     </div>
   );

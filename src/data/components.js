@@ -1,4 +1,5 @@
 import Container from "../extend-components/Container";
+import Text from "../extend-components/Text";
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
@@ -24,6 +25,7 @@ import {
 export const all = {
   ...antd,
   Container,
+  Text,
   FormItem: antd.Form.Item,
   Button,
   TimePickerRangePicker: antd.TimePicker.RangePicker,
@@ -61,6 +63,11 @@ export const elementList = [
         name: "Container",
         label: "容器",
         icon: "icon-icon-test1",
+      },
+      {
+        name: "Text",
+        label: "文本",
+        icon: "",
       },
       {
         name: "Layout",
@@ -266,6 +273,14 @@ export const COMPONENT_MAP = {
       margin: "4px",
       padding: "4px",
     },
+  },
+  Text: {
+    name: "Text",
+    label: "文本",
+    props: {
+      content: "文本内容",
+    },
+    style: {},
   },
   Layout: {
     name: "Layout",
