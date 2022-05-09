@@ -3,7 +3,7 @@ import * as antd from "antd";
 // antd 组件的拓展 & 自定义组件
 import Container from "../extend-components/Container";
 import Text from "../extend-components/Text";
-import Img from '../extend-components/Img'
+import Img from "../extend-components/Img";
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
@@ -282,6 +282,7 @@ export const ELEMENT_MAP = {
       height: "200px",
       margin: "4px",
       padding: "4px",
+      overflow: "auto",
     },
   },
   Text: {

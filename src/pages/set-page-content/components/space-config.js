@@ -1,6 +1,7 @@
-import { Tabs, Input, Row, Col, InputNumber, Switch } from "antd";
+import { Tabs, Input, Row, Col, InputNumber, Switch, Select } from "antd";
 import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
 import ZH_CN_MAP from "./../../../locales/zh-cn";
+import OPTIONAL_TREE from "./../../../data/OPTIONAL_TREE";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
 import { isString, isBoolean, isNumber } from "../../../utils";
@@ -29,17 +30,13 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
-                <Row key={index} wrap={false}>
-                  <Col flex="60px">{ZH_CN_MAP[key] || key}：</Col>
-                  <Col>
-                    <EasyInput
-                      value={value}
-                      type={key}
-                      change={change}
-                      attrType="style"
-                    />
-                  </Col>
-                </Row>
+                <EasyInput
+                  key={index}
+                  value={value}
+                  type={key}
+                  change={change}
+                  attrType="style"
+                />
               );
             }
           )}
@@ -48,17 +45,13 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.props || []).map(
             ([key, value], index) => {
               return (
-                <Row key={index} wrap={false}>
-                  <Col flex="70px">{ZH_CN_MAP[key] || key}：</Col>
-                  <Col>
-                    <EasyInput
-                      value={value}
-                      type={key}
-                      change={change}
-                      attrType="props"
-                    />
-                  </Col>
-                </Row>
+                <EasyInput
+                  key={index}
+                  value={value}
+                  type={key}
+                  change={change}
+                  attrType="props"
+                />
               );
             }
           )}
@@ -83,35 +76,50 @@ const EasyInput = ({ value, type, change, attrType }) => {
   // style : 修改样式
   // props : 修改属性
   return (
-    <>
-      {isString(value) ? (
-        <Input
-          size="small"
-          value={value}
-          onChange={(e) => {
-            change(e.target.value, type, attrType);
-          }}
-        />
-      ) : isNumber(value) || value === null ? (
-        <InputNumber
-          size="small"
-          value={value}
-          onChange={(val) => {
-            change(val, type, attrType);
-          }}
-        />
-      ) : isBoolean(value) ? (
-        <Switch
-          size="small"
-          defaultChecked={value}
-          onChange={(val) => {
-            change(val, type, attrType);
-          }}
-        />
-      ) : (
-        "前往【高级设置】进行操作"
-      )}
-    </>
+    <Row wrap={false}>
+      <Col span={7}>{ZH_CN_MAP[type] || type}：</Col>
+      <Col span={17}>
+        <>
+          {OPTIONAL_TREE[type] ? (
+            <Select
+              style={{ width: "100%" }}
+              size="small"
+              options={OPTIONAL_TREE[type].list}
+              value={value}
+              onChange={(val) => {
+                change(val, type, attrType);
+              }}
+            />
+          ) : isString(value) ? (
+            <Input
+              size="small"
+              value={value}
+              onChange={(e) => {
+                change(e.target.value, type, attrType);
+              }}
+            />
+          ) : isNumber(value) || value === null ? (
+            <InputNumber
+              size="small"
+              value={value}
+              onChange={(val) => {
+                change(val, type, attrType);
+              }}
+            />
+          ) : isBoolean(value) ? (
+            <Switch
+              size="small"
+              defaultChecked={value}
+              onChange={(val) => {
+                change(val, type, attrType);
+              }}
+            />
+          ) : (
+            "前往【高级设置】进行操作"
+          )}
+        </>
+      </Col>
+    </Row>
   );
 };
 
