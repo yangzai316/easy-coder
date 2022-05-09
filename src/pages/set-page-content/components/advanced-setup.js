@@ -56,28 +56,26 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
       <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     ChartColumn: (
-      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
+      <AddArgsForChart
+        currentUid={currentUid}
+        updateView={updateView}
+        otherArgs={["meta"]}
+      />
     ),
     MultiChartColumn: (
-      <AddArgsForChart
-        currentUid={currentUid}
-        updateView={updateView}
-        otherArgs={["meta"]}
-      />
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     ChartPie: (
-      <AddArgsForChart
-        currentUid={currentUid}
-        updateView={updateView}
-        otherArgs={["meta"]}
-      />
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
-    ChartRadar: (
-      <AddArgsForChart
-        currentUid={currentUid}
-        updateView={updateView}
-        otherArgs={["meta"]}
-      />
+    ChartRing: (
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
+    ),
+    ChartGauge: (
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
+    ),
+    ChartLiquid: (
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     ChartRadar: (
       <AddArgsForChart

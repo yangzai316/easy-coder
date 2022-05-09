@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";

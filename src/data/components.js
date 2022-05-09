@@ -1,5 +1,6 @@
 import Container from "../extend-components/Container";
 import Text from "../extend-components/Text";
+import Img from '../extend-components/Img'
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
@@ -26,6 +27,7 @@ export const all = {
   ...antd,
   Container,
   Text,
+  Img,
   FormItem: antd.Form.Item,
   Button,
   TimePickerRangePicker: antd.TimePicker.RangePicker,
@@ -67,6 +69,11 @@ export const elementList = [
       {
         name: "Text",
         label: "文本",
+        icon: "",
+      },
+      {
+        name: "Img",
+        label: "图片",
         icon: "",
       },
       {
@@ -279,6 +286,17 @@ export const COMPONENT_MAP = {
     label: "文本",
     props: {
       content: "文本内容",
+    },
+    style: {},
+  },
+  Img: {
+    name: "Img",
+    label: "图片",
+    props: {
+      width: "200px",
+      height: "200px",
+      src: "https://images4.c-ctrip.com/target//100t0i0000009mrsd86B4_C_292_192.jpg",
+      alt: "默认图片",
     },
     style: {},
   },
