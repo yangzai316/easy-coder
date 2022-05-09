@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./../../../style/space-work.scss";
-import ORIGIN_TREE from "../../../data/origin-tree";
+import ORIGIN_TREE from "../../../data/ORIGIN_TREE";
 import {
   mixComponentToTree,
   getNewElementInfo,

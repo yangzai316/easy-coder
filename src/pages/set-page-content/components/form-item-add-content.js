@@ -2,9 +2,9 @@ import { Button, Row, Col } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { mixComponentToTree } from "../../../helper";
 
-import { elementList } from "./../../../data/components";
-// 数据源处理
-const list = elementList[1].list;
+import { ELEMENT_LIST } from "./../../../data/components";
+// 数据源处理：只处理[1]，即处理表单子组件，除去Form、FormItem
+const list = ELEMENT_LIST[1].list;
 const formItemContentList = list.filter(
   (item) => item.name !== "Form" && item.name !== "FormItem"
 );

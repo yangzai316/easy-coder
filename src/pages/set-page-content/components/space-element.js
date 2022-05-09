@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Row, Col, Collapse } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import EasyIcon from "../../../components/EasyIcon";
-import { elementList } from "../../../data/components";
+import { ELEMENT_LIST } from "../../../data/components";
 import "./../../../style/space-element.scss";
 // 左侧组件展示栏
 const AreaComponent = () => {
@@ -22,7 +22,7 @@ const AreaComponent = () => {
   return (
     <div id="space-element" className="space-element">
       <Collapse defaultActiveKey={["3"]} accordion>
-        {elementList.map((item, index) => {
+        {ELEMENT_LIST.map((item, index) => {
           return (
             <Collapse.Panel header={item.label} key={index}>
               <Row gutter={[8, 8]}>

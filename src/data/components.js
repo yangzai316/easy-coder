@@ -1,3 +1,6 @@
+// antd 组件
+import * as antd from "antd";
+// antd 组件的拓展 & 自定义组件
 import Container from "../extend-components/Container";
 import Text from "../extend-components/Text";
 import Img from '../extend-components/Img'
@@ -11,7 +14,6 @@ import Calendar from "./../extend-components/Calendar";
 import Carousel from "./../extend-components/Carousel";
 import Collapse from "./../extend-components/Collapse";
 import TimelineItem from "./../extend-components/TimelineItem";
-import * as antd from "antd";
 // 数据可视化-组件
 import {
   ChartLine,
@@ -22,8 +24,8 @@ import {
   ChartRadar,
   ChartStock,
 } from "./../extend-components/antd-charts";
-
-export const all = {
+// 组件集合
+export const ALL = {
   ...antd,
   Container,
   Text,
@@ -57,7 +59,7 @@ export const all = {
 };
 
 // 左侧组件展示区-展示数据
-export const elementList = [
+export const ELEMENT_LIST = [
   {
     label: "基础组件",
     list: [
@@ -268,6 +270,7 @@ export const elementList = [
     ],
   },
 ];
+
 // 组件数据映射数据源
 export const COMPONENT_MAP = {
   Container: {

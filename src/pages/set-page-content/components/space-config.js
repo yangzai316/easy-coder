@@ -1,5 +1,5 @@
 import { Tabs, Input, Row, Col, InputNumber, Switch } from "antd";
-import ORIGIN_TREE from "./../../../data/origin-tree";
+import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
 import ZH_CN_MAP from "./../../../locales/zh-cn";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";

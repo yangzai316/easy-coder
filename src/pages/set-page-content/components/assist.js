@@ -1,6 +1,6 @@
 import { Button, Switch } from "antd";
 import { toggleFocusAllElement } from "./../../../helper";
-import ORIGIN_TREE from "./../../../data/origin-tree";
+import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
 
 const Assist = ({ updateCount }) => {
   return (

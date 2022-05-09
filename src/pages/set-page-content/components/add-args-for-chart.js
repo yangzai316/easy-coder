@@ -3,7 +3,7 @@ import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
 import { isObject } from "../../../utils";
-import ORIGIN_TREE from "../../../data/origin-tree";
+import ORIGIN_TREE from "../../../data/ORIGIN_TREE";
 
 let KEY = "";
 

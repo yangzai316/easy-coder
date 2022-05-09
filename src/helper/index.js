@@ -1,5 +1,5 @@
-import ORIGIN_TREE from "../data/origin-tree";
-import { COMPONENT_MAP, all } from "../data/components";
+import ORIGIN_TREE from "../data/ORIGIN_TREE";
+import { COMPONENT_MAP, ALL } from "../data/components";
 import { isArray } from "../utils";
 /**
  * 获取新创建组件的信息：uid / type
@@ -29,7 +29,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     style: Object.assign({}, config.style),
     props: Object.assign({}, config.props),
     children,
-    component: all[config.name],
+    component: ALL[config.name],
   };
   // 新对象添加父级对象中
   if (isArray(ORIGIN_TREE[parentUid].children)) {
