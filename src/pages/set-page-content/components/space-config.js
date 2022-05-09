@@ -1,6 +1,6 @@
 import { Tabs, Input, Row, Col, InputNumber, Switch } from "antd";
 import ORIGIN_TREE from "./../../../data/origin-tree";
-import ATTR_MAP from "./../../../data/attr-map";
+import ZH_CN_MAP from "./../../../locales/zh-cn";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
 import { isString, isBoolean, isNumber } from "../../../utils";
@@ -30,7 +30,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
             ([key, value], index) => {
               return (
                 <Row key={index} wrap={false}>
-                  <Col flex="60px">{ATTR_MAP[key] || key}：</Col>
+                  <Col flex="60px">{ZH_CN_MAP[key] || key}：</Col>
                   <Col>
                     <EasyInput
                       value={value}
@@ -49,7 +49,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
             ([key, value], index) => {
               return (
                 <Row key={index} wrap={false}>
-                  <Col flex="70px">{ATTR_MAP[key] || key}：</Col>
+                  <Col flex="70px">{ZH_CN_MAP[key] || key}：</Col>
                   <Col>
                     <EasyInput
                       value={value}
