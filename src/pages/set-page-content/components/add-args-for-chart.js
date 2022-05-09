@@ -3,11 +3,11 @@ import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
 import { isObject } from "../../../utils";
-import ORIGIN_TREE from "./../../../data/origin-tree";
+import ORIGIN_TREE from "../../../data/origin-tree";
 
 let KEY = "";
 
-const AddDataForChartColumn = ({ currentUid, updateView, otherArgs = [] }) => {
+const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
   // 操作 dialog
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [initialValue, setInitialValue] = useState("");
@@ -85,4 +85,4 @@ const AddDataForChartColumn = ({ currentUid, updateView, otherArgs = [] }) => {
   );
 };
 
-export default AddDataForChartColumn;
+export default AddArgsForChart;

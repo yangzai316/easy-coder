@@ -7,7 +7,7 @@ import AddOptionForCarousel from "./add-optioin-for-carousel";
 import AddPanelForCollapse from "./add-panel-for-collapse";
 import AddDataForTable from "./add-data-for-table";
 import AddDataForTree from "./add-data-for-tree";
-import AddDataForChartColumn from "./add-data-for-chart-column";
+import AddArgsForChart from "./add-args-for-chart";
 
 const AdvancedSetup = ({ name, currentUid, updateView }) => {
   const _MAP = {
@@ -50,44 +50,44 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
     ),
     Tree: <AddDataForTree parentUid={currentUid} updateView={updateView} />,
     ChartLine: (
-      <AddDataForChartColumn currentUid={currentUid} updateView={updateView} />
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     MultiChartLine: (
-      <AddDataForChartColumn currentUid={currentUid} updateView={updateView} />
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     ChartColumn: (
-      <AddDataForChartColumn currentUid={currentUid} updateView={updateView} />
+      <AddArgsForChart currentUid={currentUid} updateView={updateView} />
     ),
     MultiChartColumn: (
-      <AddDataForChartColumn
+      <AddArgsForChart
         currentUid={currentUid}
         updateView={updateView}
         otherArgs={["meta"]}
       />
     ),
     ChartPie: (
-      <AddDataForChartColumn
+      <AddArgsForChart
         currentUid={currentUid}
         updateView={updateView}
         otherArgs={["meta"]}
       />
     ),
     ChartRadar: (
-      <AddDataForChartColumn
+      <AddArgsForChart
         currentUid={currentUid}
         updateView={updateView}
         otherArgs={["meta"]}
       />
     ),
     ChartRadar: (
-      <AddDataForChartColumn
+      <AddArgsForChart
         currentUid={currentUid}
         updateView={updateView}
         otherArgs={["meta"]}
       />
     ),
     ChartStock: (
-      <AddDataForChartColumn
+      <AddArgsForChart
         currentUid={currentUid}
         updateView={updateView}
         otherArgs={["yField"]}
