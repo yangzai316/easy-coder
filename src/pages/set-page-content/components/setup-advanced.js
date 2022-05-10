@@ -9,7 +9,7 @@ import AddDataForTable from "./add-data-for-table";
 import AddDataForTree from "./add-data-for-tree";
 import AddArgsForChart from "./add-args-for-chart";
 
-const AdvancedSetup = ({ name, currentUid, updateView }) => {
+const SetupAdvanced = ({ name, currentUid, updateView }) => {
   const _MAP = {
     Form: <AddFormItem parentUid={currentUid} updateView={updateView} />,
     FormItem: (
@@ -95,4 +95,4 @@ const AdvancedSetup = ({ name, currentUid, updateView }) => {
 
   return _MAP[name];
 };
-export default AdvancedSetup;
+export default SetupAdvanced;

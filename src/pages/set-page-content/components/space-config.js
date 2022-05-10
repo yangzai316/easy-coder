@@ -1,11 +1,9 @@
-import { Tabs, Input, Row, Col, InputNumber, Switch, Select } from "antd";
+import { Tabs } from "antd";
 import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
-import ZH_CN_MAP from "./../../../locales/zh-cn";
-import OPTIONAL_TREE from "./../../../data/OPTIONAL_TREE";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
-import { isString, isBoolean, isNumber } from "../../../utils";
-import AdvancedSetup from "./advanced-setup";
+import SetupAdvanced from "./setup-advanced";
+import SetupNormal from "./setup-normal";
 
 const { TabPane } = Tabs;
 
@@ -30,7 +28,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
-                <EasyInput
+                <SetupNormal
                   key={index}
                   value={value}
                   type={key}
@@ -45,7 +43,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           {Object.entries(ORIGIN_TREE[currentUid]?.props || []).map(
             ([key, value], index) => {
               return (
-                <EasyInput
+                <SetupNormal
                   key={index}
                   value={value}
                   type={key}
@@ -57,7 +55,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           )}
         </TabPane>
         <TabPane tab="高级设置" key="3">
-          <AdvancedSetup
+          <SetupAdvanced
             name={ORIGIN_TREE[currentUid]?.name}
             currentUid={currentUid}
             updateView={updateView}
@@ -65,61 +63,6 @@ const SpaceConfig = ({ currentUid, updateView }) => {
         </TabPane>
       </Tabs>
     </div>
-  );
-};
-
-/**
- *
- * 修改样式或属性的Input集成组件
- */
-const EasyInput = ({ value, type, change, attrType }) => {
-  // style : 修改样式
-  // props : 修改属性
-  return (
-    <Row wrap={false}>
-      <Col span={7}>{ZH_CN_MAP[type] || type}：</Col>
-      <Col span={17}>
-        <>
-          {OPTIONAL_TREE[type] ? (
-            <Select
-              style={{ width: "100%" }}
-              size="small"
-              options={OPTIONAL_TREE[type].list}
-              value={value}
-              onChange={(val) => {
-                change(val, type, attrType);
-              }}
-            />
-          ) : isString(value) ? (
-            <Input
-              size="small"
-              value={value}
-              onChange={(e) => {
-                change(e.target.value, type, attrType);
-              }}
-            />
-          ) : isNumber(value) || value === null ? (
-            <InputNumber
-              size="small"
-              value={value}
-              onChange={(val) => {
-                change(val, type, attrType);
-              }}
-            />
-          ) : isBoolean(value) ? (
-            <Switch
-              size="small"
-              defaultChecked={value}
-              onChange={(val) => {
-                change(val, type, attrType);
-              }}
-            />
-          ) : (
-            "前往【高级设置】进行操作"
-          )}
-        </>
-      </Col>
-    </Row>
   );
 };
 
