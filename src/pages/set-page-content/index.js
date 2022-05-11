@@ -4,6 +4,7 @@ import SpaceElement from "./components/space-element";
 import SpaceWork from "./components/space-work";
 import SpaceConfig from "./components/space-config";
 import Assist from "./components/assist";
+import Header from "./components/header";
 
 const { Sider, Content } = Layout;
 
@@ -24,25 +25,28 @@ const SetPageContent = () => {
 
   return (
     <Layout style={{ height: "100%" }}>
-      {/* 左侧组件展示区 */}
-      <Sider theme="light" style={{ height: "100%", overflow: "auto" }}>
-        <SpaceElement></SpaceElement>
-      </Sider>
-      {/* 中间组件组合区 */}
-      <Content style={{ height: "100%" }}>
-        <Assist updateCount={viewData.updateCount}></Assist>
-        <SpaceWork
-          currentUid={viewData.currentUid}
-          updateView={updateView}
-        ></SpaceWork>
-      </Content>
-      {/* 右边组件属性设置区 */}
-      <Sider theme="light" width={240} style={{ height: "100%" }}>
-        <SpaceConfig
-          currentUid={viewData.currentUid}
-          updateView={updateView}
-        ></SpaceConfig>
-      </Sider>
+      <Header></Header>
+      <Layout style={{ height: "100%" }}>
+        {/* 左侧组件展示区 */}
+        <Sider theme="light" style={{ height: "100%", overflow: "auto" }}>
+          <SpaceElement></SpaceElement>
+        </Sider>
+        {/* 中间组件组合区 */}
+        <Content style={{ height: "100%" }}>
+          <Assist updateCount={viewData.updateCount}></Assist>
+          <SpaceWork
+            currentUid={viewData.currentUid}
+            updateView={updateView}
+          ></SpaceWork>
+        </Content>
+        {/* 右边组件属性设置区 */}
+        <Sider theme="light" width={240} style={{ height: "100%" }}>
+          <SpaceConfig
+            currentUid={viewData.currentUid}
+            updateView={updateView}
+          ></SpaceConfig>
+        </Sider>
+      </Layout>
     </Layout>
   );
 };

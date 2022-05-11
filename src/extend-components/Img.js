@@ -1,5 +1,5 @@
 const Img = ({ style, ...props }) => {
-  return <img style={style} {...props}></img>;
+  return <img style={style} alt={props.alt} {...props}></img>;
 };
 
 export default Img;

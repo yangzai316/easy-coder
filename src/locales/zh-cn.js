@@ -1,4 +1,4 @@
-export default {
+const ZH_CN = {
   width: "宽度",
   height: "高度",
   backgroundColor: "背景色",
@@ -7,3 +7,5 @@ export default {
   label: "标题",
   labelAlign: "标签对齐",
 };
+
+export default ZH_CN;

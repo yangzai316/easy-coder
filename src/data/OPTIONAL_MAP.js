@@ -1,4 +1,4 @@
-export default {
+const OPTIONAL_MAP = {
   overflow: [
     {
       label: "显示",
@@ -18,3 +18,4 @@ export default {
     },
   ],
 };
+export default OPTIONAL_MAP;
