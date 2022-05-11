@@ -5,7 +5,7 @@ import LeftSider from "./components/LeftSider";
 import { Layout } from "antd";
 import "./App.css";
 
-const { Sider, Content } = Layout;
+const { Sider, Content, Header } = Layout;
 
 const App = () => {
   return (
@@ -14,18 +14,17 @@ const App = () => {
         height: "100vh",
       }}
     >
-      <Sider width="66">
-        <LeftSider></LeftSider>
-      </Sider>
+      <Header>Header</Header>
       <Layout>
-        {/* <Header>Header</Header> */}
+        <Sider width="66">
+          <LeftSider></LeftSider>
+        </Sider>
         <Content>
           <Routes>
             <Route path="/set-page-content" element={<SetPageContent />} />
             <Route path="/set-route" element={<SetRoute />} />
           </Routes>
         </Content>
-        {/* <Footer>Footer</Footer> */}
       </Layout>
     </Layout>
   );
