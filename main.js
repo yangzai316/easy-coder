@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const isDev = require("electron-is-dev");
+const { prvView } = require("./service/prv-view");
 
 app.on("ready", () => {
   let mainWindow = new BrowserWindow({
@@ -17,8 +18,8 @@ app.on("ready", () => {
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
-
-  ipcMain.on("open-prv-view", () => {
-    console.log("123123");
+  // 打开预览功能
+  ipcMain.on("open-prv-view", (event, data) => {
+    prvView(data);
   });
 });
