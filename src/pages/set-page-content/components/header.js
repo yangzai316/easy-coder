@@ -14,11 +14,21 @@ const Header = () => {
         icon={<EyeOutlined />}
         onClick={() => {
           const data = JSON.stringify(ORIGIN_TREE["id-root"]);
-          console.log(data);
           ipcRenderer.send("open-prv-view", data);
         }}
       >
         预览
+      </Button>
+      <Button
+        type="primary"
+        size="small"
+        icon={<EyeOutlined />}
+        onClick={() => {
+          const data = JSON.stringify(ORIGIN_TREE["id-root"]);
+          ipcRenderer.send("open-prv-view", data);
+        }}
+      >
+        OPEN
       </Button>
     </div>
   );
