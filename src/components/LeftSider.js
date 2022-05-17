@@ -14,6 +14,11 @@ const items = [
     key: "set-route",
     icon: <PartitionOutlined style={{ fontSize: "28px" }} />,
   },
+  {
+    label: <Link to="/set-project"> </Link>,
+    key: "set-project",
+    icon: <PartitionOutlined style={{ fontSize: "28px" }} />,
+  },
 ];
 
 const LeftSider = () => {

@@ -1,6 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const cp = require("child_process");
 const isDev = require("electron-is-dev");
-const { prvView } = require("./service/prv-view");
 
 app.on("ready", () => {
   let mainWindow = new BrowserWindow({
@@ -12,14 +12,12 @@ app.on("ready", () => {
     },
   });
 
-  const URL = isDev ? "http://localhost:3000/" : "null";
+  const URL = isDev ? "http://localhost:3000/" : "";
 
   mainWindow.loadURL(URL);
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
-  // 打开预览功能
-  ipcMain.on("open-prv-view", (event, data) => {
-    prvView(data);
-  });
+  // 事件集中处理
+  require("./service/event-emitter");
 });
