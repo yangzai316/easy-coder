@@ -1,10 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import SetPageContent from "./pages/set-page-content";
-import SetRoute from "./pages/set-route";
 import LeftSider from "./components/LeftSider";
-import SetProject from "./pages/set-project.js";
 import { Layout } from "antd";
 import "./App.css";
+import router from "./router";
 
 const { Sider, Content } = Layout;
 
@@ -20,9 +18,9 @@ const App = () => {
       </Sider>
       <Content>
         <Routes>
-          <Route path="/set-page-content" element={<SetPageContent />} />
-          <Route path="/set-route" element={<SetRoute />} />
-          <Route path="/set-project" element={<SetProject />} />
+          {router.map((item) => {
+            return <Route path={item.key} element={item.element} />;
+          })}
         </Routes>
       </Content>
     </Layout>

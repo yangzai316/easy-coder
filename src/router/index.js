@@ -1,52 +1,52 @@
-import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import React from "react";
-import EasyIcon from "./EasyIcon";
-import router from "../router";
+import EasyIcon from "./../components/EasyIcon";
+import SetPageContent from "./../pages/set-page-content";
+import SetRoute from "./../pages/set-route";
+import SetProject from "./../pages/set-project.js";
+import Test from "./../pages/test/index.js";
 
-const items = [
+const router = [
   {
     label: <Link to="/set-project"> </Link>,
-    key: "set-project",
+    key: "/set-project",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
         icon-shiyonggongju
       </EasyIcon>
     ),
+    element: <SetProject />,
   },
   {
     label: <Link to="/set-route"> </Link>,
-    key: "set-route",
+    key: "/set-route",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
         icon-shuxingtu
       </EasyIcon>
     ),
+    element: <SetRoute />,
   },
   {
     label: <Link to="/set-page-content"> </Link>,
-    key: "set-page-content",
+    key: "/set-page-content",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
         icon-huanjingsheji
       </EasyIcon>
     ),
+    element: <SetPageContent />,
   },
   {
     label: <Link to="/test"> </Link>,
-    key: "test",
+    key: "/test",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
         icon-huanjingsheji
       </EasyIcon>
     ),
+    element: <Test />,
   },
 ];
 
-const LeftSider = () => {
-  return (
-    <Menu mode="inline" style={{ width: 66 }} theme="dark" items={router} />
-  );
-};
-
-export default LeftSider;
+export default router;

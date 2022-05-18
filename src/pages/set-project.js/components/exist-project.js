@@ -19,10 +19,9 @@ const ExistProject = () => {
     <Row>
       {Object.values(project).map((item) => {
         return (
-          <Col span={12}>
+          <Col span={12} key={item.uid}>
             <Card
               hoverable
-              key={item.uid}
               title={item.projectName}
               extra={
                 <Button
