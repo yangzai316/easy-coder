@@ -1,47 +1,6 @@
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
 import React from "react";
-import EasyIcon from "./EasyIcon";
 import router from "../router";
-
-const items = [
-  {
-    label: <Link to="/set-project"> </Link>,
-    key: "set-project",
-    icon: (
-      <EasyIcon color="#fff" fontSize="24">
-        icon-shiyonggongju
-      </EasyIcon>
-    ),
-  },
-  {
-    label: <Link to="/set-route"> </Link>,
-    key: "set-route",
-    icon: (
-      <EasyIcon color="#fff" fontSize="24">
-        icon-shuxingtu
-      </EasyIcon>
-    ),
-  },
-  {
-    label: <Link to="/set-page-content"> </Link>,
-    key: "set-page-content",
-    icon: (
-      <EasyIcon color="#fff" fontSize="24">
-        icon-huanjingsheji
-      </EasyIcon>
-    ),
-  },
-  {
-    label: <Link to="/test"> </Link>,
-    key: "test",
-    icon: (
-      <EasyIcon color="#fff" fontSize="24">
-        icon-huanjingsheji
-      </EasyIcon>
-    ),
-  },
-];
 
 const LeftSider = () => {
   return (

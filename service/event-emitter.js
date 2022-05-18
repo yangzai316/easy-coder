@@ -1,6 +1,11 @@
 const { ipcMain, dialog } = require("electron");
 const { spawn } = require("child_process");
 const { cloneTemplate } = require("./down-template");
+const {
+  getRoute,
+  editRouteContent,
+  writeContentToProject,
+} = require("./set-route.js");
 
 // 打开目录选择
 ipcMain.handle("open-directory-for-project-path", async () => {
@@ -34,5 +39,23 @@ ipcMain.on("clone-template", async (event, data) => {
     });
   } catch (error) {
     console.error(error);
+  }
+});
+
+// 新建路由
+ipcMain.handle("add-route-emitter", (event, data) => {
+  try {
+    const content = getRoute(
+      `${data.projectData.projectPath}/${data.projectData.projectName}/src/router/index.json`
+    );
+    const newContent = editRouteContent(content, data.routeData);
+    writeContentToProject(
+      `${data.projectData.projectPath}/${data.projectData.projectName}/src/router/index.json`,
+      newContent
+    );
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 });

@@ -14,6 +14,7 @@ const Header = () => {
           icon={<EyeOutlined />}
           onClick={() => {
             const data = JSON.stringify(ORIGIN_TREE["id-root"]);
+            console.log(data);
           }}
         >
           预览

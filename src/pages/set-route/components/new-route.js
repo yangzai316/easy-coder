@@ -1,10 +1,22 @@
-import { Form, Input, Button, Row, Col } from "antd";
+import { Form, Input, Button, Row, Col, message } from "antd";
+const { ipcRenderer } = window.require("electron");
 
-const NewRoute = () => {
+const NewRoute = ({ currentProject }) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log(values);
+    ipcRenderer
+      .invoke("add-route-emitter", {
+        projectData: currentProject,
+        routeData: values,
+      })
+      .then((result) => {
+        if (result) {
+          message.success("路由添加成功");
+        } else {
+          message.error("路由添加失败");
+        }
+      });
   };
 
   return (
@@ -49,7 +61,7 @@ const NewRoute = () => {
             </Form.Item>
             <Form.Item
               label="页面组件命名"
-              name="pageName"
+              name="componentName"
               rules={[
                 {
                   required: true,

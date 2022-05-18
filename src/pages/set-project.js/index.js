@@ -12,7 +12,7 @@ const SetProject = () => {
         style={{ height: "100%", padding: "0 24px", backgroundColor: "#fff" }}
       >
         <Tabs defaultActiveKey="1" style={{ marginBottom: 32 }}>
-          <TabPane tab="打开已存在项目" key="1">
+          <TabPane tab="已存在项目" key="1">
             <ExistProject></ExistProject>
           </TabPane>
           <TabPane tab="新建项目" key="2">
