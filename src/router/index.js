@@ -42,7 +42,7 @@ const router = [
     key: "/test",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
-        icon-huanjingsheji
+        icon-chilun
       </EasyIcon>
     ),
     element: <Test />,
