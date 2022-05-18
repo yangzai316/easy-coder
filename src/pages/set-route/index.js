@@ -1,7 +1,30 @@
 import { ELEMENT_ALL } from "./../../data/ELEMENT";
+
+import { v4 as uuidv4 } from "uuid";
+
+const Store = window.require("electron-store");
+const store = new Store();
+
 const { Button, Container } = ELEMENT_ALL;
 
 const SetRoute = () => {
+  const setV = () => {
+    const uid = uuidv4();
+    const oldMap = store.get("project") || {};
+    const newMap = {
+      [uid]: {
+        uid,
+      },
+      ...oldMap,
+    };
+    store.set("project", newMap);
+  };
+  const clearV = () => {
+    console.log(store.clear());
+  };
+  const getPath = () => {
+    console.log(store.clear());
+  };
   return (
     <Container
       style={{
@@ -12,8 +35,8 @@ const SetRoute = () => {
         overflow: "auto",
       }}
     >
-      <Button style={{}} content="按钮1"></Button>
-      <Button style={{}} content="按钮2"></Button>
+      <Button onClick={setV} content="set"></Button>
+      <Button onClick={clearV} content="clear"></Button>
     </Container>
   );
 };

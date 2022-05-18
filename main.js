@@ -1,7 +1,7 @@
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
-const cp = require("child_process");
+const { app, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
-
+const electronStore = require("electron-store");
+const store = new electronStore();
 app.on("ready", () => {
   let mainWindow = new BrowserWindow({
     width: 1024,
@@ -20,4 +20,5 @@ app.on("ready", () => {
   });
   // 事件集中处理
   require("./service/event-emitter");
+  console.log(app.getPath("userData"));
 });

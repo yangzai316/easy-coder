@@ -2,8 +2,6 @@ const { ipcMain, dialog } = require("electron");
 const { spawn } = require("child_process");
 const { cloneTemplate } = require("./down-template");
 
-const { runScript } = require("./npm-script");
-
 // 打开目录选择
 ipcMain.handle("open-directory-for-project-path", async () => {
   const path = dialog.showOpenDialogSync({
@@ -14,26 +12,11 @@ ipcMain.handle("open-directory-for-project-path", async () => {
 });
 
 // 下载项目
-// ipcMain.handle("clone-template", async (event, data) => {
-//   try {
-//     // await cloneTemplate(data);
-//     // await runScript(`${data.projectPath}/${data.projectName}`);
-//     await runScript(`${data.projectPath}/test`);
-//     return true;
-//   } catch (error) {
-//     throw new Error({
-//       status: false,
-//       error: JSON.stringify(error),
-//     });
-//   }
-// });
-
 ipcMain.on("clone-template", async (event, data) => {
   try {
-    console.log(data);
     await cloneTemplate(data);
-    event.reply("data", ">>> " + "download success ...");
-    subprocess = spawn("npm install && npm start", {
+    event.reply("data", "> " + "download success ...");
+    subprocess = spawn("npm install", {
       cwd: `${data.projectPath}/${data.projectName}`,
       shell: true,
       stdio: ["pipe", "pipe", "pipe", "ipc"],
@@ -50,9 +33,6 @@ ipcMain.on("clone-template", async (event, data) => {
       event.reply("data", ">>> " + code);
     });
   } catch (error) {
-    throw new Error({
-      status: false,
-      error: JSON.stringify(error),
-    });
+    console.error(error);
   }
 });
