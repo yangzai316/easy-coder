@@ -8,9 +8,6 @@
   margin-top: 16px !important;
   margin-bottom: 16px !important;
 }
-.ant-menu-item-selected {
-  background-color: #001529 !important;
-}
 .ant-collapse-content > .ant-collapse-content-box {
   padding: 8px;
 }
@@ -23,7 +20,4 @@
   /*滚动条里面小方块*/
   background-color: #ccc;
   border-radius: 2px;
-}
-.link-is-active {
-  color: red;
 }
