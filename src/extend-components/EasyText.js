@@ -1,4 +1,4 @@
-const Text = ({ content, style, ...props }) => {
+const EasyText = ({ content, style, ...props }) => {
   return (
     <span style={style} {...props}>
       {content}
@@ -6,4 +6,4 @@ const Text = ({ content, style, ...props }) => {
   );
 };
 
-export default Text;
+export default EasyText;

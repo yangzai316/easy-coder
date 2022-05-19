@@ -1,8 +1,8 @@
 // antd 组件
 import * as antd from "antd";
 // antd 组件的拓展 & 自定义组件
-import Container from "../extend-components/Container";
-import Text from "../extend-components/Text";
+import EasyContainer from "../extend-components/EasyContainer";
+import EasyText from "../extend-components/EasyText";
 import Img from "../extend-components/Img";
 import Button from "../extend-components/Button";
 import DatePicker from "../extend-components/DatePicker";
@@ -27,8 +27,8 @@ import {
 // 组件集合
 export const ELEMENT_ALL = {
   ...antd,
-  Container,
-  Text,
+  EasyContainer,
+  EasyText,
   Img,
   FormItem: antd.Form.Item,
   Button,
@@ -64,12 +64,12 @@ export const ELEMENT_LIST = [
     label: "基础组件",
     list: [
       {
-        name: "Container",
+        name: "EasyContainer",
         label: "容器",
         icon: "icon-icon-test1",
       },
       {
-        name: "Text",
+        name: "EasyText",
         label: "文本",
         icon: "",
       },
@@ -273,8 +273,8 @@ export const ELEMENT_LIST = [
 
 // 组件数据映射数据源
 export const ELEMENT_MAP = {
-  Container: {
-    name: "Container",
+  EasyContainer: {
+    name: "EasyContainer",
     label: "容器",
     children: [],
     style: {
@@ -285,8 +285,8 @@ export const ELEMENT_MAP = {
       overflow: "auto",
     },
   },
-  Text: {
-    name: "Text",
+  EasyText: {
+    name: "EasyText",
     label: "文本",
     props: {
       content: "文本内容",
