@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React from "react";
 import EasyIcon from "./../components/EasyIcon";
 import SetPageContent from "./../pages/set-page-content";
@@ -8,7 +8,7 @@ import Test from "./../pages/test/index.js";
 
 const router = [
   {
-    label: <Link to="/set-project"> </Link>,
+    label: <NavLink to="/set-project"></NavLink>,
     key: "/set-project",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
@@ -18,7 +18,7 @@ const router = [
     element: <SetProject />,
   },
   {
-    label: <Link to="/set-route"> </Link>,
+    label: <NavLink to="/set-route"></NavLink>,
     key: "/set-route",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
@@ -28,7 +28,7 @@ const router = [
     element: <SetRoute />,
   },
   {
-    label: <Link to="/set-page-content"> </Link>,
+    label: <NavLink to="/set-page-content"></NavLink>,
     key: "/set-page-content",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
@@ -38,7 +38,7 @@ const router = [
     element: <SetPageContent />,
   },
   {
-    label: <Link to="/test"> </Link>,
+    label: <NavLink to="/test"></NavLink>,
     key: "/test",
     icon: (
       <EasyIcon color="#fff" fontSize="24">

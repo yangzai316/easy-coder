@@ -24,3 +24,6 @@
   background-color: #ccc;
   border-radius: 2px;
 }
+.link-is-active {
+  color: red;
+}

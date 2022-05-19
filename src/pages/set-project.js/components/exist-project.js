@@ -1,9 +1,14 @@
-import { Card, Row, Col, Button } from "antd";
+import { Card, Row, Col, Button, message } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Store = window.require("electron-store");
 const store = new Store();
 
-const ExistProject = () => {
+const ExistProject = (props) => {
+  console.log(props);
+  // 路由配置
+  const navigate = useNavigate();
+  // 获取store 中当前项目的uid
   const [currentProjectUid, setCurrentProjectUid] = useState(
     store.get("currentProject") || ""
   );
@@ -14,6 +19,9 @@ const ExistProject = () => {
   const openProject = (uid) => {
     setCurrentProjectUid(uid);
     store.set("currentProject", uid);
+    message.loading("正在跳转该项目路由设置页面...", 0.5).then(() => {
+      navigate("/set-route");
+    });
   };
   return (
     <Row>
