@@ -1,7 +1,7 @@
 import { Layout } from "antd";
 import { useMemo } from "react";
 import Header from "./components/header";
-import NewRoute from "./components/new-route";
+import RouteList from "./components/route-list";
 const Store = window.require("electron-store");
 const store = new Store();
 
@@ -18,7 +18,7 @@ const SetRoute = () => {
       <Layout
         style={{ height: "100%", padding: "24px", backgroundColor: "#fff" }}
       >
-        <NewRoute currentProject={currentProject}></NewRoute>
+        <RouteList currentProject={currentProject}></RouteList>
       </Layout>
     </Layout>
   );

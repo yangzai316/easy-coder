@@ -3,10 +3,13 @@ import "./../../../style/easy-header.scss";
 import { EyeOutlined } from "@ant-design/icons";
 import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
 
-const Header = () => {
+const Header = ({ currentProject }) => {
   return (
     <div className="easy-header">
-      <span>页面设置</span>
+      <span>
+        页面管理-当前项目为 {currentProject.projectName}（ID:
+        {currentProject.uid}）
+      </span>
       <div>
         <Button
           type="primary"

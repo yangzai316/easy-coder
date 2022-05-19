@@ -1,14 +1,22 @@
 import { Layout } from "antd";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import SpaceElement from "./components/space-element";
 import SpaceWork from "./components/space-work";
 import SpaceConfig from "./components/space-config";
 import Assist from "./components/assist";
 import Header from "./components/header";
 
+const Store = window.require("electron-store");
+const store = new Store();
+
 const { Sider, Content } = Layout;
 
 const SetPageContent = () => {
+  // 获取当前项目的信息
+  const currentProjectUid = store.get("currentProject");
+  const currentProject = useMemo(() => {
+    return store.get(`project.${currentProjectUid}`);
+  }, [currentProjectUid]);
   // 更新视图
   const [viewData, setViewData] = useState({
     currentUid: "id-root",
@@ -25,7 +33,7 @@ const SetPageContent = () => {
 
   return (
     <Layout style={{ height: "100%" }}>
-      <Header></Header>
+      <Header currentProject={currentProject}></Header>
       <Layout style={{ height: "100%" }}>
         {/* 左侧组件展示区 */}
         <Sider theme="light" style={{ height: "100%", overflow: "auto" }}>

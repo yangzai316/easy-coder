@@ -1,10 +1,21 @@
-const { accessSync, constants, writeFileSync } = require("fs");
+const {
+  accessSync,
+  constants,
+  writeFileSync,
+  readFileSync,
+  mkdirSync,
+} = require("fs");
 // 获取目标项目中路由信息
-const getRoute = (path) => {
+const getRouteJsonContent = (path) => {
   try {
     accessSync(path, constants.R_OK | constants.W_OK);
-    return require(path);
+    return JSON.parse(
+      readFileSync(path, {
+        encoding: "utf-8",
+      })
+    );
   } catch (err) {
+    console.log("getRouteJsonContent is err", err);
     return {};
   }
 };
@@ -17,18 +28,74 @@ const editRouteContent = (oldContent, newRoute) => {
   } else {
     list.push(newRoute);
   }
-  return JSON.stringify({
-    list,
-  });
+  return list;
 };
-// 将新路由信息写进项目中
-const writeContentToProject = (path, content) => {
+// 创建默认组件
+const writeDefaultComponent = (dirPath, newRoute) => {
+  console.log(">>>", dirPath);
+  const content = `
+import React from 'react';
+
+export default () => {
+  return <h1>${newRoute.componentName}</h1>;
+};
+`;
+
+  try {
+    mkdirSync(dirPath);
+    writeFileSync(`${dirPath}/index.js`, content, { encoding: "utf-8" });
+  } catch (error) {
+    console.error("writeDefaultComponent error", error);
+  }
+};
+// 将新路由Json 写进项目中
+const writeRouteJson = (path, list) => {
+  try {
+    writeFileSync(path, JSON.stringify({ list }), {
+      encoding: "utf-8",
+    });
+  } catch (error) {
+    console.log("writeRouteJson is err", error);
+  }
+};
+// 将新路由js 写进项目中
+const writeRouteJs = (path, list) => {
+  let _importStr = "";
+  let _objStr = "";
+
+  list.forEach((item) => {
+    _importStr += `import ${
+      item.componentName
+    } from "../pages/${item.componentName.toLowerCase()}/index";
+    `;
+    _objStr += `
+      {
+        path: "${item.routePath}",
+        element: <${item.componentName} />,
+        name: "${item.routeName}",
+      },
+    `;
+  });
+  const content = `
+import React from "react"; 
+${_importStr}
+
+export default [
+   ${_objStr}
+];
+  
+`;
+
   try {
     writeFileSync(path, content, { encoding: "utf-8" });
-  } catch (error) {}
+  } catch (error) {
+    console.log("writeRouteJson is err", error);
+  }
 };
 module.exports = {
-  getRoute,
+  getRouteJsonContent,
   editRouteContent,
-  writeContentToProject,
+  writeRouteJson,
+  writeRouteJs,
+  writeDefaultComponent,
 };

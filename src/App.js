@@ -19,7 +19,9 @@ const App = () => {
       <Content>
         <Routes>
           {router.map((item) => {
-            return <Route path={item.key} element={item.element} />;
+            return (
+              <Route key={item.key} path={item.key} element={item.element} />
+            );
           })}
         </Routes>
       </Content>

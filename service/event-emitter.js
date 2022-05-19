@@ -2,9 +2,11 @@ const { ipcMain, dialog } = require("electron");
 const { spawn } = require("child_process");
 const { cloneTemplate } = require("./down-template");
 const {
-  getRoute,
+  getRouteJsonContent,
   editRouteContent,
-  writeContentToProject,
+  writeRouteJson,
+  writeRouteJs,
+  writeDefaultComponent,
 } = require("./set-route.js");
 
 // 打开目录选择
@@ -44,18 +46,34 @@ ipcMain.on("clone-template", async (event, data) => {
 
 // 新建路由
 ipcMain.handle("add-route-emitter", (event, data) => {
+  console.log(data);
   try {
-    const content = getRoute(
+    // 获取原始路由信息
+    const content = getRouteJsonContent(
       `${data.projectData.projectPath}/${data.projectData.projectName}/src/router/index.json`
     );
-    const newContent = editRouteContent(content, data.routeData);
-    writeContentToProject(
+    // 创造新路由信息
+    const routeList = editRouteContent(content, data.routeData);
+    // 创建默认组件
+    writeDefaultComponent(
+      `${data.projectData.projectPath}/${
+        data.projectData.projectName
+      }/src/pages/${data.routeData.componentName.toLowerCase()}`,
+      data.routeData
+    );
+    // 创建路由json
+    writeRouteJson(
       `${data.projectData.projectPath}/${data.projectData.projectName}/src/router/index.json`,
-      newContent
+      routeList
+    );
+    // 创建路由js
+    writeRouteJs(
+      `${data.projectData.projectPath}/${data.projectData.projectName}/src/router/index.js`,
+      routeList
     );
     return true;
   } catch (error) {
-    console.error(error);
+    console.error("add-route-emitter is error", error);
     return false;
   }
 });
