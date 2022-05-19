@@ -14,9 +14,8 @@ const { Sider, Content } = Layout;
 const SetPageContent = () => {
   // 获取当前项目的信息
   const currentProjectUid = store.get("currentProject");
-  const currentProject = useMemo(() => {
-    return store.get(`project.${currentProjectUid}`);
-  }, [currentProjectUid]);
+  const currentProject = store.get(`project.${currentProjectUid}`);
+  const currentRoute = store.get("currentRoute");
   // 更新视图
   const [viewData, setViewData] = useState({
     currentUid: "id-root",
@@ -33,7 +32,10 @@ const SetPageContent = () => {
 
   return (
     <Layout style={{ height: "100%" }}>
-      <Header currentProject={currentProject}></Header>
+      <Header
+        currentProject={currentProject}
+        currentRoute={currentRoute}
+      ></Header>
       <Layout style={{ height: "100%" }}>
         {/* 左侧组件展示区 */}
         <Sider theme="light" style={{ height: "100%", overflow: "auto" }}>

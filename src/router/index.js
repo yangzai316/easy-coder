@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import EasyIcon from "./../components/EasyIcon";
-import SetPageContent from "./../pages/set-page-content";
+import SetPageContent from "./../pages/set-page";
 import SetRoute from "./../pages/set-route";
-import SetProject from "./../pages/set-project.js";
+import SetProject from "./../pages/set-project";
 import Test from "./../pages/test/index.js";
 
 const router = [
@@ -28,8 +28,8 @@ const router = [
     element: <SetRoute />,
   },
   {
-    label: <NavLink to="/set-page-content"></NavLink>,
-    key: "/set-page-content",
+    label: <NavLink to="/set-page"></NavLink>,
+    key: "/set-page",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
         icon-huanjingsheji

@@ -1,17 +1,28 @@
-import { List, Button, Modal } from "antd";
+import { List, Button, Modal, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import NewRoute from "./new-route";
 
 const { accessSync, readFileSync, constants } = window.require("fs");
+const Store = window.require("electron-store");
+const store = new Store();
 
 const RouteList = ({ currentProject }) => {
+  // 路由配置
+  const navigate = useNavigate();
   // 视图更新动作
-  const [times, updateTimes] = useState(0);
+  const [times, updateTimes] = useState("");
   // 读取本地路由数据
   const routeList = useMemo(() => {
     return getRouteJson(currentProject);
-  }, [times]);
-
+  }, [times, currentProject]);
+  // 跳转页面编辑页
+  const editPage = (item) => {
+    store.set("currentRoute", item);
+    message.loading("正在跳转该路由的页面设置...", 0.4).then(() => {
+      navigate("/set-page");
+    });
+  };
   return (
     <List
       header={
@@ -26,7 +37,14 @@ const RouteList = ({ currentProject }) => {
         <List.Item
           actions={[
             <Button type="link">路由编辑</Button>,
-            <Button type="link">页面编辑</Button>,
+            <Button
+              type="link"
+              onClick={() => {
+                editPage(item);
+              }}
+            >
+              页面编辑
+            </Button>,
           ]}
         >
           <List.Item.Meta

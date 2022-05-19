@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Store = window.require("electron-store");
 const store = new Store();
 
-const ExistProject = (props) => {
-  console.log(props);
+const ExistProject = () => {
   // 路由配置
   const navigate = useNavigate();
   // 获取store 中当前项目的uid
@@ -19,7 +18,7 @@ const ExistProject = (props) => {
   const openProject = (uid) => {
     setCurrentProjectUid(uid);
     store.set("currentProject", uid);
-    message.loading("正在跳转该项目路由设置页面...", 0.5).then(() => {
+    message.loading("正在跳转该项目的路由设置...", 0.4).then(() => {
       navigate("/set-route");
     });
   };
