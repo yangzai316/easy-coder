@@ -6,7 +6,7 @@ import {
   FileProtectOutlined,
 } from "@ant-design/icons";
 import ORIGIN from "./../../../data/ORIGIN_TREE";
-import { writePageJson } from "./../../../helper/fs";
+import { writePageJson, writePageComponent } from "./../../../helper/fs";
 const Header = ({ currentProject, currentRoute }) => {
   return (
     <div className="easy-header">
@@ -20,18 +20,29 @@ const Header = ({ currentProject, currentRoute }) => {
           size="small"
           icon={<FileProtectOutlined />}
           onClick={() => {
-            const data = ORIGIN.TREE["id-root"];
-            writePageJson(currentProject, currentRoute, data);
+            writePageJson(currentProject, currentRoute, ORIGIN.TREE);
           }}
         >
           保存
         </Button>
         &nbsp;
-        <Button type="primary" size="small" icon={<EyeOutlined />}>
+        <Button type="primary" size="small" icon={<EyeOutlined />} disabled>
           生成&预览
         </Button>
         &nbsp;
-        <Button type="primary" size="small" icon={<DownloadOutlined />}>
+        <Button
+          type="primary"
+          size="small"
+          icon={<DownloadOutlined />}
+          onClick={() => {
+            writePageJson(currentProject, currentRoute, ORIGIN.TREE);
+            writePageComponent(
+              currentProject,
+              currentRoute,
+              ORIGIN.TREE["id-root"]
+            );
+          }}
+        >
           生成
         </Button>
       </div>

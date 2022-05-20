@@ -71,12 +71,12 @@ export const ELEMENT_LIST = [
       {
         name: "EasyText",
         label: "文本",
-        icon: "",
+        icon: "icon-wenzi",
       },
       {
         name: "Img",
         label: "图片",
-        icon: "",
+        icon: "icon-tupian1",
       },
       {
         name: "Layout",

@@ -1,10 +1,10 @@
 import { message } from "antd";
 import { isString, isBoolean } from "./../utils/index";
 const { writeFileSync } = window.require("fs");
-
-// 读取本地项目路由json信息
+/**
+ * 将创建的json写入本地
+ */
 export const writePageJson = (currentProject, currentRoute, content) => {
-  console.log(content);
   const path = `${currentProject.projectPath}/${
     currentProject.projectName
   }/src/pages/${currentRoute.componentName.toLowerCase()}`;
@@ -12,6 +12,16 @@ export const writePageJson = (currentProject, currentRoute, content) => {
     writeFileSync(`${path}/index.json`, JSON.stringify(content), {
       encoding: "utf-8",
     });
+    message.success("JSON数据保存成功");
+  } catch (err) {
+    console.error("writePageJson is error : ", err);
+  }
+};
+export const writePageComponent = (currentProject, currentRoute, content) => {
+  const path = `${currentProject.projectPath}/${
+    currentProject.projectName
+  }/src/pages/${currentRoute.componentName.toLowerCase()}`;
+  try {
     const { elementCodeStr, moduleStr } = formatJsonToElement(content);
     const componentContent = createComponentContent(
       elementCodeStr,
@@ -19,9 +29,9 @@ export const writePageJson = (currentProject, currentRoute, content) => {
       currentRoute
     );
     writeFileSync(`${path}/index.js`, componentContent, { encoding: "utf-8" });
-    message.success("保存成功");
+    message.success("页面组件创建&保存成功");
   } catch (err) {
-    console.error("writePageJson is error : ", err);
+    console.error("writePageComponent is error : ", err);
   }
 };
 
