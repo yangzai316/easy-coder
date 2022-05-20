@@ -5,7 +5,7 @@ import {
   DownloadOutlined,
   FileProtectOutlined,
 } from "@ant-design/icons";
-import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
+import ORIGIN from "./../../../data/ORIGIN_TREE";
 import { writePageJson } from "./../../../helper/fs";
 const Header = ({ currentProject, currentRoute }) => {
   return (
@@ -20,7 +20,7 @@ const Header = ({ currentProject, currentRoute }) => {
           size="small"
           icon={<FileProtectOutlined />}
           onClick={() => {
-            const data = ORIGIN_TREE["id-root"];
+            const data = ORIGIN.TREE["id-root"];
             writePageJson(currentProject, currentRoute, data);
           }}
         >

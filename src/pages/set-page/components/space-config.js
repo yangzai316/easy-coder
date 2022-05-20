@@ -1,5 +1,5 @@
 import { Tabs } from "antd";
-import ORIGIN_TREE from "./../../../data/ORIGIN_TREE";
+import ORIGIN from "./../../../data/ORIGIN_TREE";
 import "./../../../style/space-config.scss";
 import { editConfigForStyle, editConfigForProps } from "./../../../helper";
 import SetupAdvanced from "./setup-advanced";
@@ -21,11 +21,11 @@ const SpaceConfig = ({ currentUid, updateView }) => {
     <div className="space-config">
       <div className="title-current">当前uid：{currentUid}</div>
       <div className="title-current">
-        当前name：{ORIGIN_TREE[currentUid]?.name}
+        当前name：{ORIGIN.TREE[currentUid]?.name}
       </div>
       <Tabs defaultActiveKey="1" size="small">
         <TabPane tab="基本样式" key="1">
-          {Object.entries(ORIGIN_TREE[currentUid]?.style || []).map(
+          {Object.entries(ORIGIN.TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
                 <SetupNormal
@@ -40,7 +40,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
           )}
         </TabPane>
         <TabPane tab="组件属性" key="2">
-          {Object.entries(ORIGIN_TREE[currentUid]?.props || []).map(
+          {Object.entries(ORIGIN.TREE[currentUid]?.props || []).map(
             ([key, value], index) => {
               return (
                 <SetupNormal
@@ -56,7 +56,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
         </TabPane>
         <TabPane tab="高级设置" key="3">
           <SetupAdvanced
-            name={ORIGIN_TREE[currentUid]?.name}
+            name={ORIGIN.TREE[currentUid]?.name}
             currentUid={currentUid}
             updateView={updateView}
           />

@@ -7,3 +7,13 @@
 .is-focus {
   border: 2px dotted #5584ff !important;
 }
+.assist-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 8px;
+  .assist-nav-left {
+    display: flex;
+    align-items: center;
+  }
+}

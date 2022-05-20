@@ -43,7 +43,10 @@ const SetPageContent = () => {
         </Sider>
         {/* 中间组件组合区 */}
         <Content style={{ height: "100%" }}>
-          <Assist updateCount={viewData.updateCount}></Assist>
+          <Assist
+            updateCount={viewData.updateCount}
+            updateView={updateView}
+          ></Assist>
           <SpaceWork
             currentUid={viewData.currentUid}
             updateView={updateView}

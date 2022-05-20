@@ -3,7 +3,7 @@ import { Button, notification } from "antd";
 import { editConfigForProps } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
 import { isObject } from "../../../utils";
-import ORIGIN_TREE from "../../../data/ORIGIN_TREE";
+import ORIGIN from "../../../data/ORIGIN_TREE";
 
 let KEY = "";
 
@@ -14,13 +14,13 @@ const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
   // 修改数据源 data
   const editData = () => {
     KEY = "data";
-    setInitialValue(JSON.stringify(ORIGIN_TREE[currentUid]?.props.data));
+    setInitialValue(JSON.stringify(ORIGIN.TREE[currentUid]?.props.data));
     setIsModalVisible(true);
   };
   // 修改oher
   const editOther = (arg) => {
     KEY = arg;
-    setInitialValue(JSON.stringify(ORIGIN_TREE[currentUid]?.props[arg]));
+    setInitialValue(JSON.stringify(ORIGIN.TREE[currentUid]?.props[arg]));
     setIsModalVisible(true);
   };
   // dialog 回调

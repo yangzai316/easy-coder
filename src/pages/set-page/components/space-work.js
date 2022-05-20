@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./../../../style/space-work.scss";
-import ORIGIN_TREE from "../../../data/ORIGIN_TREE";
+import ORIGIN from "../../../data/ORIGIN_TREE";
 import {
   mixComponentToTree,
   getNewElementInfo,
@@ -52,7 +52,7 @@ const SpaceWork = ({ currentUid, updateView }) => {
 
   return (
     <div ref={WORK_SPACE} id="WORK_SPACE" className="work-space">
-      {createElement(ORIGIN_TREE["id-root"], currentUid)}
+      {createElement(ORIGIN.TREE["id-root"], currentUid)}
     </div>
   );
 };

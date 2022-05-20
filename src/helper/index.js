@@ -1,5 +1,5 @@
 import React from "react";
-import ORIGIN_TREE from "../data/ORIGIN_TREE";
+import ORIGIN from "../data/ORIGIN_TREE";
 import { ELEMENT_MAP, ELEMENT_ALL } from "./../data/ELEMENT";
 import { isArray, isObject } from "../utils";
 /**
@@ -33,13 +33,13 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     //component: ELEMENT_ALL[config.name],
   };
   // 新对象添加父级对象中
-  if (isArray(ORIGIN_TREE[parentUid].children)) {
-    ORIGIN_TREE[parentUid].children.push(newEle);
+  if (isArray(ORIGIN.TREE[parentUid].children)) {
+    ORIGIN.TREE[parentUid].children.push(newEle);
   } else {
-    ORIGIN_TREE[parentUid].children = newEle;
+    ORIGIN.TREE[parentUid].children = newEle;
   }
 
-  ORIGIN_TREE[uid] = newEle;
+  ORIGIN.TREE[uid] = newEle;
 };
 /**
  * 根据 json 创建 react 元素，循环递归
@@ -71,9 +71,9 @@ export const createElement = (data, currentUid) => {
  * 修改样式
  */
 export const editConfigForStyle = (uid, key, val) => {
-  const _old = { ...ORIGIN_TREE[uid].style };
+  const _old = { ...ORIGIN.TREE[uid].style };
 
-  ORIGIN_TREE[uid].style = {
+  ORIGIN.TREE[uid].style = {
     ..._old,
     [key]: val,
   };
@@ -82,9 +82,9 @@ export const editConfigForStyle = (uid, key, val) => {
  * 修改样式
  */
 export const editConfigForProps = (uid, key, val) => {
-  const _old = { ...ORIGIN_TREE[uid].props };
+  const _old = { ...ORIGIN.TREE[uid].props };
 
-  ORIGIN_TREE[uid].props = {
+  ORIGIN.TREE[uid].props = {
     ..._old,
     [key]: val,
   };

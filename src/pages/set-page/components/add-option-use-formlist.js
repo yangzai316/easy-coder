@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, Space, notification } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps } from "../../../helper";
-import ORIGIN_TREE from "../../../data/ORIGIN_TREE";
+import ORIGIN from "../../../data/ORIGIN_TREE";
 
 const AddOptionUseFormList = ({ parentUid, updateView }) => {
   const onFinish = (val) => {
@@ -19,7 +19,7 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
     <Form onFinish={onFinish} autoComplete="off">
       <Form.List
         name="options"
-        initialValue={ORIGIN_TREE[parentUid].props.options}
+        initialValue={ORIGIN.TREE[parentUid].props.options}
       >
         {(fields, { add, remove }) => (
           <>
