@@ -6,8 +6,8 @@ import {
   getNewElementInfo,
   getUid,
   focusElement,
+  createElement,
 } from "./../../../helper";
-import { isObject } from "../../../utils";
 
 // 中间操作栏
 const SpaceWork = ({ currentUid, updateView }) => {
@@ -54,29 +54,6 @@ const SpaceWork = ({ currentUid, updateView }) => {
     <div ref={WORK_SPACE} id="WORK_SPACE" className="work-space">
       {createElement(ORIGIN_TREE["id-root"], currentUid)}
     </div>
-  );
-};
-// 根据 json 创建 react 元素，循环递归
-const createElement = (data, currentUid) => {
-  let children = data.children;
-  if (Array.isArray(data.children) && data.children.length) {
-    children = data.children.map((item) => {
-      return createElement(item, currentUid);
-    });
-  } else if (isObject(data.children)) {
-    children = data.children.uid
-      ? createElement(data.children, currentUid)
-      : null;
-  }
-  return React.createElement(
-    data.component,
-    {
-      key: data.uid,
-      ...data.props,
-      style: data.style,
-      "data-uid": data.uid,
-    },
-    children
   );
 };
 

@@ -32,7 +32,6 @@ const editRouteContent = (oldContent, newRoute) => {
 };
 // 创建默认组件
 const writeDefaultComponent = (dirPath, newRoute) => {
-  console.log(">>>", dirPath);
   const content = `
 import React from 'react';
 
@@ -64,10 +63,11 @@ const writeRouteJs = (path, list) => {
   let _objStr = "";
 
   list.forEach((item) => {
-    _importStr += `import ${
+    _importStr += `
+import ${
       item.componentName
-    } from "../pages/${item.componentName.toLowerCase()}/index";
-    `;
+    } from "../pages/${item.componentName.toLowerCase()}/index";`;
+
     _objStr += `
       {
         path: "${item.routePath}",

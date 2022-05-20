@@ -1,10 +1,7 @@
-import EasyContainer from "../extend-components/EasyContainer";
-
 const ORIGIN_TREE = {
   "id-root": {
     uid: "id-root",
     name: "EasyContainer",
-    component: EasyContainer,
     style: {
       width: "100%",
       height: "100%",

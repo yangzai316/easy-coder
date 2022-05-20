@@ -1,6 +1,7 @@
+import React from "react";
 import ORIGIN_TREE from "../data/ORIGIN_TREE";
 import { ELEMENT_MAP, ELEMENT_ALL } from "./../data/ELEMENT";
-import { isArray } from "../utils";
+import { isArray, isObject } from "../utils";
 /**
  * 获取新创建组件的信息：uid / type
  */
@@ -29,7 +30,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     style: Object.assign({}, config.style),
     props: Object.assign({}, config.props),
     children,
-    component: ELEMENT_ALL[config.name],
+    //component: ELEMENT_ALL[config.name],
   };
   // 新对象添加父级对象中
   if (isArray(ORIGIN_TREE[parentUid].children)) {
@@ -39,6 +40,31 @@ export const mixComponentToTree = (uid, type, parentUid) => {
   }
 
   ORIGIN_TREE[uid] = newEle;
+};
+/**
+ * 根据 json 创建 react 元素，循环递归
+ */
+export const createElement = (data, currentUid) => {
+  let children = data.children;
+  if (Array.isArray(data.children) && data.children.length) {
+    children = data.children.map((item) => {
+      return createElement(item, currentUid);
+    });
+  } else if (isObject(data.children)) {
+    children = data.children.uid
+      ? createElement(data.children, currentUid)
+      : null;
+  }
+  return React.createElement(
+    ELEMENT_ALL[data.name],
+    {
+      key: data.uid,
+      ...data.props,
+      style: data.style,
+      "data-uid": data.uid,
+    },
+    children
+  );
 };
 
 /**
