@@ -1,6 +1,7 @@
 import { Button, Switch } from "antd";
 import { toggleFocusAllElement } from "./../../../helper";
 import ORIGIN from "./../../../data/ORIGIN_TREE";
+import INITIAL_ROOT from "./../../../data/INITIAL_ROOT";
 
 const Assist = ({ updateCount, updateView }) => {
   return (
@@ -18,7 +19,7 @@ const Assist = ({ updateCount, updateView }) => {
         <Button
           type="link"
           onClick={() => {
-            console.log(ORIGIN);
+            console.log("查看结果：", ORIGIN);
           }}
         >
           查看JSON
@@ -27,18 +28,7 @@ const Assist = ({ updateCount, updateView }) => {
           type="link"
           onClick={() => {
             ORIGIN.TREE = {};
-            ORIGIN.TREE["id-root"] = {
-              uid: "id-root",
-              name: "EasyContainer",
-              style: {
-                width: "100%",
-                height: "100%",
-                backgroundColor: "#fff",
-                padding: "4px",
-                overflow: "auto",
-              },
-              children: [],
-            };
+            ORIGIN.TREE["id-root"] = JSON.parse(JSON.stringify(INITIAL_ROOT));
             updateView();
           }}
         >

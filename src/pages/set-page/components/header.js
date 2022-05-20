@@ -20,7 +20,7 @@ const Header = ({ currentProject, currentRoute }) => {
           size="small"
           icon={<FileProtectOutlined />}
           onClick={() => {
-            writePageJson(currentProject, currentRoute, ORIGIN.TREE);
+            writePageJson(currentProject, currentRoute, ORIGIN.TREE["id-root"]);
           }}
         >
           保存
@@ -35,7 +35,7 @@ const Header = ({ currentProject, currentRoute }) => {
           size="small"
           icon={<DownloadOutlined />}
           onClick={() => {
-            writePageJson(currentProject, currentRoute, ORIGIN.TREE);
+            writePageJson(currentProject, currentRoute, ORIGIN.TREE["id-root"]);
             writePageComponent(
               currentProject,
               currentRoute,

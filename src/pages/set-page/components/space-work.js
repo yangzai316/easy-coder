@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./../../../style/space-work.scss";
 import ORIGIN from "../../../data/ORIGIN_TREE";
+import INITIAL_ROOT from "./../../../data/INITIAL_ROOT";
 import {
   mixComponentToTree,
   getNewElementInfo,
@@ -9,10 +10,28 @@ import {
   createElement,
 } from "./../../../helper";
 
+import { readComponentJson } from "./../../../helper/fs";
+
 // 中间操作栏
-const SpaceWork = ({ currentUid, updateView }) => {
+const SpaceWork = ({
+  currentUid,
+  updateView,
+  currentProject,
+  currentRoute,
+}) => {
+  // 页面设置界面第一次进来，从本地获取数据，重置TREE["id-root"] 的初时数据
+  useEffect(() => {
+    const componentJson = JSON.parse(
+      readComponentJson(currentProject, currentRoute)
+    );
+    console.log("first local : ", componentJson);
+    ORIGIN.TREE["id-root"] = componentJson.uid
+      ? componentJson
+      : JSON.parse(JSON.stringify(INITIAL_ROOT));
+    updateView();
+  }, []);
   const WORK_SPACE = useRef(null);
-  // const WORK_SPACE.current = WORK_SPACE.current;
+  console.log("spacework : ", ORIGIN.TREE);
   // 添加拖拽事件
   useEffect(() => {
     const dragOverEvent = (e) => {

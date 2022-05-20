@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import SpaceElement from "./components/space-element";
 import SpaceWork from "./components/space-work";
 import SpaceConfig from "./components/space-config";
@@ -48,6 +48,8 @@ const SetPageContent = () => {
             updateView={updateView}
           ></Assist>
           <SpaceWork
+            currentProject={currentProject}
+            currentRoute={currentRoute}
             currentUid={viewData.currentUid}
             updateView={updateView}
           ></SpaceWork>

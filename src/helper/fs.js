@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { isString, isBoolean } from "./../utils/index";
-const { writeFileSync } = window.require("fs");
+const { writeFileSync, readFileSync } = window.require("fs");
 /**
  * 将创建的json写入本地
  */
@@ -17,6 +17,9 @@ export const writePageJson = (currentProject, currentRoute, content) => {
     console.error("writePageJson is error : ", err);
   }
 };
+/**
+ * 将创建的json转为页面组件写入本地
+ */
 export const writePageComponent = (currentProject, currentRoute, content) => {
   const path = `${currentProject.projectPath}/${
     currentProject.projectName
@@ -126,4 +129,23 @@ const createComponentContent = (code, moduleStr, currentRoute) => {
   }
   export default ${currentRoute.componentName};
   `;
+};
+
+/**
+ * 读取本地json数据
+ */
+export const readComponentJson = (currentProject, currentRoute) => {
+  const path = `${currentProject.projectPath}/${
+    currentProject.projectName
+  }/src/pages/${currentRoute.componentName.toLowerCase()}/index.json`;
+  try {
+    const data = readFileSync(path, {
+      encoding: "utf-8",
+    });
+    message.success("当前组件JSON数据获取成功");
+    return data;
+  } catch (err) {
+    console.error("readJson is error : ", err);
+    return "{}";
+  }
 };
