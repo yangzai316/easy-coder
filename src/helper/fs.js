@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { isArray, isObject } from "./../utils/index";
+import { isArray } from "./../utils/index";
 const { writeFileSync, readFileSync } = window.require("fs");
 /**
  * 将创建的json写入本地

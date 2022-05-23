@@ -27,7 +27,7 @@ const SpaceWork = ({
     console.log(_json);
     enrichTree(_json);
     updateView();
-  }, []);
+  }, [currentProject, currentRoute, updateView]);
   const WORK_SPACE = useRef(null);
   // 添加拖拽事件
   useEffect(() => {
