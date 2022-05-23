@@ -8,6 +8,7 @@ import {
   getUid,
   focusElement,
   createElement,
+  enrichTree,
 } from "./../../../helper";
 
 import { readComponentJson } from "./../../../helper/fs";
@@ -21,17 +22,13 @@ const SpaceWork = ({
 }) => {
   // 页面设置界面第一次进来，从本地获取数据，重置TREE["id-root"] 的初时数据
   useEffect(() => {
-    const componentJson = JSON.parse(
-      readComponentJson(currentProject, currentRoute)
-    );
-    console.log("first local : ", componentJson);
-    ORIGIN.TREE["id-root"] = componentJson.uid
-      ? componentJson
-      : structuredClone(INITIAL_ROOT); // 深拷贝
+    const _json = JSON.parse(readComponentJson(currentProject, currentRoute));
+    ORIGIN.TREE["id-root"] = _json.uid ? _json : structuredClone(INITIAL_ROOT); // 深拷贝
+    console.log(_json);
+    enrichTree(_json);
     updateView();
   }, []);
   const WORK_SPACE = useRef(null);
-  console.log("spacework : ", ORIGIN.TREE);
   // 添加拖拽事件
   useEffect(() => {
     const dragOverEvent = (e) => {

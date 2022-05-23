@@ -129,3 +129,15 @@ export const toggleFocusAllElement = (val) => {
     val ? item.classList.add("is-focus") : item.classList.remove("is-focus");
   });
 };
+
+/**
+ * 对根数据进行丰富
+ */
+export const enrichTree = (data) => {
+  if (Array.isArray(data.children) && data.children.length) {
+    data.children.forEach((item) => {
+      enrichTree(item);
+    });
+  }
+  if (data.uid !== "id-root") ORIGIN.TREE[data.uid] = data;
+};
