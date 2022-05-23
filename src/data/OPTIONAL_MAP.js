@@ -17,5 +17,29 @@ const OPTIONAL_MAP = {
       value: "auto",
     },
   ],
+  labelAlign: [
+    {
+      label: "左对齐",
+      value: "left",
+    },
+    {
+      label: "右对齐",
+      value: "right",
+    },
+  ],
+  layout: [
+    {
+      label: "水平的",
+      value: "horizontal",
+    },
+    {
+      label: "竖直的",
+      value: "vertical",
+    },
+    {
+      label: "内联的",
+      value: "inline",
+    },
+  ],
 };
 export default OPTIONAL_MAP;

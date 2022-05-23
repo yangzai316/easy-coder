@@ -1,4 +1,4 @@
-import { Card, Row, Col, Button, message } from "antd";
+import { Card, Row, Col, Button, message, Modal } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Store = window.require("electron-store");
@@ -31,14 +31,30 @@ const ExistProject = () => {
               hoverable
               title={item.projectName}
               extra={
-                <Button
-                  type="link"
-                  onClick={() => {
-                    openProject(item.uid);
-                  }}
-                >
-                  打开
-                </Button>
+                <>
+                  <Button
+                    type="link"
+                    onClick={() => {
+                      openProject(item.uid);
+                    }}
+                  >
+                    打开
+                  </Button>
+                  <Button
+                    danger
+                    type="text"
+                    onClick={() => {
+                      Modal.confirm({
+                        title: "提示",
+                        content: "确定要删除该项目？",
+                        okText: "确认",
+                        cancelText: "取消",
+                      });
+                    }}
+                  >
+                    删除
+                  </Button>
+                </>
               }
               style={{
                 width: 400,

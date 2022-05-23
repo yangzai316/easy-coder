@@ -45,6 +45,21 @@ const RouteList = ({ currentProject }) => {
             >
               页面编辑
             </Button>,
+            <Button
+              danger
+              type="text"
+              onClick={() => {
+                Modal.confirm({
+                  title: "提示",
+                  content:
+                    "删除该路由数据，将导致对应的页面数据和路由数据同时被删除，请确认？",
+                  okText: "确认",
+                  cancelText: "取消",
+                });
+              }}
+            >
+              删除
+            </Button>,
           ]}
         >
           <List.Item.Meta

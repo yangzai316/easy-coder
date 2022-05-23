@@ -325,6 +325,11 @@ export const ELEMENT_MAP = {
       margin: "10px",
       padding: "10px",
     },
+    props: {
+      labelAlign: "right",
+      labelWrap: false,
+      layout: "horizontal",
+    },
     children: [],
   },
   FormItem: {

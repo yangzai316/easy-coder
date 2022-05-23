@@ -6,6 +6,8 @@ const ZH_CN = {
   padding: "内边距",
   label: "标题",
   labelAlign: "标签对齐",
+  labelWrap: "标签换行",
+  layout: "布局方式",
 };
 
 export default ZH_CN;

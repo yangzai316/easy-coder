@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Space, notification, Radio, Select } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Space,
+  notification,
+  Radio,
+  Select,
+  Divider,
+} from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps, editConfigForDataSource } from "../../../helper";
 import ORIGIN from "../../../data/ORIGIN_TREE";
@@ -41,7 +50,7 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
           <Radio value={2}>Api动态数据</Radio>
         </Radio.Group>
       </div>
-      <br></br>
+      <Divider style={{ margin: "8px 0" }} />
       {addType === 1 ? (
         <Form onFinish={onFinish1} autoComplete="off" size="small">
           <Form.List
@@ -92,6 +101,7 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
         <Form
           labelCol={{ span: 10 }}
           wrapperCol={{ span: 14 }}
+          labelAlign="left"
           onFinish={onFinish2}
           autoComplete="off"
           size="small"
@@ -119,17 +129,10 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
           >
             <Select
               options={[
-                { label: "get", value: "get" },
-                { label: "post", value: "post" },
+                { label: "GET", value: "get" },
+                { label: "POST", value: "post" },
               ]}
             />
-          </Form.Item>
-          <Form.Item
-            label="返回值结构"
-            name="resultStructure"
-            rules={[{ required: true, message: "This is required" }]}
-          >
-            <Input.TextArea rows={5} />
           </Form.Item>
           <Form.Item
             label="空值"
@@ -138,12 +141,17 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
           >
             <Input.TextArea rows={2} />
           </Form.Item>
-          <br />
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              确定
-            </Button>
+          <Form.Item
+            label="返回值结构"
+            name="resultStructure"
+            rules={[{ required: true, message: "This is required" }]}
+          >
+            <Input.TextArea rows={5} />
           </Form.Item>
+          <br />
+          <Button type="primary" htmlType="submit" block>
+            确定
+          </Button>
         </Form>
       )}
     </>
