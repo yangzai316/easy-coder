@@ -27,7 +27,7 @@ const SpaceWork = ({
     console.log("first local : ", componentJson);
     ORIGIN.TREE["id-root"] = componentJson.uid
       ? componentJson
-      : JSON.parse(JSON.stringify(INITIAL_ROOT));
+      : structuredClone(INITIAL_ROOT); // 深拷贝
     updateView();
   }, []);
   const WORK_SPACE = useRef(null);

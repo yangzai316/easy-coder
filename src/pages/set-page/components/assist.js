@@ -28,7 +28,7 @@ const Assist = ({ updateCount, updateView }) => {
           type="link"
           onClick={() => {
             ORIGIN.TREE = {};
-            ORIGIN.TREE["id-root"] = JSON.parse(JSON.stringify(INITIAL_ROOT));
+            ORIGIN.TREE["id-root"] = structuredClone(INITIAL_ROOT); // 深拷贝
             updateView();
           }}
         >
