@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Space, notification, Radio } from "antd";
+import { Form, Input, Button, Space, notification, Radio, Select } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { editConfigForProps, editConfigForDataSource } from "../../../helper";
 import ORIGIN from "../../../data/ORIGIN_TREE";
@@ -95,9 +95,7 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
           onFinish={onFinish2}
           autoComplete="off"
           size="small"
-          initialValues={{
-            resultStructure: "result",
-          }}
+          initialValues={ORIGIN.TREE[parentUid].dataSource}
           key={+new Date()}
         >
           <Form.Item
@@ -119,7 +117,12 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
             name="apiMethod"
             rules={[{ required: true, message: "This is required" }]}
           >
-            <Input />
+            <Select
+              options={[
+                { label: "get", value: "get" },
+                { label: "post", value: "post" },
+              ]}
+            />
           </Form.Item>
           <Form.Item
             label="返回值结构"
@@ -133,7 +136,7 @@ const AddOptionUseFormList = ({ parentUid, updateView }) => {
             name="nullValue"
             rules={[{ required: true, message: "This is required" }]}
           >
-            <Input.TextArea rows={5} />
+            <Input.TextArea rows={2} />
           </Form.Item>
           <br />
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

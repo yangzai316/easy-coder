@@ -24,7 +24,6 @@ const SpaceWork = ({
   useEffect(() => {
     const _json = JSON.parse(readComponentJson(currentProject, currentRoute));
     ORIGIN.TREE["id-root"] = _json.uid ? _json : structuredClone(INITIAL_ROOT); // 深拷贝
-    console.log(_json);
     enrichTree(_json);
     updateView();
   }, [currentProject, currentRoute, updateView]);

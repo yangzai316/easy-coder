@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import SpaceElement from "./components/space-element";
 import SpaceWork from "./components/space-work";
 import SpaceConfig from "./components/space-config";
@@ -13,28 +13,32 @@ const { Sider, Content } = Layout;
 
 const SetPageContent = () => {
   // 获取当前项目的信息
-  const currentProjectUid = store.get("currentProject");
-  const currentProject = store.get(`project.${currentProjectUid}`);
-  const currentRoute = store.get("currentRoute");
+  const projectData = useMemo(() => {
+    const currentProjectUid = store.get("currentProject");
+    return {
+      currentProject: store.get(`project.${currentProjectUid}`),
+      currentRoute: store.get("currentRoute"),
+    };
+  }, []);
   // 更新视图
   const [viewData, setViewData] = useState({
     currentUid: "id-root",
     updateCount: 0,
   });
-  const updateView = (uid) => {
+  const updateView = useCallback((uid) => {
     setViewData((prv) => {
       return {
         currentUid: uid ? uid : prv.currentUid,
         updateCount: prv.updateCount + 1,
       };
     });
-  };
+  }, []);
 
   return (
     <Layout style={{ height: "100%" }}>
       <Header
-        currentProject={currentProject}
-        currentRoute={currentRoute}
+        currentProject={projectData.currentProject}
+        currentRoute={projectData.currentRoute}
       ></Header>
       <Layout style={{ height: "100%" }}>
         {/* 左侧组件展示区 */}
@@ -48,8 +52,8 @@ const SetPageContent = () => {
             updateView={updateView}
           ></Assist>
           <SpaceWork
-            currentProject={currentProject}
-            currentRoute={currentRoute}
+            currentProject={projectData.currentProject}
+            currentRoute={projectData.currentRoute}
             currentUid={viewData.currentUid}
             updateView={updateView}
           ></SpaceWork>
