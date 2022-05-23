@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { isString, isBoolean } from "./../utils/index";
+import { isArray, isObject } from "./../utils/index";
 const { writeFileSync, readFileSync } = window.require("fs");
 /**
  * 将创建的json写入本地
@@ -25,10 +25,12 @@ export const writePageComponent = (currentProject, currentRoute, content) => {
     currentProject.projectName
   }/src/pages/${currentRoute.componentName.toLowerCase()}`;
   try {
-    const { elementCodeStr, moduleStr } = formatJsonToElement(content);
+    const { elementCodeStr, moduleStr, dataSourceStr } =
+      formatJsonToElement(content);
     const componentContent = createComponentContent(
       elementCodeStr,
       moduleStr,
+      dataSourceStr,
       currentRoute
     );
     writeFileSync(`${path}/index.js`, componentContent, { encoding: "utf-8" });
@@ -52,6 +54,7 @@ const formatJsonToElement = (data) => {
   let moduleSetEasy = new Set();
   let moduleSetAntd = new Set();
   let moduleSetChart = new Set();
+  let dataSourceStr = "";
   const formatCode = (data) => {
     let content = data.children || "";
     // 子代存在 > 进入递归
@@ -69,12 +72,26 @@ const formatJsonToElement = (data) => {
     let props = "";
     if (data.props) {
       props = Object.keys(data.props).reduce((prv, cur) => {
-        if (isString(data.props[cur])) {
-          return prv + ` ${cur}="${data.props[cur]}"`;
-        } else if (isBoolean(data.props[cur])) {
-          return prv + ` ${cur}={${data.props[cur]}}`;
+        if (cur === "options" && data.dataSource) {
+          return prv + ` ${cur}={${data.dataSource.fieldName}}`;
+        } else if (isArray(data.props[cur])) {
+          return prv + ` ${cur}={${JSON.stringify(data.props[cur])}}`;
         }
+        return prv + ` ${cur}="${data.props[cur]}"`;
       }, "");
+    }
+    // 处理 dataSource
+    if (data.dataSource) {
+      dataSourceStr += `
+        const [${data.dataSource.fieldName},set${data.dataSource.fieldName}] = useState(${data.dataSource.nullValue});
+        useEffect(()=>{
+          ${data.dataSource.apiMethod}('${data.dataSource.apiUrl}',{}).then((result)=>{
+            set${data.dataSource.fieldName}(${data.dataSource.resultStructure})
+          }).catch(err=>{
+            message.error(err.message)
+          })
+        },[])
+      `;
     }
     // 自身标签生成 & 拼接子代内容
     const result = `<${data.name}${style}${props}>${content}</${data.name}>`;
@@ -101,30 +118,40 @@ const formatJsonToElement = (data) => {
         return `${prv}${cur},`;
       }, ""),
     },
+    dataSourceStr,
   };
 };
 
 /**
  * 创建组件内容
  */
-const createComponentContent = (code, moduleStr, currentRoute) => {
+const createComponentContent = (
+  code,
+  moduleStr,
+  dataSourceStr,
+  currentRoute
+) => {
   const easyMoudleStr = moduleStr.easyMoudleStr
     ? `import { ${moduleStr.easyMoudleStr} } from "./../../components/index";`
     : "";
   const antdMoudleStr = moduleStr.antdMoudleStr
-    ? `import { ${moduleStr.antdMoudleStr} } from "antd";`
+    ? `import { ${moduleStr.antdMoudleStr} message } from "antd";`
     : "";
   const chartMoudleStr = moduleStr.chartMoudleStr
     ? `import { ${moduleStr.chartMoudleStr} } from "@ant-design/plots";`
     : "";
 
   return `
-  import React from 'react';
+  import React, { useEffect, useState } from "react";
+  import { get, post } from "./../../utils/fetch";
   ${easyMoudleStr}
   ${antdMoudleStr}
   ${chartMoudleStr}
   
   const ${currentRoute.componentName} = ()=>{
+
+    ${dataSourceStr}
+
     return ${code};
   }
   export default ${currentRoute.componentName};

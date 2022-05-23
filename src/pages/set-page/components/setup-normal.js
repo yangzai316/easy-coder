@@ -16,7 +16,25 @@ const SetupNormal = ({ value, type, change, attrType }) => {
       <Col span={7}>{ZH_CN_MAP[type] || type}：</Col>
       <Col span={17}>
         <>
-          {isString(value) && OPTIONAL_MAP[type] ? (
+          {isNumber(value) || value === null ? (
+            // 数字输入框
+            <InputNumber
+              size="small"
+              value={value}
+              onChange={(val) => {
+                change(val, type, attrType);
+              }}
+            />
+          ) : isBoolean(value) ? (
+            // 开关
+            <Switch
+              size="small"
+              defaultChecked={value}
+              onChange={(val) => {
+                change(val, type, attrType);
+              }}
+            />
+          ) : isString(value) && OPTIONAL_MAP[type] ? (
             // 下拉框式
             <Select
               style={{ width: "100%" }}
@@ -34,24 +52,6 @@ const SetupNormal = ({ value, type, change, attrType }) => {
               value={value}
               onChange={(e) => {
                 change(e.target.value, type, attrType);
-              }}
-            />
-          ) : isNumber(value) || value === null ? (
-            // 数字输入框
-            <InputNumber
-              size="small"
-              value={value}
-              onChange={(val) => {
-                change(val, type, attrType);
-              }}
-            />
-          ) : isBoolean(value) ? (
-            // 开关
-            <Switch
-              size="small"
-              defaultChecked={value}
-              onChange={(val) => {
-                change(val, type, attrType);
               }}
             />
           ) : (

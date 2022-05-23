@@ -79,11 +79,16 @@ export const editConfigForStyle = (uid, key, val) => {
   };
 };
 /**
+ * 修改数据源（api交互部分）
+ */
+export const editConfigForDataSource = (uid, val) => {
+  ORIGIN.TREE[uid].dataSource = val;
+};
+/**
  * 修改样式
  */
 export const editConfigForProps = (uid, key, val) => {
   const _old = { ...ORIGIN.TREE[uid].props };
-
   ORIGIN.TREE[uid].props = {
     ..._old,
     [key]: val,
