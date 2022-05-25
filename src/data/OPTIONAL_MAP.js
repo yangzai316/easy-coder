@@ -41,5 +41,69 @@ const OPTIONAL_MAP = {
       value: "inline",
     },
   ],
+  htmlType: [
+    {
+      label: "提交按钮",
+      value: "submit",
+    },
+    {
+      label: "重置按钮",
+      value: "reset",
+    },
+    {
+      label: "普通按钮",
+      value: "button",
+    },
+  ],
+  shape: [
+    {
+      label: "普通",
+      value: "default",
+    },
+    {
+      label: "圆形",
+      value: "circle",
+    },
+    {
+      label: "环形",
+      value: "round",
+    },
+  ],
+  size: [
+    {
+      label: "小",
+      value: "small",
+    },
+    {
+      label: "中",
+      value: "middle",
+    },
+    {
+      label: "大",
+      value: "large",
+    },
+  ],
+  type: [
+    {
+      label: "默认",
+      value: "default",
+    },
+    {
+      label: "普通",
+      value: "primary",
+    },
+    {
+      label: "链接",
+      value: "link",
+    },
+    {
+      label: "文字",
+      value: "text",
+    },
+    {
+      label: "虚线",
+      value: "dashed",
+    },
+  ],
 };
 export default OPTIONAL_MAP;

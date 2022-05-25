@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { isArray } from "./../utils/index";
+import { isArray, isBoolean, isObject } from "./../utils/index";
 const { writeFileSync, readFileSync } = window.require("fs");
 /**
  * 将创建的json写入本地
@@ -25,13 +25,14 @@ export const writePageComponent = (currentProject, currentRoute, content) => {
     currentProject.projectName
   }/src/pages/${currentRoute.componentName.toLowerCase()}`;
   try {
-    const { elementCodeStr, moduleStr, dataSourceStr } =
+    const { elementCodeStr, moduleStr, dataSourceStr, eventStr } =
       formatJsonToElement(content);
     const componentContent = createComponentContent(
       elementCodeStr,
       moduleStr,
       dataSourceStr,
-      currentRoute
+      currentRoute,
+      eventStr
     );
     writeFileSync(`${path}/index.js`, componentContent, { encoding: "utf-8" });
     message.success("页面组件创建&保存成功");
@@ -55,6 +56,7 @@ const formatJsonToElement = (data) => {
   let moduleSetAntd = new Set();
   let moduleSetChart = new Set();
   let dataSourceStr = "";
+  let eventStr = "";
   const formatCode = (data) => {
     let content = data.children || "";
     // 子代存在 > 进入递归
@@ -62,6 +64,8 @@ const formatJsonToElement = (data) => {
       content = data.children.reduce((prv, cur, index) => {
         return prv + formatCode(cur);
       }, "");
+    } else if (isObject(data.children)) {
+      content = formatCode(data.children);
     }
     // 处理 style
     let style = "";
@@ -74,8 +78,12 @@ const formatJsonToElement = (data) => {
       props = Object.keys(data.props).reduce((prv, cur) => {
         if (cur === "options" && data.dataSource) {
           return prv + ` ${cur}={${data.dataSource.fieldName}}`;
+        } else if (cur === "fieldname") {
+          return prv + ` name="${data.props[cur]}"`;
         } else if (isArray(data.props[cur])) {
           return prv + ` ${cur}={${JSON.stringify(data.props[cur])}}`;
+        } else if (isBoolean(data.props[cur])) {
+          return prv + ` ${cur}={${data.props[cur]}}`;
         }
         return prv + ` ${cur}="${data.props[cur]}"`;
       }, "");
@@ -88,19 +96,29 @@ const formatJsonToElement = (data) => {
           ${data.dataSource.apiMethod}('${data.dataSource.apiUrl}',{}).then((result)=>{
             set${data.dataSource.fieldName}(${data.dataSource.resultStructure})
           }).catch(err=>{
-            message.error(err.message)
+            message.error(err)
           })
         },[])
       `;
     }
+    // 处理 事件
+    let event = "";
+    if (data.event) {
+      const { str, attr } = writeEvent(data.event);
+      eventStr += str;
+      event = attr;
+    }
     // 自身标签生成 & 拼接子代内容
-    const result = `<${data.name}${style}${props}>${content}</${data.name}>`;
-    if (data.name.indexOf("Easy") >= 0) {
-      moduleSetEasy.add(data.name);
-    } else if (data.name.indexOf("Chart") >= 0) {
-      moduleSetChart.add(data.name);
+    const tagName = data.realName || data.name;
+    const result = `<${tagName}${style}${props} ${event}>${content}</${tagName}>`;
+    if (tagName.indexOf("Easy") >= 0) {
+      moduleSetEasy.add(tagName);
+    } else if (tagName.indexOf("Chart") >= 0) {
+      moduleSetChart.add(tagName);
+    } else if (data.realName) {
+      moduleSetAntd.add(data.realName.split(".")[0]);
     } else {
-      moduleSetAntd.add(data.name);
+      moduleSetAntd.add(tagName);
     }
 
     return result;
@@ -119,9 +137,29 @@ const formatJsonToElement = (data) => {
       }, ""),
     },
     dataSourceStr,
+    eventStr,
   };
 };
-
+/**
+ *  将事件处理为文件内容
+ */
+const writeEvent = (event) => {
+  let str = "";
+  let attr = "";
+  Object.values(event).forEach((item) => {
+    str += `
+        const ${item.eventName} = (values) =>{
+          ${item.apiMethod}('${item.apiUrl}',values).then((result)=>{
+            set${item.editFieldName}(${item.resultStructure})
+          }).catch(err=>{
+            message.error(err)
+          })
+        }
+      `;
+    attr += `${item.eventType}={${item.eventName}}`;
+  });
+  return { str, attr };
+};
 /**
  * 创建组件内容
  */
@@ -129,7 +167,8 @@ const createComponentContent = (
   code,
   moduleStr,
   dataSourceStr,
-  currentRoute
+  currentRoute,
+  eventStr
 ) => {
   const easyMoudleStr = moduleStr.easyMoudleStr
     ? `import { ${moduleStr.easyMoudleStr} } from "./../../components/index";`
@@ -147,6 +186,7 @@ const createComponentContent = (
   ${easyMoudleStr}
   ${antdMoudleStr}
   ${chartMoudleStr}
+  ${eventStr}
   
   const ${currentRoute.componentName} = ()=>{
 

@@ -4,7 +4,7 @@ import * as antd from "antd";
 import EasyContainer from "../extend-components/EasyContainer";
 import EasyText from "../extend-components/EasyText";
 import Img from "../extend-components/Img";
-import Button from "../extend-components/Button";
+import EasyButton from "../extend-components/EasyButton";
 import DatePicker from "../extend-components/DatePicker";
 import InputNumber from "../extend-components/InputNumber";
 import TimePicker from "../extend-components/TimePicker";
@@ -29,29 +29,29 @@ export const ELEMENT_ALL = {
   ...antd,
   EasyContainer,
   EasyText,
+  EasyButton,
   Img,
   FormItem: antd.Form.Item,
-  Button,
   TimePickerRangePicker: antd.TimePicker.RangePicker,
-  DatePicker,
-  TimePicker,
   DatePickerRangePicker: antd.DatePicker.RangePicker,
-  InputNumber,
   CheckboxGroup: antd.Checkbox.Group,
   RadioGroup: antd.Radio.Group,
+  CollapsePanel: antd.Collapse.Panel,
+  MultiChartLine: ChartLine,
+  MultiChartColumn: ChartColumn,
+  ChartRing: ChartPie,
+  DatePicker,
+  TimePicker,
+  InputNumber,
   Slider,
   Rate,
   Calendar,
   Carousel,
   Collapse,
-  CollapsePanel: antd.Collapse.Panel,
   TimelineItem,
   ChartLine,
-  MultiChartLine: ChartLine,
   ChartColumn,
-  MultiChartColumn: ChartColumn,
   ChartPie,
-  ChartRing: ChartPie,
   ChartGauge,
   ChartLiquid,
   ChartRadar,
@@ -82,11 +82,6 @@ export const ELEMENT_LIST = [
         name: "Layout",
         label: "布局",
         icon: "icon-icon-test",
-      },
-      {
-        name: "Button",
-        label: "按钮",
-        icon: "icon-anniuguanli-02",
       },
     ],
   },
@@ -168,6 +163,11 @@ export const ELEMENT_LIST = [
         name: "Slider",
         label: "滑动输入条",
         icon: "icon-huadongshurutiao",
+      },
+      {
+        name: "EasyButton",
+        label: "按钮",
+        icon: "icon-anniuguanli-02",
       },
     ],
   },
@@ -339,17 +339,12 @@ export const ELEMENT_MAP = {
       width: "auto",
     },
     props: {
-      name: "",
+      fieldname: "",
       label: "标题",
       labelAlign: "right",
-      rules: [
-        {
-          required: true,
-          message: "Please input your username!",
-        },
-      ],
     },
     children: {},
+    realName: "Form.Item",
   },
   Input: {
     name: "Input",
@@ -371,11 +366,21 @@ export const ELEMENT_MAP = {
 
     children: [],
   },
-  Button: {
-    name: "Button",
+  EasyButton: {
+    name: "EasyButton",
     label: "按钮",
     props: {
       content: "按钮",
+      block: false,
+      danger: false,
+      disabled: false,
+      ghost: false,
+      // href: "",
+      // target: "",
+      htmlType: "button",
+      shape: "default",
+      size: "small",
+      type: "default",
     },
     style: {},
   },

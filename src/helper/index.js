@@ -29,6 +29,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
     name: config.name,
     style: Object.assign({}, config.style),
     props: Object.assign({}, config.props),
+    realName: config.realName,
     children,
     //component: ELEMENT_ALL[config.name],
   };
@@ -68,7 +69,7 @@ export const createElement = (data, currentUid) => {
 };
 
 /**
- * 修改样式
+ * 修改数据源-样式
  */
 export const editConfigForStyle = (uid, key, val) => {
   const _old = { ...ORIGIN.TREE[uid].style };
@@ -79,13 +80,13 @@ export const editConfigForStyle = (uid, key, val) => {
   };
 };
 /**
- * 修改数据源（api交互部分）
+ * 修改数据源-dataSource-api交互部分
  */
 export const editConfigForDataSource = (uid, val) => {
   ORIGIN.TREE[uid].dataSource = val;
 };
 /**
- * 修改样式
+ * 修改数据源-属性
  */
 export const editConfigForProps = (uid, key, val) => {
   const _old = { ...ORIGIN.TREE[uid].props };
@@ -93,6 +94,14 @@ export const editConfigForProps = (uid, key, val) => {
     ..._old,
     [key]: val,
   };
+};
+/**
+ * 修改数据源-事件
+ */
+export const editConfigForEvent = (uid, val) => {
+  const event = ORIGIN.TREE[uid].event || {};
+  event[val.eventType] = val;
+  ORIGIN.TREE[uid].event = event;
 };
 
 /**
