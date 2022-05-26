@@ -1,4 +1,4 @@
-const { ipcMain, dialog } = require("electron");
+const { app, ipcMain, dialog } = require("electron");
 const { spawn } = require("child_process");
 const { cloneTemplate } = require("./down-template");
 const {
@@ -46,7 +46,6 @@ ipcMain.on("clone-template", async (event, data) => {
 
 // 新建路由
 ipcMain.handle("add-route-emitter", (event, data) => {
-  console.log(data);
   try {
     // 获取原始路由信息
     const content = getRouteJsonContent(
@@ -76,4 +75,9 @@ ipcMain.handle("add-route-emitter", (event, data) => {
     console.error("add-route-emitter is error", error);
     return false;
   }
+});
+
+// 获取app.path并返回给子进程
+ipcMain.handle("get-app-path", async (event) => {
+  return app.getPath("userData");
 });

@@ -20,5 +20,4 @@ app.on("ready", () => {
   });
   // 事件集中处理
   require("./service/event-emitter");
-  console.log(app.getPath("userData"));
 });
