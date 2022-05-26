@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
 import { Modal, Alert } from "antd";
-import Editor from "@monaco-editor/react";
+import Editor, { loader } from "@monaco-editor/react";
+loader.config({
+  paths: {
+    vs: "file:///Users/yang/ustudy/easy-coder/vs",
+  },
+});
 
 const DialogMonaco = ({ isModalVisible, cb, defaultValue, message }) => {
   // editor 初始化
