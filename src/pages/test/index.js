@@ -1,3 +1,3 @@
-const Test = () => <img src={process.env.PUBLIC_URL + "/test.png"} />;
+const Test = () => <>test</>;
 
 export default Test;

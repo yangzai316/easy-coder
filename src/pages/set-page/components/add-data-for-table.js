@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, notification } from "antd";
-import { editConfigForProps } from "../../../helper";
+import { editConfigForProps, editConfigForDataSource } from "../../../helper";
 import DialogMonaco from "./dialog-monaco";
+import SetDataUseApi from "./set-data-use-api";
 
 const AddDataForTable = ({ parentUid, updateView }) => {
   // 操作 dialog
@@ -30,6 +31,22 @@ const AddDataForTable = ({ parentUid, updateView }) => {
       });
     }
   };
+  // api设置
+  const API_DRAWER_REF = useRef(null);
+  const editApi = () => {
+    API_DRAWER_REF.current.show();
+  };
+  const eventSuccessCb = (val) => {
+    if (!val) return;
+
+    editConfigForDataSource(parentUid, val);
+    notification.success({
+      message: "添加成功",
+      style: { width: "160px" },
+      duration: 2,
+    });
+    updateView();
+  };
   return (
     <>
       <Button
@@ -41,6 +58,18 @@ const AddDataForTable = ({ parentUid, updateView }) => {
       >
         输入列表组件数据
       </Button>
+      <Button
+        style={{ marginTop: "10px" }}
+        block
+        type="primary"
+        onClick={editApi}
+      >
+        设置接口Api修改数据
+      </Button>
+      <SetDataUseApi
+        ref={API_DRAWER_REF}
+        successCb={eventSuccessCb}
+      ></SetDataUseApi>
       <DialogMonaco
         isModalVisible={isModalVisible}
         cb={cb}

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, notification } from "antd";
-import { editConfigForProps } from "../../../helper";
-import DialogMonaco from "./dialog-monaco";
+import { editConfigForProps, editConfigForDataSource } from "../../../helper";
 import { isObject } from "../../../utils";
 import ORIGIN from "../../../data/ORIGIN_TREE";
+import DialogMonaco from "./dialog-monaco";
+import SetDataUseApi from "./set-data-use-api";
 
 let KEY = "";
 
@@ -24,7 +25,7 @@ const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
     setIsModalVisible(true);
   };
   // dialog 回调
-  const cb = (visible, val) => {
+  const monacocCb = (visible, val) => {
     setIsModalVisible(visible);
     if (!val) return;
     try {
@@ -38,6 +39,7 @@ const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
         throw new Error("This is not Object");
       }
       // 对修改树形tree
+      delete ORIGIN.TREE[currentUid].dataSource;
       editConfigForProps(currentUid, KEY, data);
       notification.success({
         message: "添加成功",
@@ -52,6 +54,21 @@ const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
         duration: 2,
       });
     }
+  };
+  // api设置
+  const API_DRAWER_REF = useRef(null);
+  const editApi = () => {
+    API_DRAWER_REF.current.show();
+  };
+  const eventSuccessCb = (val) => {
+    if (!val) return;
+    editConfigForDataSource(currentUid, val);
+    notification.success({
+      message: "添加成功",
+      style: { width: "160px" },
+      duration: 2,
+    });
+    updateView();
   };
   return (
     <>
@@ -75,12 +92,24 @@ const AddArgsForChart = ({ currentUid, updateView, otherArgs = [] }) => {
         );
       })}
 
+      <Button
+        style={{ marginTop: "10px" }}
+        block
+        type="primary"
+        onClick={editApi}
+      >
+        设置接口Api修改数据
+      </Button>
       <DialogMonaco
         isModalVisible={isModalVisible}
-        cb={cb}
+        cb={monacocCb}
         message="请在下方编辑器输入折线图数据，注意 json 数据格式；右击有格式化代码等辅助功能"
         defaultValue={initialValue}
       ></DialogMonaco>
+      <SetDataUseApi
+        ref={API_DRAWER_REF}
+        successCb={eventSuccessCb}
+      ></SetDataUseApi>
     </>
   );
 };

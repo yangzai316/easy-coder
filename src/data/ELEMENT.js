@@ -398,6 +398,7 @@ export const ELEMENT_MAP = {
   },
   TimePickerRangePicker: {
     name: "TimePickerRangePicker",
+    realName: "TimePicker.RangePicker",
     label: "时间范围选择器",
     props: {},
     style: {},
@@ -412,6 +413,7 @@ export const ELEMENT_MAP = {
   },
   DatePickerRangePicker: {
     name: "DatePickerRangePicker",
+    realName: "DatePicker.RangePicker",
     label: "日期范围选择器",
     props: {
       picker: "date",
@@ -432,6 +434,7 @@ export const ELEMENT_MAP = {
   },
   CheckboxGroup: {
     name: "CheckboxGroup",
+    realName: "Checkbox.Group",
     label: "多选框组",
     props: {
       options: [{ label: "演示项", value: "test" }],
@@ -440,6 +443,7 @@ export const ELEMENT_MAP = {
   },
   RadioGroup: {
     name: "RadioGroup",
+    realName: "Radio.Group",
     label: "单选框组",
     props: {
       options: [{ label: "演示项", value: "test" }],
@@ -510,6 +514,7 @@ export const ELEMENT_MAP = {
   },
   CollapsePanel: {
     name: "CollapsePanel",
+    realName: "Collapse.Panel",
     label: "折叠面板子元素",
     props: {
       header: "测试Tile",
@@ -557,6 +562,7 @@ export const ELEMENT_MAP = {
   },
   ChartLine: {
     name: "ChartLine",
+    realName: "Line",
     props: {
       width: 800,
       height: 400,
@@ -585,6 +591,7 @@ export const ELEMENT_MAP = {
   },
   MultiChartLine: {
     name: "MultiChartLine",
+    realName: "Line",
     props: {
       width: 800,
       height: 400,
@@ -638,6 +645,7 @@ export const ELEMENT_MAP = {
   },
   ChartColumn: {
     name: "ChartColumn",
+    realName: "Column",
     props: {
       width: 400,
       height: 400,
@@ -677,6 +685,7 @@ export const ELEMENT_MAP = {
   },
   MultiChartColumn: {
     name: "MultiChartColumn",
+    realName: "Column",
     props: {
       width: 800,
       height: 400,
@@ -785,6 +794,7 @@ export const ELEMENT_MAP = {
   },
   ChartPie: {
     name: "ChartPie",
+    realName: "Pie",
     props: {
       width: 400,
       height: 400,
@@ -838,6 +848,7 @@ export const ELEMENT_MAP = {
   },
   ChartRing: {
     name: "ChartRing",
+    realName: "Pie",
     props: {
       width: 400,
       height: 400,
@@ -891,6 +902,7 @@ export const ELEMENT_MAP = {
   },
   ChartGauge: {
     name: "ChartGauge",
+    realName: "Gauge",
     props: {
       width: 400,
       height: 400,
@@ -934,6 +946,7 @@ export const ELEMENT_MAP = {
   },
   ChartLiquid: {
     name: "ChartLiquid",
+    realName: "Liquid",
     props: {
       width: 400,
       height: 400,
@@ -950,6 +963,7 @@ export const ELEMENT_MAP = {
   },
   ChartRadar: {
     name: "ChartRadar",
+    realName: "Radar",
     props: {
       width: 400,
       height: 400,
@@ -994,6 +1008,7 @@ export const ELEMENT_MAP = {
   },
   ChartStock: {
     name: "ChartStock",
+    realName: "Stock",
     props: {
       width: 400,
       height: 400,

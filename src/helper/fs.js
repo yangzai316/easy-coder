@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { isArray, isBoolean, isObject } from "./../utils/index";
+import { isArray, isBoolean, isNumber, isObject } from "./../utils/index";
 const { writeFileSync, readFileSync } = window.require("fs");
 /**
  * 将创建的json写入本地
@@ -76,13 +76,18 @@ const formatJsonToElement = (data) => {
     let props = "";
     if (data.props) {
       props = Object.keys(data.props).reduce((prv, cur) => {
-        if (cur === "options" && data.dataSource) {
+        if (
+          (cur === "options" || cur === "data" || cur === "dataSource") &&
+          data.dataSource
+        ) {
           return prv + ` ${cur}={${data.dataSource.fieldName}}`;
         } else if (cur === "fieldname") {
           return prv + ` name="${data.props[cur]}"`;
         } else if (isArray(data.props[cur])) {
           return prv + ` ${cur}={${JSON.stringify(data.props[cur])}}`;
         } else if (isBoolean(data.props[cur])) {
+          return prv + ` ${cur}={${data.props[cur]}}`;
+        } else if (isNumber(data.props[cur])) {
           return prv + ` ${cur}={${data.props[cur]}}`;
         }
         return prv + ` ${cur}="${data.props[cur]}"`;
@@ -111,10 +116,11 @@ const formatJsonToElement = (data) => {
     // 自身标签生成 & 拼接子代内容
     const tagName = data.realName || data.name;
     const result = `<${tagName}${style}${props} ${event}>${content}</${tagName}>`;
-    if (tagName.indexOf("Easy") >= 0) {
+    if (data.name.indexOf("Easy") >= 0) {
       moduleSetEasy.add(tagName);
-    } else if (tagName.indexOf("Chart") >= 0) {
-      moduleSetChart.add(tagName);
+    } else if (data.name.indexOf("Chart") >= 0) {
+      console.log(data.name);
+      moduleSetChart.add(data.realName);
     } else if (data.realName) {
       moduleSetAntd.add(data.realName.split(".")[0]);
     } else {
@@ -170,6 +176,7 @@ const createComponentContent = (
   currentRoute,
   eventStr
 ) => {
+  console.log(moduleStr);
   const easyMoudleStr = moduleStr.easyMoudleStr
     ? `import { ${moduleStr.easyMoudleStr} } from "./../../components/index";`
     : "";
