@@ -1,10 +1,14 @@
 import { Tabs } from "antd";
 import ORIGIN from "./../../../data/ORIGIN_TREE";
 import "./../../../style/space-config.scss";
-import { editConfigForStyle, editConfigForProps } from "./../../../helper";
+import {
+  editConfigForStyle,
+  editConfigForProps,
+  deleteElementById,
+} from "./../../../helper";
 import SetupAdvanced from "./setup-advanced";
 import SetupNormal from "./setup-normal";
-
+import { DeleteOutlined } from "@ant-design/icons";
 const { TabPane } = Tabs;
 
 const SpaceConfig = ({ currentUid, updateView }) => {
@@ -21,8 +25,20 @@ const SpaceConfig = ({ currentUid, updateView }) => {
     <div className="space-config">
       <div className="title-current">当前uid：{currentUid}</div>
       <div className="title-current">
-        当前name：{ORIGIN.TREE[currentUid]?.name}
+        <span>当前name：{ORIGIN.TREE[currentUid]?.name}</span>
+        {currentUid !== "id-root" && (
+          <DeleteOutlined
+            style={{ fontSize: "20px", color: "red", cursor: "pointer" }}
+            onClick={() => {
+              deleteElementById(currentUid, () => {
+                // 更新视图
+                updateView();
+              });
+            }}
+          />
+        )}
       </div>
+
       <Tabs defaultActiveKey="1" size="small">
         <TabPane tab="基本样式" key="1">
           {Object.entries(ORIGIN.TREE[currentUid]?.style || []).map(

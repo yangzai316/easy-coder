@@ -159,5 +159,23 @@ export const enrichTree = (data) => {
       enrichTree(item);
     });
   }
-  if (data.uid !== "id-root") ORIGIN.TREE[data.uid] = data;
+  if (data.uid && data.uid !== "id-root") ORIGIN.TREE[data.uid] = data;
+};
+
+/**
+ * 通过 id 寻找对应的元素 , 元素移除
+ */
+export const deleteElementById = (uid, cb) => {
+  const findNodeAndDelete = (data, index, parentList) => {
+    if (data.uid === uid) {
+      delete ORIGIN.TREE[uid];
+      parentList.splice(index, 1);
+      cb();
+    } else if (data?.children?.length) {
+      data.children.forEach((item, index) => {
+        findNodeAndDelete(item, index, data.children);
+      });
+    }
+  };
+  findNodeAndDelete(ORIGIN.TREE["id-root"], uid);
 };
