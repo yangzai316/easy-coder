@@ -78,11 +78,6 @@ export const ELEMENT_LIST = [
         label: "图片",
         icon: "icon-tupian1",
       },
-      {
-        name: "Layout",
-        label: "布局",
-        icon: "icon-icon-test",
-      },
     ],
   },
   {
@@ -303,17 +298,6 @@ export const ELEMENT_MAP = {
       alt: "默认图片",
     },
     style: {},
-  },
-  Layout: {
-    name: "Layout",
-    label: "布局",
-    style: {
-      width: "auto",
-      height: "200px",
-      backgroundColor: "#fff",
-      margin: "10px",
-    },
-    children: [],
   },
   Form: {
     name: "Form",

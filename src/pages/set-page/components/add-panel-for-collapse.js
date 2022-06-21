@@ -6,8 +6,9 @@ import { mixComponentToTree } from "../../../helper";
 const AddPanelForCollapse = ({ parentUid, updateView }) => {
   const add = () => {
     const uid = uuidv4();
-    mixComponentToTree(uid, "CollapsePanel", parentUid);
-    updateView(uid);
+    mixComponentToTree(uid, "CollapsePanel", parentUid, () => {
+      updateView(uid);
+    });
   };
   return (
     <div>

@@ -11,8 +11,9 @@ const formItemContentList = list.filter(
 const AddFormItemContent = ({ parentUid, updateView }) => {
   const add = (type) => {
     const uid = uuidv4();
-    mixComponentToTree(uid, type, parentUid);
-    updateView(uid);
+    mixComponentToTree(uid, type, parentUid, () => {
+      updateView(uid);
+    });
   };
   return (
     <div>

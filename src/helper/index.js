@@ -2,6 +2,7 @@ import React from "react";
 import ORIGIN from "../data/ORIGIN_TREE";
 import { ELEMENT_MAP, ELEMENT_ALL } from "./../data/ELEMENT";
 import { isArray, isObject } from "../utils";
+import { message } from "antd";
 /**
  * 获取新创建组件的信息：uid / type
  */
@@ -17,7 +18,11 @@ export const getNewElementInfo = (str) => {
 /**
  * 新创建的组件添加的 tree 数据中
  */
-export const mixComponentToTree = (uid, type, parentUid) => {
+export const mixComponentToTree = (uid, type, parentUid, cb) => {
+  if (!ORIGIN.TREE[parentUid].children) {
+    return message.warning("创建失败，该元素不可添加子级...");
+  }
+
   const config = ELEMENT_MAP[type];
   // 创建新元素的对象
   let children = config.children;
@@ -41,6 +46,7 @@ export const mixComponentToTree = (uid, type, parentUid) => {
   }
 
   ORIGIN.TREE[uid] = newEle;
+  cb && cb();
 };
 /**
  * 根据 json 创建 react 元素，循环递归

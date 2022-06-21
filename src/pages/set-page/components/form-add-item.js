@@ -10,8 +10,9 @@ const AddFormItem = ({ parentUid, updateView }) => {
   // 添加标单项的事件处理
   const add = () => {
     const uid = uuidv4();
-    mixComponentToTree(uid, "FormItem", parentUid);
-    updateView(uid);
+    mixComponentToTree(uid, "FormItem", parentUid, () => {
+      updateView(uid);
+    });
   };
   // 事件设置
   const EVENT_DRAWER_REF = useRef(null);

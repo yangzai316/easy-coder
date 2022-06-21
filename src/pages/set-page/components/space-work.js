@@ -39,8 +39,9 @@ const SpaceWork = ({
         e.dataTransfer.getData("text/plain")
       );
 
-      mixComponentToTree(uid, type, e.target.dataset.uid);
-      updateView(uid);
+      mixComponentToTree(uid, type, e.target.dataset.uid, () => {
+        updateView(uid);
+      });
     };
 
     const clickEvent = (e) => {

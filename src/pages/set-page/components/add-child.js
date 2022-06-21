@@ -5,8 +5,9 @@ import { mixComponentToTree } from "../../../helper";
 const AddChild = ({ parentUid, updateView, targetMap }) => {
   const add = (type) => {
     const uid = uuidv4();
-    mixComponentToTree(uid, type, parentUid);
-    updateView(uid);
+    mixComponentToTree(uid, type, parentUid, () => {
+      updateView(uid);
+    });
   };
   return (
     <div>
