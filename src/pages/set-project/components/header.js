@@ -7,7 +7,6 @@ const Header = () => {
   const [appPath, setAppPath] = useState();
   useEffect(() => {
     ipcRenderer.invoke("get-app-path").then((result) => {
-      console.log(result);
       setAppPath(result);
     });
   }, []);

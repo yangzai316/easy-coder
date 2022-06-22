@@ -45,18 +45,28 @@ export const mixComponentToTree = (uid, type, parentUid, cb) => {
 /**
  * 同一父级内，元素位置互换
  */
-export const exchangeElementSameLevel = (curUid, curIndex, targetIndex, cb) => {
+export const exchangeElementSameLevel = (
+  curUid,
+  targetUid,
+  curIndex,
+  targetIndex,
+  cb
+) => {
   if (curIndex === undefined || targetIndex === undefined) return;
 
   const spaceWork = document.getElementById("WORK_SPACE");
   try {
-    const parentUid = getUid(
+    const parentUidCur = getUid(
       spaceWork.querySelector(`[data-uid="${curUid}"]`).parentNode
     );
-
-    const o = ORIGIN.TREE[parentUid].children.splice(curIndex, 1);
-    console.log(o);
-    ORIGIN.TREE[parentUid].children.splice(targetIndex, 0, o[0]);
+    const parentUidTar = getUid(
+      spaceWork.querySelector(`[data-uid="${targetUid}"]`).parentNode
+    );
+    if (parentUidCur !== parentUidTar) {
+      return message.warning("元素移动只能发生在同一父级下");
+    }
+    const o = ORIGIN.TREE[parentUidCur].children.splice(curIndex, 1);
+    ORIGIN.TREE[parentUidCur].children.splice(targetIndex, 0, o[0]);
 
     cb();
   } catch (error) {
@@ -90,6 +100,7 @@ export const createElement = (data, currentUid, index) => {
         e.dataTransfer.setData(
           "text/plain",
           JSON.stringify({
+            uid: e.target.dataset.uid,
             type: "move",
             curIndex: e.target.dataset.index,
           })

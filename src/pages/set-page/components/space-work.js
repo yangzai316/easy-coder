@@ -50,7 +50,7 @@ const SpaceWork = ({
     } else {
       // 移动元素逻辑
       const targetIndex = e.target.dataset.index;
-      exchangeElementSameLevel(currentUid, curIndex, targetIndex, () => {
+      exchangeElementSameLevel(uid, currentUid, curIndex, targetIndex, () => {
         updateView(uid);
       });
     }

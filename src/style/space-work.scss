@@ -9,7 +9,10 @@
   outline-offset: -1px;
 }
 .is-over {
-  background-color: #e6f7ff !important;
+  position: relative;
+  &::before {
+    content: " ";
+  }
 }
 .assist-nav {
   display: flex;

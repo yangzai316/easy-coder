@@ -119,7 +119,6 @@ const formatJsonToElement = (data) => {
     if (data.name.indexOf("Easy") >= 0) {
       moduleSetEasy.add(tagName);
     } else if (data.name.indexOf("Chart") >= 0) {
-      console.log(data.name);
       moduleSetChart.add(data.realName);
     } else if (data.realName) {
       moduleSetAntd.add(data.realName.split(".")[0]);
@@ -176,7 +175,6 @@ const createComponentContent = (
   currentRoute,
   eventStr
 ) => {
-  console.log(moduleStr);
   const easyMoudleStr = moduleStr.easyMoudleStr
     ? `import { ${moduleStr.easyMoudleStr} } from "./../../components/index";`
     : "";
