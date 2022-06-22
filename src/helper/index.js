@@ -54,13 +54,10 @@ export const exchangeElementSameLevel = (curUid, curIndex, targetIndex, cb) => {
       spaceWork.querySelector(`[data-uid="${curUid}"]`).parentNode
     );
 
-    [
-      ORIGIN.TREE[parentUid].children[curIndex],
-      ORIGIN.TREE[parentUid].children[targetIndex],
-    ] = [
-      ORIGIN.TREE[parentUid].children[targetIndex],
-      ORIGIN.TREE[parentUid].children[curIndex],
-    ];
+    const o = ORIGIN.TREE[parentUid].children.splice(curIndex, 1);
+    console.log(o);
+    ORIGIN.TREE[parentUid].children.splice(targetIndex, 0, o[0]);
+
     cb();
   } catch (error) {
     console.error(error);

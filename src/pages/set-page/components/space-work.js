@@ -35,6 +35,7 @@ const SpaceWork = ({
   };
   const dropEvent = (e) => {
     e.preventDefault();
+    e.target.classList.remove("is-over");
     // 获取拖拽中携带的信息
     const { uid, tag, type, curIndex } = getNewElementInfo(
       e.dataTransfer.getData("text/plain")
@@ -61,6 +62,14 @@ const SpaceWork = ({
       focusElement(WORK_SPACE.current, uid);
     }
   };
+  const dragEnterEvent = (e) => {
+    e.stopPropagation();
+    e.target.classList.add("is-over");
+  };
+  const dragLeaveEvent = (e) => {
+    e.stopPropagation();
+    e.target.classList.remove("is-over");
+  };
   // 为新建元素添加高亮效果
   useLayoutEffect(() => {
     focusElement(WORK_SPACE.current, currentUid);
@@ -74,6 +83,8 @@ const SpaceWork = ({
       onDragOver={dragOverEvent}
       onDrop={dropEvent}
       onClick={clickEvent}
+      onDragEnter={dragEnterEvent}
+      onDragLeave={dragLeaveEvent}
     >
       {createElement(ORIGIN.TREE["id-root"], currentUid)}
     </div>
