@@ -29,45 +29,42 @@ const SpaceWork = ({
   }, [currentProject, currentRoute, updateView]);
   const WORK_SPACE = useRef(null);
   // 添加拖拽事件
-  useEffect(() => {
-    const dragOverEvent = (e) => {
-      e.preventDefault();
-    };
-    const dropEvent = (e) => {
-      e.preventDefault();
-      const { uid, type } = getNewElementInfo(
-        e.dataTransfer.getData("text/plain")
-      );
+  const dragOverEvent = (e) => {
+    console.log("dragOverEvent");
+    e.preventDefault();
+  };
+  const dropEvent = (e) => {
+    console.log("dropEvent");
+    e.preventDefault();
+    const { uid, type } = getNewElementInfo(
+      e.dataTransfer.getData("text/plain")
+    );
 
-      mixComponentToTree(uid, type, e.target.dataset.uid, () => {
-        updateView(uid);
-      });
-    };
-
-    const clickEvent = (e) => {
-      const uid = getUid(e.target);
-      if (uid && currentUid !== uid) {
-        updateView(uid);
-        focusElement(WORK_SPACE.current, uid);
-      }
-    };
-    WORK_SPACE.current.addEventListener("dragover", dragOverEvent, false);
-    WORK_SPACE.current.addEventListener("drop", dropEvent, false);
-    WORK_SPACE.current.addEventListener("click", clickEvent, false);
-    const WORK_SPACE_REF = WORK_SPACE.current;
-    return () => {
-      WORK_SPACE_REF.removeEventListener("dragOver", dragOverEvent, false);
-      WORK_SPACE_REF.removeEventListener("drop", dropEvent, false);
-      WORK_SPACE_REF.removeEventListener("click", clickEvent, false);
-    };
-  }, [currentUid, updateView, WORK_SPACE]);
+    mixComponentToTree(uid, type, e.target.dataset.uid, () => {
+      updateView(uid);
+    });
+  };
+  const clickEvent = (e) => {
+    const uid = getUid(e.target);
+    if (uid && currentUid !== uid) {
+      updateView(uid);
+      focusElement(WORK_SPACE.current, uid);
+    }
+  };
   // 为新建元素添加高亮效果
   useLayoutEffect(() => {
     focusElement(WORK_SPACE.current, currentUid);
   }, [currentUid, WORK_SPACE]);
 
   return (
-    <div ref={WORK_SPACE} id="WORK_SPACE" className="work-space">
+    <div
+      ref={WORK_SPACE}
+      id="WORK_SPACE"
+      className="work-space"
+      onDrop={dropEvent}
+      onDragOver={dragOverEvent}
+      onClick={clickEvent}
+    >
       {createElement(ORIGIN.TREE["id-root"], currentUid)}
     </div>
   );

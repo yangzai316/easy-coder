@@ -69,6 +69,7 @@ export const createElement = (data, currentUid) => {
       ...data.props,
       style: data.style,
       "data-uid": data.uid,
+      draggable: true,
     },
     children
   );
