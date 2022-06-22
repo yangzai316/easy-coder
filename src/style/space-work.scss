@@ -5,7 +5,8 @@
   overflow: auto;
 }
 .is-focus {
-  border: 2px dotted #5584ff !important;
+  outline: 1px dashed #5584ff !important;
+  outline-offset: -1px;
 }
 .assist-nav {
   display: flex;

@@ -4,7 +4,7 @@ const INITIAL_ROOT = {
   style: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "#f1f1f1",
     padding: "4px",
     overflow: "auto",
   },

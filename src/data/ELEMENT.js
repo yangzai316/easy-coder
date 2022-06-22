@@ -278,6 +278,7 @@ export const ELEMENT_MAP = {
       margin: "4px",
       padding: "4px",
       overflow: "auto",
+      backgroundColor: "#fff",
     },
   },
   EasyText: {
