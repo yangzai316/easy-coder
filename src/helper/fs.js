@@ -219,7 +219,7 @@ export const readComponentJson = (currentProject, currentRoute) => {
     message.success("当前组件JSON数据获取成功");
     return data;
   } catch (err) {
-    console.error("readJson is error : ", err);
+    message.warning(`${err.message}`);
     return "{}";
   }
 };

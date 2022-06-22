@@ -4,6 +4,7 @@ import ORIGIN from "../../../data/ORIGIN_TREE";
 import INITIAL_ROOT from "./../../../data/INITIAL_ROOT";
 import {
   mixComponentToTree,
+  exchangeElementSameLevel,
   getNewElementInfo,
   getUid,
   focusElement,
@@ -30,19 +31,28 @@ const SpaceWork = ({
   const WORK_SPACE = useRef(null);
   // 添加拖拽事件
   const dragOverEvent = (e) => {
-    console.log("dragOverEvent");
     e.preventDefault();
   };
   const dropEvent = (e) => {
-    console.log("dropEvent");
     e.preventDefault();
-    const { uid, type } = getNewElementInfo(
+    // 获取拖拽中携带的信息
+    const { uid, tag, type, curIndex } = getNewElementInfo(
       e.dataTransfer.getData("text/plain")
     );
-
-    mixComponentToTree(uid, type, e.target.dataset.uid, () => {
-      updateView(uid);
-    });
+    // 当前元素的uid
+    const currentUid = e.target.dataset.uid;
+    if (type === "create") {
+      // 新建元素逻辑
+      mixComponentToTree(uid, tag, currentUid, () => {
+        updateView(uid);
+      });
+    } else {
+      // 移动元素逻辑
+      const targetIndex = e.target.dataset.index;
+      exchangeElementSameLevel(currentUid, curIndex, targetIndex, () => {
+        updateView(uid);
+      });
+    }
   };
   const clickEvent = (e) => {
     const uid = getUid(e.target);
@@ -61,8 +71,8 @@ const SpaceWork = ({
       ref={WORK_SPACE}
       id="WORK_SPACE"
       className="work-space"
-      onDrop={dropEvent}
       onDragOver={dragOverEvent}
+      onDrop={dropEvent}
       onClick={clickEvent}
     >
       {createElement(ORIGIN.TREE["id-root"], currentUid)}

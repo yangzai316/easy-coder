@@ -7,19 +7,13 @@ import { message } from "antd";
  * 获取新创建组件的信息：uid / type
  */
 
-export const getNewElementInfo = (str) => {
-  const [uid, type] = str.split("-&-");
-  return {
-    uid,
-    type,
-  };
-};
+export const getNewElementInfo = (str) => JSON.parse(str);
 
 /**
  * 新创建的组件添加的 tree 数据中
  */
 export const mixComponentToTree = (uid, type, parentUid, cb) => {
-  if (!ORIGIN.TREE[parentUid].children) {
+  if (!parentUid || !ORIGIN.TREE[parentUid].children) {
     return message.warning("创建失败，该元素不可添加子级...");
   }
 
@@ -49,13 +43,37 @@ export const mixComponentToTree = (uid, type, parentUid, cb) => {
   cb && cb();
 };
 /**
+ * 同一父级内，元素位置互换
+ */
+export const exchangeElementSameLevel = (curUid, curIndex, targetIndex, cb) => {
+  if (curIndex === undefined || targetIndex === undefined) return;
+
+  const spaceWork = document.getElementById("WORK_SPACE");
+  try {
+    const parentUid = getUid(
+      spaceWork.querySelector(`[data-uid="${curUid}"]`).parentNode
+    );
+
+    [
+      ORIGIN.TREE[parentUid].children[curIndex],
+      ORIGIN.TREE[parentUid].children[targetIndex],
+    ] = [
+      ORIGIN.TREE[parentUid].children[targetIndex],
+      ORIGIN.TREE[parentUid].children[curIndex],
+    ];
+    cb();
+  } catch (error) {
+    console.error(error);
+  }
+};
+/**
  * 根据 json 创建 react 元素，循环递归
  */
-export const createElement = (data, currentUid) => {
+export const createElement = (data, currentUid, index) => {
   let children = data.children;
   if (Array.isArray(data.children) && data.children.length) {
-    children = data.children.map((item) => {
-      return createElement(item, currentUid);
+    children = data.children.map((item, i) => {
+      return createElement(item, currentUid, i);
     });
   } else if (isObject(data.children)) {
     children = data.children.uid
@@ -69,7 +87,18 @@ export const createElement = (data, currentUid) => {
       ...data.props,
       style: data.style,
       "data-uid": data.uid,
+      "data-index": index,
       draggable: true,
+      onDragStart: (e) => {
+        e.dataTransfer.setData(
+          "text/plain",
+          JSON.stringify({
+            type: "move",
+            curIndex: e.target.dataset.index,
+          })
+        );
+        e.stopPropagation();
+      },
     },
     children
   );

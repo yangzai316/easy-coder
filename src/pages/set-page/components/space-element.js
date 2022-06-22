@@ -10,7 +10,14 @@ const AreaComponent = () => {
   useEffect(() => {
     const dragStart = (e) => {
       const uid = uuidv4();
-      e.dataTransfer.setData("text/plain", `${uid}-&-${e.target.dataset.type}`);
+      e.dataTransfer.setData(
+        "text/plain",
+        JSON.stringify({
+          uid,
+          tag: e.target.dataset.tag,
+          type: "create",
+        })
+      );
     };
     const spaceElement = document.getElementById("space-element");
     spaceElement.addEventListener("dragstart", dragStart, false);
@@ -46,7 +53,7 @@ const ComponentItem = ({ content }) => {
   return (
     <div
       className={`component-item ${content.disabled ? "is-disabled" : ""}`}
-      data-type={content.name}
+      data-tag={content.name}
       draggable={String(!content.disabled)}
     >
       <EasyIcon>{content.icon}</EasyIcon>
