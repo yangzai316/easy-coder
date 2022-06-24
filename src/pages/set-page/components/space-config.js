@@ -8,6 +8,7 @@ import {
 } from "./../../../helper";
 import SetupAdvanced from "./setup-advanced";
 import SetupNormal from "./setup-normal";
+import NativeStyleConfig from "./native-style-config";
 import { DeleteOutlined } from "@ant-design/icons";
 const { TabPane } = Tabs;
 
@@ -25,7 +26,10 @@ const SpaceConfig = ({ currentUid, updateView }) => {
     <div className="space-config">
       <div className="title-current">当前uid：{currentUid}</div>
       <div className="title-current">
-        <span>当前name：{ORIGIN.TREE[currentUid]?.name}</span>
+        <span>
+          当前name：{ORIGIN.TREE[currentUid]?.name}
+          {ORIGIN.TREE[currentUid]?.elementType}
+        </span>
         {currentUid !== "id-root" && (
           <DeleteOutlined
             style={{ fontSize: "20px", color: "red", cursor: "pointer" }}
@@ -41,6 +45,11 @@ const SpaceConfig = ({ currentUid, updateView }) => {
 
       <Tabs defaultActiveKey="1" size="small">
         <TabPane tab="基本样式" key="1">
+          {ORIGIN.TREE[currentUid]?.elementType === "basic" && (
+            <div style={{ width: "240px", height: "150px" }}>
+              <NativeStyleConfig></NativeStyleConfig>
+            </div>
+          )}
           {Object.entries(ORIGIN.TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (

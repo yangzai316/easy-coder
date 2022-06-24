@@ -59,7 +59,7 @@ const SetPageContent = () => {
           ></SpaceWork>
         </Content>
         {/* 右边组件属性设置区 */}
-        <Sider theme="light" width={240} style={{ height: "100%" }}>
+        <Sider theme="light" width={264} style={{ height: "100%" }}>
           <SpaceConfig
             currentUid={viewData.currentUid}
             updateView={updateView}

@@ -26,6 +26,7 @@ export const mixComponentToTree = (uid, type, parentUid, cb) => {
   const newEle = {
     uid: uid,
     name: config.name,
+    elementType: config.elementType,
     style: Object.assign({}, config.style),
     props: Object.assign({}, config.props),
     realName: config.realName,
