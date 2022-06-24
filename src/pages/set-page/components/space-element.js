@@ -7,27 +7,24 @@ import "./../../../style/space-element.scss";
 // 左侧组件展示栏
 const AreaComponent = () => {
   // 添加拖拽事件
-  useEffect(() => {
-    const dragStart = (e) => {
-      const uid = uuidv4();
-      e.dataTransfer.setData(
-        "text/plain",
-        JSON.stringify({
-          uid,
-          tag: e.target.dataset.tag,
-          type: "create",
-        })
-      );
-    };
-    const spaceElement = document.getElementById("space-element");
-    spaceElement.addEventListener("dragstart", dragStart, false);
-    return () => {
-      spaceElement.removeEventListener("dragstart", dragStart, false);
-    };
-  }, []);
+  const dragStartEvent = (e) => {
+    const uid = uuidv4();
+    e.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({
+        uid,
+        tag: e.target.dataset.tag,
+        type: "create",
+      })
+    );
+  };
 
   return (
-    <div id="space-element" className="space-element">
+    <div
+      id="space-element"
+      className="space-element"
+      onDragStart={dragStartEvent}
+    >
       <Collapse defaultActiveKey={["0"]} accordion>
         {ELEMENT_LIST.map((item, index) => {
           return (

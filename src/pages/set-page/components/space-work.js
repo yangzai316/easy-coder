@@ -35,7 +35,7 @@ const SpaceWork = ({
   };
   const dropEvent = (e) => {
     e.preventDefault();
-    e.target.classList.remove("is-over");
+    e.target.classList.remove("is-focus");
     // 获取拖拽中携带的信息
     const { uid, tag, type, curIndex } = getNewElementInfo(
       e.dataTransfer.getData("text/plain")
@@ -64,11 +64,11 @@ const SpaceWork = ({
   };
   const dragEnterEvent = (e) => {
     e.stopPropagation();
-    e.target.classList.add("is-over");
+    e.target.classList.add("is-focus");
   };
   const dragLeaveEvent = (e) => {
     e.stopPropagation();
-    e.target.classList.remove("is-over");
+    e.target.classList.remove("is-focus");
   };
   // 为新建元素添加高亮效果
   useLayoutEffect(() => {

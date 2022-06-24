@@ -9,10 +9,7 @@
   outline-offset: -1px;
 }
 .is-over {
-  position: relative;
-  &::before {
-    content: " ";
-  }
+  border-top: 5px solid #5584ff;
 }
 .assist-nav {
   display: flex;

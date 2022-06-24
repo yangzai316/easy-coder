@@ -14,7 +14,7 @@ const router = [
     key: "/",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
-        icon-shiyonggongju
+        icon-home
       </EasyIcon>
     ),
     element: <Home />,
@@ -54,7 +54,7 @@ const router = [
     key: "/set-datasource",
     icon: (
       <EasyIcon color="#fff" fontSize="24">
-        icon-chilun
+        icon-yunshujuku
       </EasyIcon>
     ),
     element: <SetDataSource />,

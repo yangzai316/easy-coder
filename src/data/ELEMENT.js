@@ -272,10 +272,10 @@ export const ELEMENT_MAP = {
     name: "EasyContainer",
     label: "容器",
     children: [],
+    nature: "basic",
     style: {
       width: "200px",
       height: "200px",
-      margin: "4px",
       padding: "4px",
       overflow: "auto",
       backgroundColor: "#fff",
