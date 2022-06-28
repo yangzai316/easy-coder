@@ -276,8 +276,7 @@ export const ELEMENT_MAP = {
     style: {
       width: "200px",
       height: "200px",
-      padding: "4px",
-      overflow: "auto",
+      display: "flex",
       backgroundColor: "#fff",
     },
   },

@@ -47,10 +47,13 @@ const SpaceConfig = ({ currentUid, updateView }) => {
         <TabPane tab="基本样式" key="1">
           {ORIGIN.TREE[currentUid]?.elementType === "basic" && (
             <div style={{ width: "240px", height: "150px" }}>
-              <NativeStyleConfig></NativeStyleConfig>
+              <NativeStyleConfig
+                styleData={ORIGIN.TREE[currentUid]?.style}
+                change={change}
+              ></NativeStyleConfig>
             </div>
           )}
-          {Object.entries(ORIGIN.TREE[currentUid]?.style || []).map(
+          {/* {Object.entries(ORIGIN.TREE[currentUid]?.style || []).map(
             ([key, value], index) => {
               return (
                 <SetupNormal
@@ -62,7 +65,7 @@ const SpaceConfig = ({ currentUid, updateView }) => {
                 />
               );
             }
-          )}
+          )} */}
         </TabPane>
         <TabPane tab="组件属性" key="2">
           {Object.entries(ORIGIN.TREE[currentUid]?.props || []).map(
