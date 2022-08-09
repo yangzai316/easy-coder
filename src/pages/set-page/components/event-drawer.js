@@ -18,6 +18,7 @@ export default React.forwardRef(({ successCb }, ref) => {
   const onFinish = () => {
     form.validateFields().then((res) => {
       successCb(res);
+      form.resetFields();
       setVisible(false);
     });
   };
