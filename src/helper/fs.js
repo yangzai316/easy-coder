@@ -191,12 +191,13 @@ const createComponentContent = (
   ${easyMoudleStr}
   ${antdMoudleStr}
   ${chartMoudleStr}
-  ${eventStr}
+  
   
   const ${currentRoute.componentName} = ()=>{
 
     ${dataSourceStr}
-
+    
+    ${eventStr}
     return ${code};
   }
   export default ${currentRoute.componentName};
